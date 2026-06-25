@@ -1,0 +1,1913 @@
+\section{Python: lists, tuples and arrays}
+
+It is often convenient to refer to several (or many) pieces of data
+via single variable name, e.g., a list of atmospheric
+temperatures~\texttt{T} at corresponding heights~\texttt{z}. We can do
+this in Python using \textit{lists}, \textit{tuples} or
+\textit{arrays}. Lists and tuples are data structures available in
+Python whereas arrays are handled using the \texttt{numpy} module.
+
+We can create a (small) list by enclosing the entries in square brackets
+and separating them by commas.
+
+\marginnote{
+\texttt{>> R = [3, 6, -2]}
+}
+
+If we want to access an individual element of a list, either to
+compute with it or to assign to it, we can do so using
+\textit{indices} (also called \textit{subscripts}) in square brackets
+after the list name.  In Python, indices start at~0 (in some
+languages they start at~1). We can use negative indices to
+access the list (or tuple, or array) from the end.
+
+\marginnote{
+\texttt{>> R[0] = 37}
+}
+
+Note that square brackets are used here because round brackets are
+used for calling functions (you have seen this with built-in functions
+e.g. \texttt{sin(pi)} and will meet it again later when you write your
+own functions).
+
+\ex{What error message do you get if you try using round
+brackets to access the first entry in \texttt{R}? How about if you try
+to change the value of the first entry using round brackets?}
+
+A list can be extended by adding a new value at the end using the
+\texttt{append} method. Here round brackets are used because we are
+calling a function (a method is a function defined on an object).
+
+\marginnote{
+\texttt{>> R.append(119)}
+}
+
+A Python tuple is very similar to a Python list, but is created using round brackets.
+
+\marginnote{
+\texttt{>> R = (3, 6, -2)}
+}
+
+Again we can access the individual elements using indices in square brackets.
+
+\marginnote{
+\texttt{>> print(R[0])}
+}
+
+However, when we try to append to the tuple, or change one of the
+values, we find that we cannot. This is because tuples are
+\textit{immutable}, meaning that once defined, they cannot be changed.
+
+\ex{Try appending to a tuple, or changing one of the values as
+we did with the list above. What error messages do you get?}
+
+The tuples and lists we have just seen look like 1D vectors. However,
+if we try to treat them in this way, we will see that they do not
+behave as we require. For example, we expect that multiplying a vector
+by a scalar will result in a new vector with the same number of
+components where each component has been multiplied by the scalar:
+
+\begin{equation}
+  a\begin{pmatrix}
+  1 \\
+  4 \\
+  3
+  \end{pmatrix}
+  = \begin{pmatrix}
+  a \\
+  4a \\
+  3a
+  \end{pmatrix}
+\end{equation}
+
+If we try to do this with a Python list (or tuple) the result is a new
+list (or tuple) that contains $a$ copies of the original list (or
+tuple) [Exercise: try it!] We need a different type of object for
+performing these mathematical operations... arrays!
+
+The Python module for handling arrays is \texttt{numpy}. The most
+common way to import it is to give it the shortened name \texttt{np}.
+
+\marginnote{
+\texttt{>> import numpy as np}
+}
+
+We can now convert a list to an array
+
+\marginnote{
+  \texttt{>> C = np.array([3, 6, -2])}
+}
+
+Multiplying this array by a scalar now works as we require for
+mathematical operations [Exercise: try it!].
+
+We can create a (small) 2D array, or matrix, in a similar way, with a
+new list for each row.
+
+\marginnote{
+\texttt{>> M = np.array([[0, 1],  [-1, 0]])}
+}
+
+What's the difference between a list, a tuple, a vector, a matrix, and
+an array? We usually refer to objects as `vectors' or `matrices' when
+we envisage performing matrix-vector arithmetic operations on them
+(see below), and as `arrays' when they are just tables of numbers. A
+row vector is a $1 \times n$ array with $n$~columns, a column vector
+is an $m \times 1$ array with $m$~rows. Python does not distinguish
+between the two - they are both represented as 1D arrays. A matrix is
+an $m \times n$ array.  Higher dimensional arrays are also
+possible. But note all arrays must be `rectangular', i.e.\ have the
+same number of columns in every row and vice versa. Note that for 2D
+arrays the first index is the row index and the second is the column
+index.
+
+\marginnote{
+\texttt{>> C[1] = 12}
+}
+
+Warning: Try setting \texttt{C[1] = sqrt(3)}. If you print out the
+value of \texttt{C[1]} you will see that it is \texttt{1}, rather than
+\texttt{1.73205081...}. This is because \texttt{C} was created with
+integer entries and Python has assumed that you would like the
+entries to remain integers. You can check the type of array entries by
+looking at the value of \texttt{C.dtype}, and you can set the type of
+entry when you create the array. Try setting \texttt{C = np.array([3,
+    6, 2], dtype=float)} and then setting \texttt{C[1] = sqrt(3)}.
+
+
+We can create larger arrays in various ways. To create an array
+containing entries from 1 to 100 with an increment of 1 we can use
+\texttt{np.arange}.
+
+\marginnote{
+\texttt{>> z = np.arange(1, 100, 1)}
+}
+
+The first two numbers passed to \texttt{np.arange} are the start and
+the end of the sequence. The final number is the increment, and this
+defaults to~1 if left unspecified.
+
+\marginnote{
+\texttt{>> z = np.arange(1, 100)}
+}
+
+\noindent
+Negative and non-integer increments can also be used. If the increment
+means that the final value will be missed, then the array terminates
+before the number specified by the ending value. For example,
+\texttt{np.arange(1, 10, 2)} generates the array \texttt{[1, 3, 5, 7,
+    9]}.
+
+A common requirement is for an array to contain a guaranteed start and
+end point with evenly spaced elements in between. For this we can use
+\texttt{np.linspace(start, end, n)}, where \texttt{n} is the number of
+entries.
+
+\marginnote{
+\texttt{>> z = np.linspace(1, 5, 10)}
+}
+
+\noindent
+We can create arrays of zeros or ones using built-in \texttt{numpy} functions.
+
+\marginnote{
+\texttt{>> X0 = np.zeros((100,100))}
+}
+
+We can perform standard arithmetic operations on arrays provided their shapes
+\textbf{conform}, including ...
+
+\marginnote{
+\texttt{>> A = np.array([[1, 2], [3, 4]])}
+}
+
+\marginnote{
+\texttt{>> B = np.array([[5, 6], [7, 8]])}
+}
+
+\noindent
+addition and subtraction,
+
+\marginnote{
+\texttt{>> S = A + B}
+}
+
+\noindent
+matrix multiplication,
+
+\marginnote{
+\texttt{>> P = A @ B}
+}
+
+\noindent
+element-by-element multiplication,
+
+\marginnote{
+\texttt{>> Q = A * B}
+}
+
+\noindent
+raising each element to a power,
+\marginnote{
+\texttt{>> Q = A**2}
+}
+
+\noindent
+and transpose.
+\marginnote{
+\texttt{>> T = A.T}
+}
+
+\vspace{5mm} Note that by `conform' we mean that the matrix dimensions
+must be compatible, so for example we can add two $2\times 3$
+matrices, and we can multiply a $2\times 3$ matrix by a $3\times 4$
+matrix, but not a $2\times 3$ by a $4\times 2$ matrix. Python will
+flag an error if the dimensions make the operation impossible. We can
+check the shape of a matrix by printing its \texttt{shape} attribute.
+
+\marginnote{
+\texttt{>> print(M.shape)}
+}
+
+Warning: because \texttt{numpy} arrays are not strictly matrices,
+some operations are allowed that you might not expect. When operating
+on arrays, \texttt{numpy} compares their shapes to decide if they are
+\textit{compatible}. The dimensions are compatible if they are equal
+or is one of them is~1. This is best illustrated with an example.
+
+\marginnote{
+\texttt{>> X = np.array([[4, 2, 3], [1, 1, 0]])}
+}
+\marginnote{
+\texttt{>> Y = np.array([[2], [1]])}
+}
+\marginnote{
+\texttt{>> X + Y}
+}
+
+\texttt{X} has shape \texttt{(2, 3)} and \texttt{Y} has shape
+\texttt{(2, 1)} so both dimensions are compatible. In this case,
+\texttt{Y} will act like a \texttt{(2, 3)} array and Python will
+\textit{broadcast} \texttt{Y[:,0]} to the other columns. The operation
+\texttt{X+Y} will add \texttt{Y} to each column of \texttt{X}. You can
+read more about this
+\href{https://numpy.org/doc/stable/user/basics.broadcasting.html}{here},
+although it is outside the scope of this module.
+
+For complex matrices, that is matrices with complex entries, 
+the transpose operation \texttt{A.T} becomes a `transpose and take the complex
+conjugate of all the  entries' operation, or a so-called \textbf{Hermitian 
+transpose}.  This is the `natural' way to transpose a complex matrix, 
+as you will find in later courses on algebra.
+
+Many additional linear algebra functions are provided by the
+\texttt{numpy.linalg} library. For square matrices \texttt{A}, the
+\texttt{linalg.matrix\_power(A, n)} function will raise the matrix
+\texttt{A} to the power of \texttt{n}.
+
+\marginnote{
+\texttt{>> Y = np.linalg.matrix\_power(A, 2)}
+}
+
+\ex{given the arrays \texttt{a}, \texttt{b}, and \texttt{c},}
+
+\marginnote{
+\texttt{>> a = np.array([[1, 0, 1], [0, 1, 0]])}
+}
+
+\marginnote{
+\texttt{>> b = np.array([[6, 5, 4], [3, 2, 1]])}
+}
+
+\marginnote{
+\texttt{>> c = np.array([-1, 1])}
+}
+
+\noindent
+which of the following commands are allowed?
+\begin{center}
+\begin{tabular}{p{30mm} p{30mm} p{30mm}}
+\texttt{>> a + b}     & \texttt{>> a + c}     & \texttt{>> a + b.T} \\
+\texttt{>> a @ b}       & \texttt{>> b @ a}       & \texttt{>> b @ c}    \\
+\texttt{>> b @ a.T}      & \texttt{>> c @ b}      & \texttt{>> a * b}   \\
+\end{tabular}
+\end{center}
+Try to work it out before checking using Python.
+
+Many built-in functions such as \texttt{cos}, \texttt{exp}, etc., can be applied
+to arrays. They act element-by-element.
+
+We can perform calculations on sub-arrays using the colon notation to
+refer to a range of subscripts. These are often referred to as
+\textbf{slices} of an array, with analogies to serving cake.
+
+\marginnote{
+\texttt{>> A = np.array([[1, 2, 3], [4, 5, 6]])}
+}
+
+\marginnote{
+\texttt{>> A[0, :2] = 0}
+}
+
+\marginnote{
+\texttt{>> A[:, 0] = -1}
+}
+
+Note that the notation \texttt{[:2]} refers to all entries up to but \textit{not including} the entry with index~2.
+
+\section{Python: reading and saving data}
+\label{sec:readandsave}
+
+We can save \texttt{numpy} arrays to text files using the
+\texttt{np.savetxt} command
+
+\marginnote{
+\texttt{>> X = np.array([[4, 2, 3], [6, 7, 8]])}
+}
+\marginnote{
+\texttt{>> np.savetxt('my\_array.txt', X)}
+}
+
+\vspace{5mm}
+\noindent
+Python can read this data back in using the \texttt{np.loadtxt}
+command.
+
+\marginnote{
+\texttt{>> Y = np.loadtxt('my\_array.txt')}
+}
+
+\noindent
+The \texttt{savetxt} and \texttt{loadtxt} commands have many options; use
+\texttt{help} if you want to find out more.
+
+
+\section{Python: plotting}
+
+Python has extensive graphics capability via the module
+\texttt{matplotlib}. Here we will just use a couple of examples to
+introduce some of the basics.
+
+First we need to import the functions we need from the module. The
+standard way to do this is with the command
+
+\marginnote{
+  \texttt{import matplotlib.pyplot as plt}.
+}
+
+\eg{A particle's position $x$ is given as a function of time $t$ as
+$x = 2.5 \cos(t)$. Plot its position vs time for $t \in [0,10]$.}
+
+\noindent
+First create a uniformly spaced list of times between $0$ and $10$: 
+this command line 
+specifies $101$ points from $0$ to $10$ going \texttt{[0, 0.1, 0.2, $\ldots$, 9.9, 10]}: 
+
+\marginnote{
+\texttt{>> t = np.linspace(0, 10, 101)}
+}
+
+\noindent
+Compute the corresponding positions; note that we need to use the
+\texttt{cos} function defined in \texttt{numpy} to apply the
+\texttt{cos} function element-by-element to compute a whole array of
+$x$'s; the \texttt{cos} function defined in the \texttt{math} module
+does not know about arrays.
+
+\marginnote{
+\texttt{>> x = 2.5*np.cos(t)}
+}
+
+\noindent
+Plot the data.
+
+\marginnote{
+\texttt{>> plt.plot(t, x)}
+}
+
+\noindent
+The plot has been created but before we display it, let us add axis
+labels and a title.
+
+\marginnote{
+\texttt{>> plt.xlabel('t')}
+}
+
+\marginnote{
+\texttt{>> plt.ylabel('x')}
+}
+
+\marginnote{
+\texttt{>> plt.title('Position vs time')}
+}
+
+\vspace{8mm}
+\noindent
+Now display the plot. You should see something like
+figure~\ref{fig:basicplot}.
+
+\marginnote{
+  \texttt{>> plt.show()}
+}
+
+\begin{figure}
+\hspace{-1cm}
+\includegraphics[width=8cm]{basicplot_xvst.png}
+\caption{\label{fig:basicplot}
+A basic plot.
+}
+\end{figure}
+
+
+
+\eg{Download the file \texttt{USSA.txt} from the ELE page to the current
+folder. Let us read the data set}
+
+\marginnote{
+\texttt{>> data = np.loadtxt('USSA.txt')}
+}
+
+\noindent
+and unpack the data; first column of the array contains heights,
+second column contains temperatures. Convert the heights from
+$\mathrm{m}$ to $\mathrm{km}$.
+
+\marginnote{
+\texttt{>> z = data[:, 0]/1000}
+}
+
+\marginnote{
+\texttt{>> T = data[:, 1]}
+}
+
+\vspace{5mm}
+
+\noindent
+Plot the data. Indicate data points by black circles; join with black dotted
+lines. Make the line a bit thicker for clarity.
+
+\marginnote{
+\texttt{>> plt.plot(T, z, 'ko:', linewidth=1.5)}
+}
+
+\noindent
+Add axis labels and a title.
+
+\marginnote{
+\texttt{>> plt.xlabel('T (K)')}
+}
+
+\marginnote{
+\texttt{>> plt.ylabel('z (km)')}
+}
+
+\marginnote{
+\texttt{>> plt.title('US Standard Atmosphere')}
+}
+
+\vspace{8mm}
+\noindent
+Now display the plot.
+
+\marginnote{
+\texttt{>> plt.show()}
+}
+
+\vspace{5mm}
+\noindent
+Now let us linearly interpolate to a uniformly spaced set of points between
+the fourth and fifth data points in the set. Note that here (contrast
+section~\ref{sec:linear_interp}) \texttt{zhat} and \texttt{That} are arrays.
+
+\marginnote{
+\texttt{>> zhat = np.linspace(z[4], z[5], 11)}
+}
+
+\marginnote{
+\texttt{>> That = ((zhat - z[4])*T[5] }
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ + (z[5] - zhat)*T[4])}
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ /(z[5] - z[4])}
+}
+
+\vspace{5mm}
+
+\noindent
+Now plot the results on top of the previous plot (you will have to
+reproduce the previous plot).
+
+\marginnote{
+\texttt{>> plt.plot(That, zhat, 'b+')}
+}
+
+Python allows you to save plots so that they can be imported into
+documents, presentations, posters, etc. On the plot window, click on
+the disk icon and you will be able to choose a filename and file
+format.
+
+Some care is needed with the choice of file format. JPEG (\texttt{.jpeg} or \texttt{.jpg})
+might be familiar because it is the usual format for saving digital images, e.g.\ as taken
+by your 'phone camera.
+\marginnote{JPEG: Joint Photographic Experts Group.}
+However, it is not ideal for capturing sharp, clear line plots and can often result in
+fuzzy looking lines. \texttt{.png} is the default option but can also be fuzzy. \texttt{.pdf} is usually better,
+though not all formats are compatible with different downstream applications.
+\marginnote{There is some interesting mathematics behind these different file formats;
+for example, JPEG is based on a \textbf{Discrete Cosine Transform}.
+Look them up if you are interested!}
+
+Also note that you can change the appearance of your saved plot by resizing the plot window
+before saving. You will notice that the font size for any text annotations does not change
+as you resize the plot window, so resizing the window changes the \textit{relative} size of
+plot and text. Also note that the saved plot will not look exactly like the plot on the screen;
+Python \textit{renders} the plot again for saving. The best advice is to carefully check any saved plot to make sure it is clear and legible
+and looks exactly how you want it.
+
+
+\section{Other interpolation formulae}
+
+\subsection{Cubic interpolation using Lagrange polynomials} 
+
+We have met linear interpolation, which involves fitting a polynomial of degree~1 (a straight line)
+through~2 data points and we have seen that the error involved is $O(h^2)$, that is quadratic 
+as a function of the distance $h$ between the two data points. 
+
+If we have more data points, we can clearly try to obtain a better fit and so less of an error. In 
+general given $p$ data points, we can think of fitting a polynomial of degree $p-1$, namely 
+%
+\begin{equation}
+y = a_{p-1} x^{p-1} + a_{p-2} x^{p-2} + \cdots + a_1 x + a_0, 
+\end{equation}
+%
+through these points; this involves $p$ unknown coefficients $a_0, a_1, \ldots, a_{p-1}$ and we obtain $p$ equations
+to fix these, one per data point. 
+
+There are two issues then, namely how do we do this in practice, and what is the error of the numerical
+method as a function of the maximum distance $h$ between the data points? 
+
+To do this in practice we can look back at the equations (\ref{eq:lag1}, \ref{eq:lag2}) and try to generalise the way 
+we constructed the functions $L_1$ and $L_2$ that we used for linear interpolation, $p=2$. We'll focus on an example with 
+$p=4$, namely \emph{cubic interpolation}. We will put a cubic polynomial through 4 evenly spaced data points, and explicitly let us look at the 
+points
+%
+\begin{equation}
+(x_1,y_1) =(1,1), \quad 
+(x_2,y_2) =(2,2), \quad
+(x_3,y_3) =(3,1), \quad
+(x_4,y_4) =(4,4). 
+\label{eq:lagdata} 
+\end{equation}
+%
+\marginnote{The method goes through in the same way if the data points are not evenly spaced.} %
+Let us define the cubic polynomial $\mathcal{L}_1 (x) $ by 
+%
+\begin{equation}
+\mathcal{L}_1 (x) = \frac{(x-x_2)(x-x_3)(x-x_4)}{ (x_1-x_2)(x_1-x_3)(x_1-x_4)} =  \frac{(x-2)(x-3)(x-4)}{ (1-2)(1-3)(1-4)}\, . 
+\notag
+\end{equation}
+%
+If we plug $x=x_1$, $x = x_2$, etc., into this we find that
+%
+\begin{equation}
+\mathcal{L}_1 (x_1) =1, \quad
+\mathcal{L}_1 (x_2) =0, \quad
+\mathcal{L}_1 (x_3) =0, \quad
+\mathcal{L}_1 (x_4) =0. 
+\notag
+\end{equation}
+%
+so this \emph{Lagrange polynomial} is switched on --- gives $1$ ---- at the first data point and is switched off --- gives $0$ --- at the rest.
+Likewise we can define 
+%
+\begin{align}
+ &  \mathcal{L}_2 (x) = \frac{(x-x_1)(x-x_3)(x-x_4)}{ (x_2-x_1)(x_2-x_3)(x_2-x_4)} =  \frac{(x-1)(x-3)(x-4)}{ (2-1)(2-3)(2-4)}\, , \notag \\
+ &  \mathcal{L}_3 (x) = \frac{(x-x_1)(x-x_2)(x-x_4)}{ (x_3-x_1)(x_3-x_2)(x_3-x_4)} =  \frac{(x-1)(x-2)(x-4)}{ (3-1)(3-2)(3-4)}\, ,  \notag\\
+ &  \mathcal{L}_4 (x) = \frac{(x-x_1)(x-x_2)(x-x_3)}{ (x_4-x_1)(x_4-x_2)(x_4-x_3)} =  \frac{(x-1)(x-2)(x-3)}{ (4-1)(4-2)(4-3)}\, ,  \notag
+\end{align}
+%
+\marginnote{These expressions look terrible but if you look carefully you can see how they are constructed and the idea behind them}%
+Each Lagrange polynomial $\mathcal{L}_k$ is one for $x = x_k$ and zero at the other data points. Each of these is a cubic and they are the building 
+blocks that we need to construct a cubic curve through the points in (\ref{eq:lagdata}). 
+
+To do this we now use the $y$ values to define
+%
+\begin{equation}
+y(x) = y_1 \, \mathcal{L}_1 (x)  + y_2 \, \mathcal{L}_2 (x)  + y_3 \, \mathcal{L}_3 (x)  + y_4 \, \mathcal{L}_4 (x)  .\notag
+\end{equation}
+%
+This is a mess, but let us write it down to be clear:
+%
+\begin{align}
+y(x) & = 1 \times  \mathcal{L}_1 (x)  + 2\times  \mathcal{L}_2 (x)  + 1\times \mathcal{L}_3 (x)  + 4 \times \mathcal{L}_4 (x) \notag \\
+& = 
+1 \times \frac{(x-2)(x-3)(x-4)}{ (1-2)(1-3)(1-4)}
++ 2\times \frac{(x-1)(x-3)(x-4)}{ (2-1)(2-3)(2-4)} \notag\\
+& + 1 \times  \frac{(x-1)(x-2)(x-4)}{ (3-1)(3-2)(3-4)}  
++ 4 \times\frac{(x-1)(x-2)(x-3)}{ (4-1)(4-2)(4-3)}\, .
+\label{eq:yxlagrange}
+\end{align}
+%
+So, let us look at this! First of all, it consists of four cubic polynomials added together, so $y(x)$ is a cubic polynomial. Secondly if we plug in 
+say, $x=x_1=1$, by construction the latter three terms, from $\mathcal{L}_2(1), \mathcal{L}_3(1), \mathcal{L}_4(1)$, are all zero, whereas $\mathcal{L}_1(1)=1$ switches on, giving
+$y(1) = 1 \times  \mathcal{L}_1(1) = 1$: the curve goes through $(1,1)$. Likewise if we put in $x=x_2=2$ the second term from  $\mathcal{L}_2$ 
+switches on while the first, third and fourth are zero, to give $y(2) = 2 \times \mathcal{L}_2(2) = 2$ and the curve goes through $(2,2)$. Likewise the curves passes through $(3,1)$ and $(4,4)$. Using the Lagrange polynomials as building blocks, we have constructed the interpolating cubic polynomial explicitly as $y(x)$ above. 
+
+Now you may be tempted to multiply out the expressions in (\ref{eq:yxlagrange}), which is a very messy process, but one that would result in the 
+answer
+%
+\begin{equation}
+ y(x)  = x^3 - 7 x^2 + 15 x - 8. 
+\end{equation}
+%
+\marginnote{You can check this polynomial goes through the data points, and in fact this is how the example was constructed.}%
+%
+This may seem a bit depressing: we have the answer, but it would have taken ages to multiply out accurately, and (even) your lecturers would have a high
+chance of making slips and getting the wrong answer. And, this is just a simple example not a realistic problem. So what have we gained? Well, the beauty is that we have the 
+tool of Python (or other computer languages such as Matlab and Julia), and we can use these to set up the Lagrange polynomials above, and to work out the approximation. We 
+never need to multiply anything out ourselves, just use Python to evaluate quantities, as we shall see below. In this way, the MTH1003 module aims to combine theory and numerics to give
+you, the students, a powerful set of tools for advancing your study of mathematics at university and beyond. 
+
+\subsection{General theory}
+
+Having seen how the example of cubic interpolation works, let us briefly describe the general 
+case where we seek the unique polynomial of degree~$p-1$ that passes through $p$ data points
+$(x_1, y_1)\ \ldots \ (x_{p}, y_{p})$. Given these data points we define the Lagrange polynomials
+$\mathcal{L}_k (x)$ as 
+%
+\begin{equation}
+\mathcal{L}_k (x) = \prod_{j=1,\ j \ne k}^p \, \, \frac{x - x_j}{x_k - x_j}\, . 
+\end{equation}
+%
+\marginnote{The way these general formulae are written may look quite confusing at first, but hopefully if you refer back to the example above you will see how it works. We are familiar with using capital sigma notation, $\sum a_i $, to denote a sum of terms $a_i$, say, and similarly the capital pi notation, $\prod a_i$, is used to  denote the product of terms $a_i$.}%
+Here the product $\prod$ is taken over values of $j$ from $1$ to $p$ inclusive, but omitting the value $k$. If you set $p=4$ and try $k=1$ you will
+see that the formula gives $\mathcal{L}_1$ as defined above, for example. These Lagrange polynomials have the required property that 
+$\mathcal{L}_k(x_k)=1$ and $\mathcal{L}_k(x_j)=0$ for $j\neq k$. They switch off and on in the correct fashion. 
+
+Then the polynomial that passes through all the data points, the interpolating polynomial, is constructed as the sum of the Lagrange polynomials 
+weighted by the $y$-values as 
+%
+\begin{equation}
+\label{eq:lagrange_interp}
+y = \sum_{k=1}^{p} y_k\,  \mathcal{L}_k (x) .
+\end{equation}
+
+\ex{Check that this formula reduces to \eqref{eq:linear_interp} when
+$p=2$.}
+
+\ex{Check that \eqref{eq:lagrange_interp} does indeed give a polynomial
+of degree $p-1$ and that $y = y_k$ at $x = x_k$ for $k = 1, \ldots, p$.}
+
+\vspace{5mm}
+
+\subsection{Convergence of cubic interpolation} 
+
+Let's repeat the convergence test of section~\ref{sec:linear_interp}. Suppose we have a constant $h>0$ and use
+the points
+%
+\begin{equation}
+x_1 = 1 - 4h/3, \quad
+x_2 = 1 - h/3, \quad
+x_3 = 1 + 2h/3, \quad
+x_4 = 1 + 5h/3, \notag
+\end{equation}
+%
+to do cubic Lagrange interpolation. We will compare the interpolated value of
+$\sin(\hat{x})$ to the exact value for $\hat{x} = 1$. With these values of $x_j$ and $\hat{x}$
+\eqref{eq:lagrange_interp} becomes (eventually)
+%
+\begin{eqnarray}
+\hat{y} & = & - \frac{5}{81} \sin(1 - 4h/3) + \frac{60}{81} \sin(1 - h/3)
+\nonumber 
+         + \frac{30}{81} \sin(1 + 2h/3) - \frac{4}{81} \sin(1 + 5h/3) .
+\nonumber
+\end{eqnarray}
+
+\noindent
+In Python
+
+
+\noindent
+\texttt{>> c1 = -5/81}
+
+\noindent
+\texttt{>> c2 = 60/81}
+
+\noindent
+\texttt{>> c3 = 30/81}
+
+\noindent
+\texttt{>> c4 = -4/81}
+
+\noindent
+\texttt{>> h = 1}
+
+\noindent
+\texttt{>> yerr = abs( c1*sin(1 - 4*h/3) + c2*sin(1 - h/3) + \textbackslash}
+
+\noindent
+\texttt{\ \ \ \ \ \ \ \ \ c3*sin(1 + 2*h/3) + c4*sin(1 + 5*h/3) - sin(1) )}
+
+\noindent
+\texttt{>> h = h/2}%
+\marginnote[-15mm]
+{Where do these coefficients come from? Well we have 
+$$
+y(x) = y_1L_1(x) + y_2 L_2(x) + y_3 L_3(x) + y_4 L_4(x)
+$$
+for the general interpolating cubic, and we set $x = \hat{x} = 1$ and then $y(\hat{x}) = \hat{y}$ is our approximation to $\sin 1$. Thus  
+$$
+\hat{y} = y_1L_1(1) + y_2 L_2(1) + y_3 L_3(1) + y_4 L_4(1).
+$$  
+Now here $y_1 = \sin x_1 = \sin (1 - 4h/3)$ and similarly for $y_2$, $y_3$ and $y_4$. The coefficients are given by the appropriate Lagrange polynomials \emph{evaluated at} $x = \hat{x}=1$, so that for example
+$$
+L_1(1)  = \frac{ (1- x_2)(1-x_3)(1-x_4) } { (x_1-x_2)(x_1-x_3) (x_1-x_4)} = \cdots =  - \frac{5}{81}, 
+$$
+obtained by putting in $x_1 = 1 - 4h/3$ and similarly $x_2$, $x_3$, $x_4$. 
+} 
+
+
+
+\noindent
+\texttt{>> yerr = abs( c1*sin(1 - 4*h/3) + c2*sin(1 - h/3) + \textbackslash}
+
+\noindent
+\texttt{\ \ \ \ \ \ \ \ \ c3*sin(1 + 2*h/3) + c4*sin(1 + 5*h/3) - sin(1) )}
+
+\noindent
+etc. One can see how the error {\tt yerr} goes down when $h$ is halved each time. %
+
+
+It can be shown, though we will not prove it here, that Lagrange interpolation
+with $p$ data points and a polynomial of degree~$p-1$ has an error that is $O(h^{p})$ as $h \rightarrow 0$
+\textit{provided} the function being interpolated is sufficiently smooth. However,
+if the function not sufficiently smooth then higher degree interpolation is not
+necessarily more accurate, nor does it necessarily converge faster, than lower
+degree interpolation. Exercise: try cubic interpolation on the three functions
+given at the end of
+section~\ref{sec:converge_linear_interp}; does it converge faster than linear
+interpolation?
+
+There are several other flavours of interpolation besides Lagrange: look up
+cubic spline and Hermite interpolation. Interestingly, given more data, for example
+$p=20$ data points, constructing the interpolating 
+%
+\marginnote[-15mm]
+{We are referring here to increasing $p$ for fixed $h$ --- when the behaviour generally gets poorer, the oscillations wilder. If we fix $p$ and reduce $h$ then for small enough $h$ we should see convergence at $O(h^p)$ as discussed above. This is one of these instances where the \emph{order} in which we take limits --- here $h\to0$ and $p\to\infty$ --- is important. }%
+%
+polynomial of degree $19$ that goes through the data points is actually not the most sensible route!
+Even though this polynomial exists and is easy
+enough to programme in a language such as Python (with some experience...), in reality the polynomial 
+starts to gain oscillations \emph{between} the data points that get wilder and wilder (this is not a 
+technical term) as more data points $(x_j,y_j)$ are incorporated. Cubic interpolation is a sensible method but
+interestingly increasing the order $p$ ceases to help after a while; other methods such as cubic splines
+avoid this undesirable behaviour. 
+
+
+\section{Python: scripts and functions}
+
+\subsection{Motivation}
+\label{sec:motivation_two_problems}
+
+Consider these two problems:
+
+\vspace{3mm}
+
+\noindent
+1. For the SIR-model that we met in section~\ref{sec:built-in}, suppose that
+we know $I_0$ and $S_0$.
+Using \eqref{eq:Imax} it is straightforward to work out $I_\mathrm{max}$ given
+$q$. But how could we work out
+what value of $q$ would produce a given $I_\mathrm{max}$?
+
+\vspace{5mm}
+
+\noindent
+2. A simple model for the temperature $T$ (Kelvin) and concentration $q$ of
+water vapour in a saturated air parcel with given total enthalpy $H$ is
+\begin{equation}
+q = q_0 \exp(20 - 5000/T), \qquad C_\mathrm{p} T + L q = H,
+\end{equation}
+where $q_0 \approx 0.0038$,
+$C_\mathrm{p} \approx 1000 \, \mathrm{J \, kg}^{-1}\mathrm{K}^{-1}$ is the
+specific heat capacity at constant pressure and
+$L \approx 2.5 \times 10^6 \, \mathrm{J \, kg}^{-1}$ is the specific latent heat of
+vaporisation. We can eliminate $q$ from these equations, but how can we solve
+for $T$?
+\begin{marginfigure}
+\begin{center}
+\includegraphics[width=2.5cm]{AdaLovelace.jpg}
+\end{center}
+\caption{\label{fig:AdaLovelace}
+Ada Lovelace (1815--1852) worked with Charles Babbage on his Analytical Engine.
+She is widely regarded as one of the world's first computer programmers,
+and also foresaw the potential for computing machines beyond `mere
+number crunching'.}
+\end{marginfigure}
+
+
+\vspace{5mm}
+
+\noindent
+Both problems can be solved using \textit{iterative methods}, which we will meet
+shortly, in which certain computations are repeated over and over again, each time
+(hopefully) producing a more accurate approximation to the solution.
+
+Such calculations become tedious and impractical when done via the command line;
+it would be better if we could give a list of commands to Python and ask it to repeat
+them. We can do this using \textit{scripts} and \textit{functions}. 
+
+
+
+\subsection{Scripts}
+
+A Python script is a file containing a list of Python commands. The
+filename must end in the extension \texttt{.py}
+
+\marginnote{
+e.g.\ \texttt{myscript.py}
+}
+
+\noindent
+The commands in the file can be executed, \textit{in order}, by typing
+\texttt{python} followed by the name of the script at the command line
+prompt.
+
+\marginnote{
+\texttt{>> python myscript.py}
+}
+
+\noindent
+You can also run scripts from within iPython by typing \texttt{run myscript.py}.
+
+There are many text editors or IDEs available for opening and editing
+Python scripts. In this course we will be using Jupyter Lab. To open a
+new script, launch Jupyter Lab and choose the `Python File' icon in
+the `Other' section. The script will automatially be given the name
+\texttt{untitled.py}, but you can change this when you save it (either
+by selecting \texttt{Save Python File} from the \texttt{File} menu, or
+by pressing the shortcut combination \texttt{Ctrl+S}).
+
+\marginnote{
+\texttt{\# My first script}
+}
+
+\marginnote{
+\texttt{import numpy as np}
+}
+
+
+\marginnote{
+\texttt{\# List the numbers from 1 to 10}
+}
+
+\marginnote{
+\texttt{N = np.linspace(1, 10, 10)}
+}
+
+\marginnote{
+\texttt{print(N)}
+}
+
+\marginnote{
+\texttt{\# and display their squares}
+}
+
+\marginnote{
+\texttt{print(N**2)}
+}
+
+\marginnote{
+\texttt{} % Blank line to create space before footnote!
+}
+
+You can include \textit{comments} in your code to help explain it to
+others and to remind yourself what it does; it is highly recommended
+that you do this! Everything to the right of a \texttt{\#} symbol is
+treated as a comment and is not acted on.
+
+If you need to include a long calculation it can be continued over
+several lines; ending a line with a backslash,
+i.e. one of these: \texttt{\textbackslash}, will cause the following line to be
+treated as a continuation of this one. E.g.
+
+\vspace{3mm}
+
+\noindent
+\texttt{\# Cubic interpolation of sin(1)}
+
+\noindent
+\texttt{from math import sin}
+
+\noindent
+\texttt{\# Coefficients}
+
+\noindent
+\texttt{c1, c2, c3, c4 = -5/81, 60/81, 30/81, -4/81}
+
+\noindent
+\texttt{\# Interval between data points}
+
+\noindent
+\texttt{h = 1}
+
+\noindent
+\texttt{\# Error in cubic interpolation formula}
+
+\noindent
+\texttt{yerr = abs( c1*sin(1 - 4*h/3) + c2*sin(1 - h/3) + \textbackslash }
+
+\noindent
+\texttt{\ \ \ \ \ \ \ \ \ \ \ \ c3*sin(1 + 2*h/3) + c4*sin(1 + 5*h/3) - sin(1) )}
+
+\vspace{3mm}
+
+\noindent
+It is also possible to include several commands on one line as I have
+done here, but generally your code will be clearer and easier to debug
+if you do not do this. The \textbackslash ~is not strictly necessary in
+the above example as Python permits linebreaks within brackets.
+
+To execute a script it needs to be in the current folder. A very
+common cause of errors is when the script you want to execute is not
+in the current folder!
+
+Notice that when you execute a script within iPython, the variables
+evolve exactly as if you had typed those same commands on the command
+line (but much faster!). This means that if there are any errors in
+your script, the script will stop running at this point and give an
+error message; any lines after the error will not be executed.
+
+
+\subsection{Functions}
+
+We have seen some examples of built-in functions in Python
+(e.g. \texttt{sin} and \texttt{log}). We can also define our own
+functions. Similarly, they will have \textit{inputs} and
+\textit{outputs}. E.g., a simple function to evaluate the cubic
+\begin{displaymath}
+f(x) = x^3 -2x + 6
+\end{displaymath}
+is
+
+\vspace{3mm}
+
+\noindent
+\texttt{def cubic(x):}
+
+\noindent
+\texttt{\ \ \ \# CUBIC Simple cubic function}
+
+\noindent
+\texttt{\ \ \ b = -2}
+
+\noindent
+\texttt{\ \ \ c = 6}
+
+\noindent
+\texttt{\ \ \ f = x**3 + b*x + c}
+
+\noindent
+\texttt{\ \ \ return f}
+
+\vspace{3mm}
+
+\noindent
+This function can be saved in the file \texttt{cubic.py}.
+
+Note how the input \texttt{x} is specified in the function
+\textit{interface}, and note that you need to be careful to get the
+correct use of parentheses \texttt{()} on the right-hand side.  When
+the variable \texttt{x} appears on the right hand side of a
+calculation within the function, the input value is used there.  The
+value computed and stored in the variable \texttt{f} will be output by
+the function.
+
+The function is used in the same way as built-in functions. In this example,
+2 is passed into the function and used as the value of~\texttt{x}.
+The value of $f(2)=2^3-2*2+6$ is passed as the function output and is displayed.
+
+\marginnote{
+\texttt{>> y = cubic(2)}
+}
+
+\marginnote{
+\texttt{>> print(y)}
+}
+
+%\vspace{3mm}
+
+\noindent
+In the next example,
+the value of \texttt{z}, i.e.\ 3.3, is passed into the function and used as
+the value of~\texttt{x}. The value of $f$ is passed as the function output
+and is stored in the variable~\texttt{w}.
+
+\marginnote{
+\texttt{z = 3.3}
+}
+
+\marginnote{
+\texttt{w = cubic(z)}
+}
+
+Function inputs and outputs can be arrays. In fact
+this function will work for arrays too, because
+\texttt{x**3} will work equally well for a scalar \texttt{x} or an array.
+Thus, this function will output an element-by-element evaluation of the
+cubic $f(x)$ when its input is an array.
+
+\marginnote{
+\texttt{t = np.linspace(-5, 5, 101)}
+}
+
+\marginnote{
+\texttt{q = cubic(t)}
+}
+
+\marginnote{
+\texttt{plt.plot(t, q, 'ro')}
+}
+\marginnote{
+\texttt{plt.show()}
+}
+
+
+In this example we chose to call the function input argument
+\texttt{x} and the output argument \texttt{f}. However, we could have
+used any other variable name for the input; the crucial point is that
+the input variable name appearing in the first line of the function
+file should agree with that used in the calculation. Similarly, we
+could have used any other variable name for the output argument. For
+this reason, input and output arguments are sometimes referred to as
+\textit{dummy arguments}.
+
+\marginnote{
+Make sure you understand how function input and output arguments work.
+}
+
+Functions can have multiple inputs and/or multiple outputs. E.g.
+
+\vspace{3mm}
+
+\noindent
+\texttt{def argand(rr, ii):}
+
+\noindent
+\texttt{\ \ \ \#ARGAND Compute the modulus and argument of a complex number}
+
+\noindent
+\texttt{\ \ \ \# with real part rr and imaginary part ii}
+
+\noindent
+\texttt{\ \ \ from math import sqrt, atan2};
+
+\noindent
+\texttt{\ \ \ mm = sqrt(rr*rr + ii*ii)}
+
+\noindent
+\texttt{\ \ \ aa = atan2(ii, rr)}
+
+\noindent
+\texttt{\ \ \ return mm, aa}
+
+\marginnote{
+Use \texttt{help} to find out about the built-in \texttt{atan2} function.
+Note that it has two input arguments.
+}
+
+\vspace{3mm}
+
+A crucial point about functions is what happens with the
+namespace. When you call a function a new \textit{local} namespace is
+created, and all the variables used by the function exist only in this
+local namespace. When Python exits the function this local namespace
+disappears.
+
+Although this idea may seem complicated at first, in fact it is very powerful.
+It means that the inner workings of a function are invisible outside of it
+so, for example, there is no danger of a clash of variable names. For this reason
+it is often better practice to use functions rather than scripts in your coding.
+
+
+\subsection{More on scripts and functions}
+
+The allowed names for scripts and functions are exactly the same as those
+for variables. This flexibility is useful, but it means there is a danger
+of name clashes between variables, your own scripts and functions,
+and built-in functions; the onus is on you to check and avoid such clashes.
+
+We have seen that we can run scripts and call functions from the
+iPython command line.  In fact scripts can call functions, and
+functions can call other functions. In this way we can build up
+complex computations from simple components; indeed it is good
+practice to break down complex computations into simple components
+that can be tested and debugged individually.
+
+
+\section{Python: flow control}
+
+So far we have used Python commands, executed in order, to do simple
+calculations and to read, write, and plot data. Scripts and functions
+become very powerful when we use additional commands to
+\textit{control the flow} of the computation, i.e.\ to determine which
+commands are executed and allowing repetition of commands.
+
+\subsection{\texttt{for} loops}
+
+\texttt{for} loops allow us to repeat a section of code a number of times. The generic
+syntax is
+
+\vspace{3mm}
+
+\noindent
+\texttt{for} \textit{<variable>} \texttt{=} \textit{<expression>}:
+
+\noindent
+\texttt{\ \ \ ...}
+
+\noindent
+\textit{\ \ \ commands}
+
+\noindent
+\texttt{\ \ \ ...}
+
+\vspace{1mm}
+
+\marginnote{
+E.g.\
+}
+
+\marginnote{
+\texttt{for k in range(10):}
+}
+
+\marginnote{
+\texttt{\ \ \ \ print(k, k**3)}
+}
+
+\vspace{3mm}
+
+\noindent
+The \textit{<expression>} should evaluate to to a Python object that is \textit{iterable}, i.e. it can be iterated over, like a list.
+The \textit{<variable>} is set to the first element of the iterable
+and the \textit{commands} are executed. The \textit{<variable>} is then set to the
+second element of the iterable and the \textit{commands} are executed, and so on
+until all elements of the iterable have been used.
+The \textit{<expression>} may evaluate to an empty iterable (with zero elements),
+in which case the loop is executed zero times, for example:
+ 
+\marginnote{
+\texttt{n=0}
+}
+
+\marginnote{
+\texttt{for k in range(n):}
+}
+
+\marginnote{
+\texttt{\ \ \ \ print(k, k**3)}
+}
+
+
+\subsection{while loops}
+
+\texttt{while} loops also allow us to repeat a section of code a number of times.
+The generic synatax is
+
+\vspace{3mm}
+
+\noindent
+\texttt{while} \textit{<logical expression> :}
+
+\noindent
+\texttt{\ \ \ ...}
+
+\noindent
+\textit{\ \ \ commands}
+
+\noindent
+\texttt{\ \ \ ...}
+
+\marginnote{
+E.g.\
+}
+
+\marginnote{
+\texttt{total = 0}
+}
+
+\marginnote{
+\texttt{N = 0}
+}
+
+\marginnote{
+\texttt{while total < 1000:}
+}
+
+\marginnote{
+\texttt{\ \ \ \ N = N + 1}
+}
+
+\marginnote{
+\texttt{\ \ \ \ total = total + N**2}
+}
+
+\marginnote{
+\texttt{print(total)}
+}
+
+
+\vspace{3mm}
+
+\noindent
+If the \textit{<logical expression>} evaluates to \texttt{False} then the \textit{commands}
+are not executed. If the \textit{<logical expression>} evaluates to \texttt{True}
+then the commands are executed; the \textit{<logical expression>} is then
+re-evaluated and the process repeats.
+Clearly the \textit{commands} must
+be able to alter the result of the \textit{<logical expression>}, otherwise
+the loop will repeat for ever.
+
+\marginnote{
+If you want to interrupt the execution of a Python script or function, e.g.\ 
+because it is stuck in an infinite loop, then use \textit{ctrl-c}.
+}
+
+
+\subsection{\texttt{if} blocks}
+
+\texttt{if} blocks allow the code to decide, at run time, whether or not to
+execute certain blocks of commands. The simplest version of an \texttt{if}
+block has the syntax
+
+\vspace{3mm}
+
+\noindent
+\texttt{if} \textit{<logical expression>:}
+
+\noindent
+\texttt{\ \ \ ...}
+
+\noindent
+\textit{\ \ \ commands}
+
+\noindent
+\texttt{\ \ \ ...}
+
+\marginnote{
+E.g.\
+}
+
+\marginnote{
+\texttt{n = 13}
+}
+
+\marginnote{
+\texttt{if n\%2 == 0:}
+}
+
+\marginnote{
+\texttt{\ \ \ \ print('n is even')}
+}
+
+\vspace{3mm}
+
+\noindent
+If the \textit{<logical expression>} evaluates to true
+then the commands are executed, otherwise they are not. Note that,
+in contrast to a \texttt{while} loop, there is no looping or re-evaluation
+of the \textit{<logical expression>} implied by the \texttt{if} block.
+
+There are several more elaborate variants of \texttt{if} blocks, which work
+in the obvious way:
+
+\vspace{2mm}
+
+\begin{tabular}{p{4.3cm}p{4.7cm}p{4.5cm}}
+\texttt{if} \textit{<logical expression>:} & \texttt{if} \textit{<logical expression>:} &
+\texttt{if} \textit{<logical expression>:} \\
+\texttt{\ \ \ ...} & \texttt{\ \ \ ...} & \texttt{\ \ \ ...} \\
+\textit{\ \ \ commands-1} & \textit{\ \ \ commands-1} & \textit{\ \ \ commands-1} \\
+\texttt{\ \ \ ...} & \texttt{\ \ \ ...} & \texttt{\ \ \ ...} \\
+\texttt{else:} & \texttt{elseif} \textit{<logical expression>:} &
+\texttt{elseif} \textit{<logical expression>:} \\
+\texttt{\ \ \ ...} & \texttt{\ \ \ ...} & \texttt{\ \ \ ...} \\
+\textit{\ \ \ commands-2} & \textit{\ \ \ commands-2} & \textit{\ \ \ commands-2} \\
+\texttt{\ \ \ ...} & \texttt{\ \ \ ...} & \texttt{\ \ \ ...} \\
+& \texttt{elseif} \textit{<logical expression>:} & \texttt{else:} \\
+             & \texttt{\ \ \ ...} & \texttt{\ \ \ ...} \\
+             & \textit{\ \ \ commands-3} & \textit{\ \ \ commands-3} \\
+             & \texttt{\ \ \ ...} & \texttt{\ \ \ ...} \\
+             & & 
+\end{tabular}
+
+\vspace{1mm}
+
+
+\marginnote{
+\noindent
+\
+}
+
+\marginnote{
+\noindent
+\
+}
+
+\marginnote{
+\noindent
+E.g.\
+}
+
+\marginnote{
+\texttt{n = 13}
+}
+
+\marginnote{
+\texttt{if n\%2 == 0:}
+}
+
+\marginnote{
+\texttt{\ \ \ \ print('n is even')}
+}
+
+
+\marginnote{
+\texttt{else:}
+}
+
+\marginnote{
+\texttt{\ \ \ \ print('n is odd')}
+}
+
+
+%\newpage
+
+\subsection{More on flow control}
+
+You will notice that in the above examples the code inside loops and
+if blocks is indented. This is crucial in Python as there is no
+\texttt{end} statement (unlike in some other coding languages). Python
+will complain at indentation that it cannot parse, but you need to
+take care that you only indent the code that you intend to.
+
+Python allows you to build up complex programmes by putting loops within loops,
+loops within if blocks, if blocks within loops, and if blocks within if blocks.
+You can use loops and if blocks within scripts and functions, and you can call
+scripts and functions from within loops and if blocks.
+
+
+\section{Algorithms}
+
+It is often tricky to see the connection between a set of equations comprising
+a mathematical model and the computer code needed to solve them. Don't start
+typing code too soon; first make sure you understand the \textit{algorithm}.
+
+\marginnote{
+The word \textit{algorithm} is the latinisation of the name of an ancient scholar from Khw\={a}rezm in Central Asia. See \href{https://earthobservatory.nasa.gov/images/91544/how-algorithm-got-its-name}{this article}.
+}
+
+\vspace{3mm}
+
+\noindent
+An \textbf{algorithm} is a list of rules or steps to be followed in order to
+perform a computation or solve a problem.
+
+\vspace{1mm}
+
+
+\begin{itemize}
+\item
+An algorithm must be unambiguous.
+\item
+The order of the steps matters.
+\item
+It is often helpful to express an algorithm in terms of what is called \textbf{pseudocode}.
+\end{itemize}
+
+\noindent
+As an example of pseudocode, figure \ref{fig:pseudocode1} shows pseudocode for the task of listing the legal
+moves in a game of noughts and crosses. Figure \ref{fig:pseudocode2} shows pseudocode
+for the task of listing the winning moves in a game of noughts and crosses.
+
+%\begin{figure}
+%\hspace{-3cm}
+%\includegraphics[width=17cm]{flowchart.png}
+%\caption{\label{fig:flowchart}
+%Flowchart for the task of listing the legal moves in noughts and crosses.
+%}
+%\end{figure}
+
+\begin{figure}
+{\tt
+
+read in the grid
+
+loop over columns
+
+\ \ \ \ loop over rows
+
+\ \ \ \ \ \ \ \ if this cell is empty
+
+\ \ \ \ \ \ \ \ \ \ \ \ add its coordinates to a list of empty cells
+
+\ \ \ \ end loop over rows
+
+end loop over columns
+
+\  
+
+loop over entries in the list 
+
+\ \ \ \ print out coordinates for each entry
+
+end loop over list
+
+}
+\caption{\label{fig:pseudocode1}
+Pseudocode for the task of listing the legal moves for X
+in noughts and crosses.
+}
+\end{figure}
+
+\noindent
+In each case the procedure is not written in a formal computer language, 
+but is designed to help fix ideas, sketch out key elements of the code and the flow
+control, and to communicate the procedure (to oneself or to other people). It is 
+often a useful step in designing a script before typing it in, and is also useful for 
+checking/debugging  a script when it fails.
+
+\begin{figure}
+{\tt
+
+loop over columns
+
+\ \ \ \ loop over rows
+
+\ \ \ \ \ \ \ \ if legal
+
+\ \ \ \ \ \ \ \ \ \ \ \ if 2 X's in this column $\rightarrow$ win
+
+\ \ \ \ \ \ \ \ \ \ \ \ if 2 X's in this row $\rightarrow$ win
+
+\ \ \ \ \ \ \ \ \ \ \ \ if first diagonal
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if 2 X's on this diagonal $\rightarrow$ win
+
+\ \ \ \ \ \ \ \ \ \ \ \ if second diagonal
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if 2 X's on this diagonal $\rightarrow$ win
+
+\ \ \ \ \ \ \ \ \ \ \ \ if win
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ add this move to the list
+
+\ \ \ \ end loop over rows
+
+end loop over columns
+
+}
+\caption{\label{fig:pseudocode2}
+Pseudocode for the task of listing the winning moves for X
+in noughts and crosses.
+}
+\end{figure}
+
+
+Algorithms are behind any process designed to carry out a task, make a calculation, or to come to a conclusion. For example one could think 
+of a court case involving defendant, prosecution, judge and jury as an algorithm to determine guilt or innocence: there is a 
+clear sequence of steps, taken in a careful order. Other algorithms could include making breakfast: get a bowl, put 
+in some cereal, add milk to the cereal, eat the food, wash up. Another algorithm could be the sequence of steps a mechanic might take to 
+diagnose a car that won't start: check the battery, check the starter motor, ... Algorithms are everywhere! However here of course we will focus on algorithms for computations, tasks linked to mechanics, and mathematical modelling. 
+
+\ex{Look up Euclid's algorithm for finding the greatest common divisor
+of two integers. Express the algorithm as pseudocode.}
+
+
+\section{Solving nonlinear equations}
+\label{sec:solve}
+
+Let us return to the two problems that we posed in
+section~\ref{sec:motivation_two_problems}. Both problems can be re-expressed
+as a requirement to solve
+a nonlinear equation of the form $ f(x) = 0 $ for some scalar function $ f $
+of a scalar variable $ x $. In this section we will look at some
+\textit{iterative methods}, which generate
+a sequence of approximate solutions
+$ \left\{ x^{(m)} ; \ m=0, 1, 2, ... \right\} $. In order to be useful
+a method must \textit{converge} to the
+true solution $ x^{\mathrm{*}} $, that is
+\begin{displaymath}
+x^{(m)} \rightarrow x^{\mathrm{*}} \mathrm{\ \ as\ \ } m \rightarrow \infty. 
+\end{displaymath}
+
+\marginnote{
+Compare this definition of \textit{convergence} with the one we used in
+section~\ref{sec:converge_linear_interp}.
+}
+
+
+\subsection{Fixed point iteration}
+\label{sec:fpi}
+
+
+
+One of the simplest iterative methods is \textit{fixed point iteration}.
+In this method we 
+rewrite $ f(x) = 0 $ in the form $ g(x) = x $. (In general there will be many
+possible ways to do this; a good choice is to make $g'(x^*)$ small---see below.)
+Then we simply iterate:
+\begin{displaymath}
+x^{(m+1)} = g(x^{(m)}) ,
+\end{displaymath}
+starting from some first guess $x^{(0)}$. 
+If $x^{(m)}$ converges to some value $x^*$ then so does $x^{(m+1)}$ and so 
+the limit of the above  equation yields $x^* = g(x^*)$, and we have a solution. That is, ... \textbf{if}  
+there is convergence. Possible pseudocode for this process is seen in figure \ref{fig:flowchart_fpi}. 
+
+%\begin{figure}
+%\hspace{-2cm}
+%\includegraphics[width=14cm]{flowchart_fpi.png}
+%\caption{\label{fig:flowchart_fpi}
+%Flowchart for fixed point iteration.
+%}
+%\end{figure}
+
+\begin{figure}
+{\tt
+
+set the initial value $x^{(0)}$
+
+loop over number of iterations 
+
+\ \ \ \ \ set $x^{(m)} = g(x^{(m-1)})$ 
+
+\ \ \ \ \ if stopping criterion has been met 
+
+\ \ \ \ \ \ \ \ \ leave the loop
+
+end loop over iterations
+
+print out final answer  $x^{(m)}$
+
+}
+\caption{\label{fig:flowchart_fpi}
+Pseudocode for fixed point iteration.
+}
+\end{figure}
+
+
+In practice we cannot iterate for ever; we must decide when to stop the iteration.
+This may be, for example,
+\begin{itemize}
+\item
+after a fixed number of iterations;
+\item
+when $|g(x^{(m)})|$ is small enough;
+\item
+when the change in $x$, $|x^{(m+1)} - x^{(m)}|$, is small enough.
+\end{itemize}
+
+Once we have decided on a stopping criterion, the algorithm for fixed point
+iteration is very straightforward.
+
+\eg{ Let's try to solve (a)~$\cos(x) = x$ using fixed point
+iteration. A Python script might look like this.}
+
+\marginnote[-13.5mm]{
+\texttt{from math import cos}
+}
+
+\marginnote[-10mm]{
+\texttt{\# Set first guess}
+}
+
+\marginnote[-6.5mm]{
+\texttt{oldx = 0}
+}
+
+\marginnote[-3mm]{
+\texttt{x = 1}
+}
+
+\marginnote{
+\texttt{\# Iterate until difference is}
+}
+
+\marginnote{
+\texttt{\# small enough}
+}
+
+\marginnote{
+\texttt{while abs(x - oldx) > 1e-4:}
+}
+
+\marginnote{
+\texttt{\ \ \ \ oldx = x}
+}
+
+\marginnote{
+\texttt{\ \ \ \ x = cos(oldx)}
+}
+
+\marginnote{
+\texttt{print(f'Root is \{x\}')}
+}
+
+\noindent
+Notes:
+\begin{enumerate}
+\item
+Although the mathematical description has a superscript $(m)$ on $x^{(m)}$,
+it is not necessary to save all of the $x$'s in an array (though we could if
+we wanted to).
+\item
+Here we have used a stopping criterion based on the difference between the
+last two $x$'s, so we need to keep track of these in the variables \texttt{oldx}
+and \texttt{x}. Notice how we update the values of \texttt{oldx}
+and \texttt{x} at each iteration.
+\marginnote{
+Note that initially we have to set \texttt{oldx} to a value suitably different from \texttt{x}
+so that the code within the \texttt{while} is sure to be executed at least once.
+}
+\item
+The algorithm here is slightly different from that in the pseudocode because
+the \texttt{while} loop checks whether the stopping criterion has been met
+\textit{before} computing the new value of $x$.
+\end{enumerate}
+
+
+We can get an idea of how quickly fixed point iteration converges for this problem,
+for example by printing out the values of \texttt{x} at each iteration, or by including a
+variable that counts the number of iterations. In this example the code stops
+after 23~iterations.
+
+\ex{Modify the code to solve the problems (b)~$\cos(x/2) = x$;
+  (c)~$\cos(2x) = x$.  What do you notice about the convergence of
+  fixed point iteration for these three problems?}
+
+\vspace{3mm}
+
+We can analyse the convergence of the fixed point iteration method as follows.
+Let $ x^{\mathrm{*}} $ be the true solution, so that $x^{\mathrm{*}} = g(x^{\mathrm{*}})$.
+Let $\varepsilon^{(m)} = x^{(m)} - x^{\mathrm{*}}$ be the error in our estimate after
+$m$ iterations, and assume $\varepsilon^{(m)}$ is small.
+\marginnote{Here we don't take the absolute value of $\varepsilon^{(m)}$.}
+Then the error after one
+further iteration is
+\begin{eqnarray}
+\varepsilon^{(m+1)} & = & x^{(m+1)} - x^{\mathrm{*}} \nonumber \\
+                    & = & g(x^{(m)}) - x^{\mathrm{*}} \nonumber \\
+                    & = & g( x^{\mathrm{*}} + \varepsilon^{(m)} ) - x^{\mathrm{*}} \nonumber \\
+                    & \approx & g( x^{\mathrm{*}} ) + g'(x^{\mathrm{*}}) \varepsilon^{(m)}
+                                                  - x^{\mathrm{*}} \nonumber \\
+                    & = & g'(x^{\mathrm{*}}) \varepsilon^{(m)} \nonumber
+\end{eqnarray}
+Note we have used the Taylor series to approximate\footnote{
+We say we have `\textit{linearized}' the function $g(x)$.
+Linearization is a hugely important idea: 
+you will meet it several times in this module and many times
+in your mathematical career!}
+$g( x^{\mathrm{*}} + \varepsilon^{(m)} )$.
+Thus, the error grows or decays by a factor $g'(x^{\mathrm{*}})$ at every iteration.
+A necessary condition for convergence is $|g'(x^{\mathrm{*}})| < 1$. Smaller
+$g'(x^{\mathrm{*}})$ gives faster convergence.
+
+\ex{Is this theoretical prediction consistent with what you found in
+  practice for the three problems (a), (b) and (c) above?}
+
+\eg{For the SIR epidemic model (section~\ref{sec:built-in},
+  \ref{sec:motivation_two_problems}), take $I_0 = 10^3$, $S_0 = 6
+  \times 10^7$; use fixed point iteration to determine the value of
+  $q$ required to keep $I_\mathrm{max}$ down to $10^5$.}
+
+\eg{For the saturated air parcel model
+  (section~\ref{sec:motivation_two_problems}), eliminate $q$ from the
+  equations and use fixed point iteration to determine the value of
+  $T$ that gives $H = 3.61 \, \mathrm{J \, kg}^{-1}$.}
+
+\vspace{3mm}
+
+
+You should find that you can solve one of these examples with a straightforward
+application of fixed point iteration, but the other does not converge.
+So what can we do? One option is to rearrange the problem $x = g(x)$ into a
+form with a different $g(x)$; there are always infinitely many ways to do
+this, but it requires some insight to make a good choice. Alternatively we
+can choose a different, more robust, method to solve the problem.
+
+
+\subsection{Bracketing methods}
+
+Suppose we wish to solve $ f(x) = 0 $, and we know that $f(x)$ is continuous.
+
+
+\subsubsection{Bisection}
+
+Suppose we have $ x^{(\mathrm{l})} < x^{(\mathrm{r})} $ (superscripts $(\mathrm{l})$
+and $(\mathrm{r})$ indicate left and right)
+with $ f(x^{(\mathrm{l})}) $ and
+$ f(x^{(\mathrm{r})}) $ of opposite sign. Continuity of $f$ implies that
+there must be a zero between $x^{(\mathrm{l})}$ and $x^{(\mathrm{r})}$,
+that is, $x^{(\mathrm{l})}$ and $x^{(\mathrm{r})}$ must \textit{bracket} a root.
+
+Let
+\begin{displaymath}
+x^{(\mathrm{n})} = \frac{1}{2}\left( x^{(\mathrm{l})} + x^{(\mathrm{r})} \right),
+\end{displaymath}
+
+
+% Start marginnotes here to fit them on the page.
+
+\marginnote{
+\texttt{\# Solve myf(x)=0 using bisection}
+}
+
+\marginnote{
+\texttt{\# First guess for interval}
+}
+
+\marginnote{
+\texttt{xl = 0}
+}
+
+\marginnote{
+\texttt{fl = myf(xl)}
+}
+
+  
+\marginnote{
+\texttt{xr = 1}
+}
+
+\marginnote{
+\texttt{fr = myf(xr)}
+}
+
+%\marginnote{
+%\texttt{\% Check this brackets a root}
+%}
+
+%\marginnote{
+%\texttt{if xr < xl}
+%}
+
+%\marginnote{
+%\texttt{\ \ \ \ disp(['xr should be > xl'])}
+%}
+
+%\marginnote{
+%\texttt{\ \ \ \ return}
+%}
+
+%\marginnote{
+%\texttt{end}
+%}
+
+%\marginnote{
+%\texttt{if fl*fr > 0}
+%}
+
+%\marginnote{
+%\texttt{\ \ \ \ disp(['Choose a different first guess'])}
+%}
+
+%\marginnote{
+%\texttt{\ \ \ \ return}
+%}
+
+%\marginnote{
+%\texttt{end}
+%}
+
+\marginnote{
+\texttt{\# Iterate bisection method}
+}
+
+\marginnote{
+\texttt{while xr - xl > 1e-4:}
+}
+
+\marginnote{
+\texttt{\ \ \ \ xn = 0.5*(xl + xr)}
+}
+
+\marginnote{
+\texttt{\ \ \ \ fn = myf(xn)}
+}
+
+\marginnote{
+\texttt{\ \ \ \ if fn*fl <= 0:}
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ \# Root is in left}
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ \# half interval}
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ xr = xn}
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ fr = fn}
+}
+
+\marginnote{
+\texttt{\ \ \ \ else:}
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ \# Root is in right}
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ \# half interval}
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ xl = xn}
+}
+
+\marginnote{
+\texttt{\ \ \ \ \ \ \ \ fl = fn}
+}
+
+\marginnote{
+\texttt{print(f'Root lies in [\{xl\}, \{xr\}]')}
+}
+
+
+\noindent
+(superscript $(\mathrm{n})$ for new).
+Retain whichever of \( f(x^{(\mathrm{l})}) \) and \( f(x^{(\mathrm{r})}) \) has the
+opposite sign to \( f(x^{(\mathrm{n})}) \) and discard the other;
+rename the retained points as \( x^{(\mathrm{l})} \), \( x^{(\mathrm{r})} \).
+The two retained points still bracket the root and are closer than the original 
+two points (half the distance). We now iterate, that is repeat the procedure.
+
+This method is robust; provided $f(x)$ is continuous and the initial values of
+$ f(x^{(\mathrm{l})}) $ and $ f(x^{(\mathrm{r})}) $ have opposite sign, the method is
+guaranteed to converge to a solution.
+However, it is quite slow to converge: the bracket size is halved at each iteration.
+
+A basic Python implementation of the bisection method might look like this.
+
+\ex{Add some code to check that the first guess satisfies $
+  x^{(\mathrm{l})} < x^{(\mathrm{r})} $ and $ f(x^{(\mathrm{l})})
+  f(x^{(\mathrm{r})}) \le 0$.}
+
+\subsubsection{Secant method}
+
+Suppose we have \( x^{(m-1)} \), \( x^{(m)} \) and the corresponding
+ \( f(x^{(m-1)}) \) and \( f(x^{(m)}) \). 
+(Here the superscript $(m)$ counts the iterations).
+Let
+\begin{displaymath}
+x^{(m+1)} = \frac{x^{(m-1)}f(x^{(m)}) - x^{(m)}f(x^{(m-1)})}{f(x^{(m)}) - f(x^{(m-1)})}.
+\end{displaymath}
+Here $x^{(m+1)}$ is an estimate for the zero of $f$ obtained by fitting a
+straight line through the pair of points $(x^{(m-1)} , f(x^{(m-1)}))$,
+$(x^{(m)} , f(x^{(m)}))$. \marginnote{Exercise: check the secant method formula
+for $x^{(m+1)}$; see if you can derive it from the
+equation for linear interpolation \eqref{eq:linear_interp} with $\hat{y} = 0$.}
+Then discard the oldest data point \( x^{(m-1)} \), \( f(x^{(m-1)}) \) and iterate.
+
+This usually converges much quicker than the bisection method,
+but can behave badly if $ f(x^{(m)}) - f(x^{(m-1)}) $ becomes small.
+It is not really a bracketing method as the root is not guaranteed
+to lie between $ x^{(m)} $ and $ x^{(m+1)} $.
+
+
+\subsubsection{Regula falsi}
+
+Like the bisection method, regula falsi is a bracketing method.
+However, the new value $ x^{(\mathrm{n})} $ is constructed as in the
+secant method:
+\begin{displaymath}
+x^{(\mathrm{n})} = \frac{x^{(\mathrm{l})}f(x^{(\mathrm{r})})
+- x^{(\mathrm{r})}f(x^{(\mathrm{l})})}{f(x^{(\mathrm{r})}) - f(x^{(\mathrm{l})})}.
+\end{displaymath}
+Again, we retain whichever of $ f(x^{(\mathrm{l})}) $ and $ f(x^{(\mathrm{r})}) $ has the
+opposite sign to $ f(x^{(\mathrm{n})}) $ and discard the other;
+rename as $ x^{(\mathrm{l})} $, $ x^{(\mathrm{r})} $, etc., and iterate.
+This ensures that
+the two retained values of $ x $ always bracket the root, making this
+method more robust than the secant method. However, convergence
+is usually somewhat slower.
+
+\ex{Modify the bisection method Python code given above to use the
+  regula falsi method instead.}
+
+\ex{You should now be able to solve both the SIR model problem and the
+  saturated air parcel problem posed in section~\ref{sec:fpi}, if not
+  with fixed point iteration then with one of the bracketing methods.}
+
