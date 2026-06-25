@@ -121,8 +121,10 @@
             color: #2ecc71;
             padding: 10px;
             border-radius: 3px;
-            display: inline-block;
+            display: block;
             margin: 5px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         
         .toc {
@@ -302,7 +304,7 @@
             
             <div class="example">
                 <strong>Example:</strong> Compute the volume of a pyramid of height 150 m and base area 50,000 m²<br>
-                <span class="python-command">>> 150*50000/3</span>
+                <span class="python-command">>>> 150*50000/3</span>
             </div>
             
             <h3>Important Notes</h3>
@@ -457,11 +459,15 @@
 
             <p>We can create a (small) list by enclosing the entries in square brackets and separating them by commas.</p>
 
-            <span class="python-command">>> R = [3, 6, -2]</span>
+            <div class="example">
+                <span class="python-command">>> R = [3, 6, -2]</span>
+            </div>
 
             <p>If we want to access an individual element of a list, either to compute with it or to assign to it, we can do so using <em>indices</em> (also called <em>subscripts</em>) in square brackets after the list name. In Python, indices start at 0 (in some languages they start at 1). We can use negative indices to access the list (or tuple, or array) from the end.</p>
 
-            <span class="python-command">>> R[0] = 37</span>
+            <div class="example">
+                <span class="python-command">>> R[0] = 37</span>
+            </div>
 
             <p>Note that square brackets are used here because round brackets are used for calling functions (you have seen this with built-in functions e.g. <code>sin(pi)</code> and will meet it again later when you write your own functions).</p>
 
@@ -471,15 +477,21 @@
 
             <p>A list can be extended by adding a new value at the end using the <code>append</code> method. Here round brackets are used because we are calling a function (a method is a function defined on an object).</p>
 
-            <span class="python-command">>> R.append(119)</span>
+            <div class="example">
+                <span class="python-command">>> R.append(119)</span>
+            </div>
 
             <p>A Python tuple is very similar to a Python list, but is created using round brackets.</p>
 
-            <span class="python-command">>> R = (3, 6, -2)</span>
+            <div class="example">
+                <span class="python-command">>> R = (3, 6, -2)</span>
+            </div>
 
             <p>Again we can access the individual elements using indices in square brackets.</p>
 
-            <span class="python-command">>> print(R[0])</span>
+            <div class="example">
+                <span class="python-command">>> print(R[0])</span>
+            </div>
 
             <p>However, when we try to append to the tuple, or change one of the values, we find that we cannot. This is because tuples are <em>immutable</em>, meaning that once defined, they cannot be changed.</p>
 
@@ -504,77 +516,111 @@
 
             <p>The Python module for handling arrays is <code>numpy</code>. The most common way to import it is to give it the shortened name <code>np</code>.</p>
 
-            <span class="python-command">>> import numpy as np</span>
+            <div class="example">
+                <span class="python-command">>> import numpy as np</span>
+            </div>
 
             <p>We can now convert a list to an array</p>
 
-            <span class="python-command">>> C = np.array([3, 6, -2])</span>
+            <div class="example">
+                <span class="python-command">>> C = np.array([3, 6, -2])</span>
+            </div>
 
             <p>Multiplying this array by a scalar now works as we require for mathematical operations [Exercise: try it!].</p>
 
             <p>We can create a (small) 2D array, or matrix, in a similar way, with a new list for each row.</p>
 
-            <span class="python-command">>> M = np.array([[0, 1], [-1, 0]])</span>
+            <div class="example">
+                <span class="python-command">>> M = np.array([[0, 1], [-1, 0]])</span>
+            </div>
 
             <p>What's the difference between a list, a tuple, a vector, a matrix, and an array? We usually refer to objects as 'vectors' or 'matrices' when we envisage performing matrix-vector arithmetic operations on them (see below), and as 'arrays' when they are just tables of numbers. A row vector is a $1 \times n$ array with $n$ columns, a column vector is an $m \times 1$ array with $m$ rows. Python does not distinguish between the two - they are both represented as 1D arrays. A matrix is an $m \times n$ array. Higher dimensional arrays are also possible. But note all arrays must be 'rectangular', i.e. have the same number of columns in every row and vice versa. Note that for 2D arrays the first index is the row index and the second is the column index.</p>
 
-            <span class="python-command">>> C[1] = 12</span>
+            <div class="example">
+                <span class="python-command">>> C[1] = 12</span>
+            </div>
 
             <p><strong>Warning:</strong> Try setting <code>C[1] = sqrt(3)</code>. If you print out the value of <code>C[1]</code> you will see that it is <code>1</code>, rather than <code>1.73205081...</code>. This is because <code>C</code> was created with integer entries and Python has assumed that you would like the entries to remain integers. You can check the type of array entries by looking at the value of <code>C.dtype</code>, and you can set the type of entry when you create the array. Try setting <code>C = np.array([3, 6, 2], dtype=float)</code> and then setting <code>C[1] = sqrt(3)</code>.</p>
 
             <p>We can create larger arrays in various ways. To create an array containing entries from 1 to 100 with an increment of 1 we can use <code>np.arange</code>.</p>
 
-            <span class="python-command">>> z = np.arange(1, 100, 1)</span>
+            <div class="example">
+                <span class="python-command">>> z = np.arange(1, 100, 1)</span>
+            </div>
 
             <p>The first two numbers passed to <code>np.arange</code> are the start and the end of the sequence. The final number is the increment, and this defaults to 1 if left unspecified.</p>
 
-            <span class="python-command">>> z = np.arange(1, 100)</span>
+            <div class="example">
+                <span class="python-command">>> z = np.arange(1, 100)</span>
+            </div>
 
             <p>Negative and non-integer increments can also be used. If the increment means that the final value will be missed, then the array terminates before the number specified by the ending value. For example, <code>np.arange(1, 10, 2)</code> generates the array <code>[1, 3, 5, 7, 9]</code>.</p>
 
             <p>A common requirement is for an array to contain a guaranteed start and end point with evenly spaced elements in between. For this we can use <code>np.linspace(start, end, n)</code>, where <code>n</code> is the number of entries.</p>
 
-            <span class="python-command">>> z = np.linspace(1, 5, 10)</span>
+            <div class="example">
+                <span class="python-command">>> z = np.linspace(1, 5, 10)</span>
+            </div>
 
             <p>We can create arrays of zeros or ones using built-in <code>numpy</code> functions.</p>
 
-            <span class="python-command">>> X0 = np.zeros((100,100))</span>
+            <div class="example">
+                <span class="python-command">>> X0 = np.zeros((100,100))</span>
+            </div>
 
             <p>We can perform standard arithmetic operations on arrays provided their shapes <strong>conform</strong>, including ...</p>
 
-            <span class="python-command">>> A = np.array([[1, 2], [3, 4]])</span>
+            <div class="example">
+                <span class="python-command">>> A = np.array([[1, 2], [3, 4]])</span>
+            </div>
 
-            <span class="python-command">>> B = np.array([[5, 6], [7, 8]])</span>
+            <div class="example">
+                <span class="python-command">>> B = np.array([[5, 6], [7, 8]])</span>
+            </div>
 
             <p>addition and subtraction,</p>
 
-            <span class="python-command">>> S = A + B</span>
+            <div class="example">
+                <span class="python-command">>> S = A + B</span>
+            </div>
 
             <p>matrix multiplication,</p>
 
-            <span class="python-command">>> P = A @ B</span>
+            <div class="example">
+                <span class="python-command">>> P = A @ B</span>
+            </div>
 
             <p>element-by-element multiplication,</p>
 
-            <span class="python-command">>> Q = A * B</span>
+            <div class="example">
+                <span class="python-command">>> Q = A * B</span>
+            </div>
 
             <p>raising each element to a power,</p>
 
-            <span class="python-command">>> Q = A**2</span>
+            <div class="example">
+                <span class="python-command">>> Q = A**2</span>
+            </div>
 
             <p>and transpose.</p>
 
-            <span class="python-command">>> T = A.T</span>
+            <div class="example">
+                <span class="python-command">>> T = A.T</span>
+            </div>
 
             <p>Note that by 'conform' we mean that the matrix dimensions must be compatible, so for example we can add two $2\times 3$ matrices, and we can multiply a $2\times 3$ matrix by a $3\times 4$ matrix, but not a $2\times 3$ by a $4\times 2$ matrix. Python will flag an error if the dimensions make the operation impossible. We can check the shape of a matrix by printing its <code>shape</code> attribute.</p>
 
-            <span class="python-command">>> print(M.shape)</span>
+            <div class="example">
+                <span class="python-command">>> print(M.shape)</span>
+            </div>
 
             <p><strong>Warning:</strong> Because <code>numpy</code> arrays are not strictly matrices, some operations are allowed that you might not expect. When operating on arrays, <code>numpy</code> compares their shapes to decide if they are <em>compatible</em>. The dimensions are compatible if they are equal or if one of them is 1. This is best illustrated with an example.</p>
 
-            <span class="python-command">>> X = np.array([[4, 2, 3], [1, 1, 0]])</span>
-            <span class="python-command">>> Y = np.array([[2], [1]])</span>
-            <span class="python-command">>> X + Y</span>
+            <div class="example">
+                <span class="python-command">>> X = np.array([[4, 2, 3], [1, 1, 0]])</span>
+                <span class="python-command">>> Y = np.array([[2], [1]])</span>
+                <span class="python-command">>> X + Y</span>
+            </div>
 
             <p><code>X</code> has shape <code>(2, 3)</code> and <code>Y</code> has shape <code>(2, 1)</code> so both dimensions are compatible. In this case, <code>Y</code> will act like a <code>(2, 3)</code> array and Python will <em>broadcast</em> <code>Y[:,0]</code> to the other columns. The operation <code>X+Y</code> will add <code>Y</code> to each column of <code>X</code>. You can read more about this <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">here</a>, although it is outside the scope of this module.</p>
 
@@ -582,18 +628,18 @@
 
             <p>Many additional linear algebra functions are provided by the <code>numpy.linalg</code> library. For square matrices <code>A</code>, the <code>linalg.matrix_power(A, n)</code> function will raise the matrix <code>A</code> to the power of <code>n</code>.</p>
 
-            <span class="python-command">>> Y = np.linalg.matrix_power(A, 2)</span>
+            <div class="example">
+                <span class="python-command">>> Y = np.linalg.matrix_power(A, 2)</span>
+            </div>
 
             <div class="example">
-                <strong>Example:</strong> Given the arrays <code>a</code>, <code>b</code>, and <code>c</code>,
-
+                <strong>Example:</strong> Given the arrays <code>a</code>, <code>b</code>, and <code>c</code>:
                 <span class="python-command">>> a = np.array([[1, 0, 1], [0, 1, 0]])</span>
                 <span class="python-command">>> b = np.array([[6, 5, 4], [3, 2, 1]])</span>
                 <span class="python-command">>> c = np.array([-1, 1])</span>
-
-                which of the following commands are allowed?
                 
-                <table>
+                which of the following commands are allowed?
+                <table style="margin: 10px 0;">
                     <tr>
                         <td><code>a + b</code></td>
                         <td><code>a + c</code></td>
@@ -610,7 +656,6 @@
                         <td><code>a * b</code></td>
                     </tr>
                 </table>
-
                 Try to work it out before checking using Python.
             </div>
 
@@ -618,9 +663,11 @@
 
             <p>We can perform calculations on sub-arrays using the colon notation to refer to a range of subscripts. These are often referred to as <strong>slices</strong> of an array, with analogies to serving cake.</p>
 
-            <span class="python-command">>> A = np.array([[1, 2, 3], [4, 5, 6]])</span>
-            <span class="python-command">>> A[0, :2] = 0</span>
-            <span class="python-command">>> A[:, 0] = -1</span>
+            <div class="example">
+                <span class="python-command">>> A = np.array([[1, 2, 3], [4, 5, 6]])</span>
+                <span class="python-command">>> A[0, :2] = 0</span>
+                <span class="python-command">>> A[:, 0] = -1</span>
+            </div>
 
             <p>Note that the notation <code>[:2]</code> refers to all entries up to but <em>not including</em> the entry with index 2.</p>
         </section>
@@ -630,12 +677,16 @@
 
             <p>We can save <code>numpy</code> arrays to text files using the <code>np.savetxt</code> command</p>
 
-            <span class="python-command">>> X = np.array([[4, 2, 3], [6, 7, 8]])</span>
-            <span class="python-command">>> np.savetxt('my_array.txt', X)</span>
+            <div class="example">
+                <span class="python-command">>> X = np.array([[4, 2, 3], [6, 7, 8]])</span>
+                <span class="python-command">>> np.savetxt('my_array.txt', X)</span>
+            </div>
 
             <p>Python can read this data back in using the <code>np.loadtxt</code> command.</p>
 
-            <span class="python-command">>> Y = np.loadtxt('my_array.txt')</span>
+            <div class="example">
+                <span class="python-command">>> Y = np.loadtxt('my_array.txt')</span>
+            </div>
 
             <p>The <code>savetxt</code> and <code>loadtxt</code> commands have many options; use <code>help</code> if you want to find out more.</p>
         </section>
@@ -647,7 +698,9 @@
 
             <p>First we need to import the functions we need from the module. The standard way to do this is with the command</p>
 
-            <span class="python-command">import matplotlib.pyplot as plt</span>
+            <div class="example">
+                <span class="python-command">import matplotlib.pyplot as plt</span>
+            </div>
 
             <div class="example">
                 <strong>Example:</strong> A particle's position $x$ is given as a function of time $t$ as $x = 2.5 \cos(t)$. Plot its position vs time for $t \in [0,10]$.
@@ -655,25 +708,35 @@
 
             <p>First create a uniformly spaced list of times between 0 and 10: this command line specifies 101 points from 0 to 10 going [0, 0.1, 0.2, …, 9.9, 10]:</p>
 
-            <span class="python-command">>> t = np.linspace(0, 10, 101)</span>
+            <div class="example">
+                <span class="python-command">>> t = np.linspace(0, 10, 101)</span>
+            </div>
 
             <p>Compute the corresponding positions; note that we need to use the <code>cos</code> function defined in <code>numpy</code> to apply the <code>cos</code> function element-by-element to compute a whole array of $x$'s; the <code>cos</code> function defined in the <code>math</code> module does not know about arrays.</p>
 
-            <span class="python-command">>> x = 2.5*np.cos(t)</span>
+            <div class="example">
+                <span class="python-command">>> x = 2.5*np.cos(t)</span>
+            </div>
 
             <p>Plot the data.</p>
 
-            <span class="python-command">>> plt.plot(t, x)</span>
+            <div class="example">
+                <span class="python-command">>> plt.plot(t, x)</span>
+            </div>
 
             <p>The plot has been created but before we display it, let us add axis labels and a title.</p>
 
-            <span class="python-command">>> plt.xlabel('t')</span>
-            <span class="python-command">>> plt.ylabel('x')</span>
-            <span class="python-command">>> plt.title('Position vs time')</span>
+            <div class="example">
+                <span class="python-command">>> plt.xlabel('t')</span>
+                <span class="python-command">>> plt.ylabel('x')</span>
+                <span class="python-command">>> plt.title('Position vs time')</span>
+            </div>
 
             <p>Now display the plot.</p>
 
-            <span class="python-command">>> plt.show()</span>
+            <div class="example">
+                <span class="python-command">>> plt.show()</span>
+            </div>
 
             <div class="example">
                 <strong>Example:</strong> Download the file <code>USSA.txt</code> from the ELE page to the current folder. Let us read the data set
