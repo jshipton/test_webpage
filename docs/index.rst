@@ -1,90 +1,27 @@
-.. container::
+Mathematical Modelling MTH1003
+#####################################
 
-   .. rubric:: Mathematical Modelling Module MTH1003
-      :name: mathematical-modelling-module-mth1003
+.. toctree::
+   :maxdepth: 1
 
-   .. container:: toc
+   python_intro
+   numerical_analysis
+   more_python
 
-      .. rubric:: Contents
-         :name: contents
+.. _intro:
 
-      - `Introduction <#sec-introduction>`__
-      - `Books <#sec-books>`__
-      - `Overview of Mathematical Modelling <#sec-overview>`__
-      - `Python: Introduction <#sec-python-intro>`__
-      - `Python: Arithmetic on the Command
-        Line <chapter1-part2.html#sec-python-arithmetic>`__
-      - `Python: The math and cmath modules;
-        variables <chapter1-part2.html#sec-python-modules>`__
-      - `Python: Assignment, Sequences of
-        Commands <chapter1-part2.html#sec-python-assignment>`__
-      - `Python: Precision <chapter1-part2.html#sec-python-precision>`__
-      - `Linear Interpolation <chapter1-part2.html#sec-linear-interp>`__
-      - `Numerical Analysis and Taylor-Maclaurin
-        Series <chapter1-part2.html#sec-numerical-analysis>`__
-      - `Convergence of Linear
-        Interpolation <chapter1-part2.html#sec-convergence>`__
-      - `Python: lists, tuples and
-        arrays <chapter1-part2.html#sec-lists-tuples-arrays>`__
-      - `Python: Reading and Saving
-        Data <chapter1-part2.html#sec-reading-saving>`__
-      - `Python: Plotting <chapter1-part2.html#sec-plotting>`__
-
-   .. container:: section
-      :name: sec-introduction
-
-      .. rubric:: Introduction
-         :name: introduction
+Introduction
+============
 
       This module will show how to use the mathematics of calculus,
       vectors, and matrices to model and understand real physical
       systems. We will use Newtonian dynamics to look at projectiles,
       oscillations, and other mechanical systems.
 
-   .. container:: section
-      :name: sec-books
+.. _ overview:
 
-      .. rubric:: Books
-         :name: books
-
-      +----------------------+----------------------+----------------------+
-      | Author               | Title                | Notes                |
-      +======================+======================+======================+
-      | **Collinson and      | **Particle           | Course book;         |
-      | Roper \***           | Mechanics**          | strongly recommended |
-      +----------------------+----------------------+----------------------+
-      | **Dyke and           | **Guide to           | Nice, easy           |
-      | Whitworth**          | Mechanics**          | discussion           |
-      +----------------------+----------------------+----------------------+
-      | **Smith and Smith**  | **Mechanics**        | More advanced        |
-      +----------------------+----------------------+----------------------+
-      | **Lunn**             | **A First Course in  | Even more advanced   |
-      |                      | Mechanics**          |                      |
-      +----------------------+----------------------+----------------------+
-      | **Strogatz \***      | **Nonlinear Dynamics | Very clearly written |
-      |                      | and Chaos**          | with nice examples   |
-      +----------------------+----------------------+----------------------+
-
-      .. rubric:: Python Books
-         :name: python-books
-
-      +---------------------------+------------------------------------------+
-      | **Kong, Siauw and Bayen** | **Python programming and numerical       |
-      |                           | methods: A guide for engineers and       |
-      |                           | scientists**                             |
-      +---------------------------+------------------------------------------+
-      | **Langtangen**            | **A primer on scientific programming     |
-      |                           | with Python**                            |
-      +---------------------------+------------------------------------------+
-
-      *Most of these are available online - follow the links under the
-      Access your Reading List tile on ELE.*
-
-   .. container:: section
-      :name: sec-overview
-
-      .. rubric:: Overview of Mathematical Modelling
-         :name: overview-of-mathematical-modelling
+Overview of Mathematical Modelling
+----------------------------------
 
       This module will introduce you to some of the kinds of
       mathematical models that are used to understand and predict the
@@ -116,11 +53,10 @@
       example based on calculus, vectors, or matrices, and obtain exact
       formulae.
 
-   .. container:: section
-      :name: sec-python-intro
+.. _python:
 
-      .. rubric:: Python: introduction
-         :name: python-introduction
+Python
+------
 
       To learn about computational methods in mathematical modelling we
       will use the language **Python**. The key concepts behind coding
@@ -142,8 +78,46 @@
         here <https://www.anaconda.com/download>`__.
 
       There are many excellent resources for learning Python. See the
-      books on the reading list and links under the Python tile on ELE.
+      books on the reading list below and links under the Python tile on ELE.
 
-   Lecture Notes for Mathematical Modelling Module - Chapter 1
+.. _books:
 
-Continue to Section 5: :doc:`chapter1-part2`
+Books
+-----
+
+      +----------------------+----------------------+----------------------+
+      | Author               | Title                | Notes                |
+      +======================+======================+======================+
+      | **Collinson and      | **Particle           | Course book;         |
+      | Roper \***           | Mechanics**          | strongly recommended |
+      +----------------------+----------------------+----------------------+
+      | **Dyke and           | **Guide to           | Nice                 |
+      | Whitworth**          | Mechanics**          | discussion           |
+      +----------------------+----------------------+----------------------+
+      | **Smith and Smith**  | **Mechanics**        | More advanced        |
+      +----------------------+----------------------+----------------------+
+      | **Lunn**             | **A First Course in  | Even more advanced   |
+      |                      | Mechanics**          |                      |
+      +----------------------+----------------------+----------------------+
+      | **Strogatz \***      | **Nonlinear Dynamics | Very clearly written |
+      |                      | and Chaos**          | with nice examples   |
+      +----------------------+----------------------+----------------------+
+
+.. _python-books:
+
+Python Books
+------------
+
+      +---------------------------+------------------------------------------+
+      | **Kong, Siauw and Bayen** | **Python programming and numerical       |
+      |                           | methods: A guide for engineers and       |
+      |                           | scientists**                             |
+      +---------------------------+------------------------------------------+
+      | **Langtangen**            | **A primer on scientific programming     |
+      |                           | with Python**                            |
+      +---------------------------+------------------------------------------+
+
+      *Most of these are available online - follow the links under the
+      Access your Reading List tile on ELE.*
+
+Next: :doc:`python_intro`
