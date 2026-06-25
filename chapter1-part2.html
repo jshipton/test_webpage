@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Modelling Module - Lecture Notes</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            counter-increment: section;
+            counter-reset: subsection;
+        }
+        
+        h2::before {
+            content: counter(section) ". ";
+        }
+        
+        h3 {
+            color: #555;
+            counter-increment: subsection;
+        }
+        
+        h3::before {
+            content: counter(section) "." counter(subsection) " ";
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            counter-reset: section;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+        
+        .example {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 4px solid #e74c3c;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        
+        .python-command {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 10px;
+            border-radius: 3px;
+            display: block;
+            margin: 5px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .toc {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+        }
+        
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        /* MathJax styling */
+        .math-display {
+            display: block;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        section {
+            margin: 20px 0;
+        }
+
+        .matrix {
+            text-align: center;
+            margin: 15px 0;
+        }
+    </style>
+
+<style>.container{counter-reset: section 4 !important;}</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mathematical Modelling Module - Lecture Notes Chapter 1 (Part 2)</h1>
+
+        <p><a href="index.html">← Back to Sections 1–4</a></p>
+<section id="sec-python-arithmetic">
+            <h2>Python: Arithmetic on the command line</h2>
+            <p>You can use Python in 'interactive' mode by following these instructions:</p>
+            
+            <h3>Starting iPython</h3>
+            <ol>
+                <li>First start Anaconda Navigator - you can find this by typing in the search box.</li>
+                <li><strong>Wait patiently</strong> for it to finish setting up (observe the progress bar at the bottom of the window) otherwise you may have some unpleasant errors!</li>
+                <li>Scroll down to find 'Jupyter Lab' and click the 'Launch' button. Note, you do <em>not</em> want 'Jupyter Notebook'.</li>
+                <li>When asked what type of file to open, choose 'Terminal'. This will open a Powershell terminal where you can interact with the filesystem using commands.</li>
+                <li>Start an Interactive Python (iPython) session by typing <code>ipython</code> in the Terminal and hitting enter.</li>
+                <li>Note that to exit iPython you press <code>Ctrl+D</code> and hit enter.</li>
+            </ol>
+            
+            <h3>Basic Arithmetic Operations</h3>
+            <p>You can type instructions at the command line prompt to tell Python to carry out basic arithmetic operations: addition (<code>+</code>), subtraction (<code>-</code>), multiplication (<code>*</code>), division (<code>/</code>), and exponentiation (<code>**</code>).</p>
+            
+            <div class="example">
+                <strong>Example:</strong> Compute the volume of a pyramid of height 150 m and base area 50,000 m²<br>
+                <span class="python-command">>>> 150*50000/3</span>
+            </div>
+            
+            <h3>Important Notes</h3>
+            <ul>
+                <li>All multiplications need to be written out explicitly: <code>2x</code> will give an error, whereas <code>2*x</code> is correct.</li>
+                <li>Parentheses (<code>()</code>) are used to group terms together. Every opening bracket must have a matching closing bracket.</li>
+                <li>Exponentiation has higher precedence than multiplication and division, which have higher precedence than addition and subtraction.</li>
+                <li>Python has a variable called <code>pi</code>, which can be imported from the <code>math</code> module.</li>
+            </ul>
+        </section>
+        
+        <section id="sec-python-modules">
+            <h2>Python: The math and cmath modules; variables</h2>
+            <p>Python keeps things tidy by collecting objects such as functions together in modules. For example, the <code>math</code> module contains the definitions of a lot of mathematical functions and useful constants such as $\pi$. To access these definitions, we need to import them from the module:</p>
+            
+            <pre><code>>>> from math import pi</code></pre>
+            
+            <p>The <a href="https://docs.python.org/3/library/math.html">math</a> and <a href="https://docs.python.org/3/library/cmath.html">cmath</a> modules contain functions to compute many standard mathematical functions. The <code>math</code> functions are only defined for real input and output, whereas the <code>cmath</code> functions will accept real and complex input and will <em>always</em> return a complex number.</p>
+            
+            <h3>Commonly Used Mathematical Functions</h3>
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>Description</th>
+                    <th>Function</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>sin(x)</code></td>
+                    <td>Sine</td>
+                    <td><code>sqrt(x)</code></td>
+                    <td>Square root</td>
+                </tr>
+                <tr>
+                    <td><code>cos(x)</code></td>
+                    <td>Cosine</td>
+                    <td><code>exp(x)</code></td>
+                    <td>$e^x$</td>
+                </tr>
+                <tr>
+                    <td><code>tan(x)</code></td>
+                    <td>Tangent</td>
+                    <td><code>log(x)</code></td>
+                    <td>Natural logarithm</td>
+                </tr>
+                <tr>
+                    <td><code>asin(x)</code></td>
+                    <td>Inverse sine</td>
+                    <td><code>log10(x)</code></td>
+                    <td>Base 10 logarithm</td>
+                </tr>
+                <tr>
+                    <td><code>abs(x)</code></td>
+                    <td>Absolute value</td>
+                    <td><code>factorial(x)</code></td>
+                    <td>$x!$</td>
+                </tr>
+                <tr>
+                    <td><code>round(x)</code></td>
+                    <td>Round to nearest integer</td>
+                    <td><code>floor(x)</code></td>
+                    <td>Round down</td>
+                </tr>
+            </table>
+            
+            <h3>Variables</h3>
+            <p>You can store numbers, including the results of calculations, in named locations in the computer memory, called <strong>variables</strong>, to use them later. Variable names must start with a letter, followed by any number of letters, digits, or underscore characters. Variable names are case sensitive: <code>Temp</code> is different from <code>temp</code>.</p>
+        </section>
+        
+        <section id="sec-python-assignment">
+            <h2>Python: assignment, sequences of commands</h2>
+            <p>There is a crucial conceptual difference between the use of '=' in pencil-and-paper mathematics and the use of '=' in a programming language such as Python. In pencil-and-paper mathematics, $y = x^2 + 4x + 5$ is an <em>equation</em>. In Python, <code>y = x**2 + 4*x + 5</code> is an <em>instruction</em>; it means evaluate the expression on the right hand side and <em>assign</em> the result to the variable whose name appears on the left hand side.</p>
+            
+            <p>Python executes the commands we give one at a time, in the order we give them. The values of the variables change as each command is executed. While in pencil-and-paper mathematics it would be nonsensical to write $p = 6$, $p = 7$, $p = p + 1$, the following is perfectly valid in Python:</p>
+            
+            <pre><code>>>> p = 6
+>>> p = 7
+>>> p = p + 1</code></pre>
+        </section>
+        
+        <section id="sec-python-precision">
+            <h2>Python: Precision</h2>
+            <p>Computers have finite memory, and this means they cannot store real numbers such as $\pi$ or $\sqrt{2}$ exactly; such numbers can only be stored to some finite <em>precision</em>. By default Python stores real numbers to a precision of about 15 decimal digits.</p>
+            
+            <p>This is more than enough for most practical purposes. However, there are certain calculations in which the effects of tiny precision errors (also called <em>roundoff errors</em>) are greatly amplified. Examples include:</p>
+            <ul>
+                <li>Accumulating the sum of many terms</li>
+                <li>Taking small differences of relatively large numbers</li>
+                <li>Finding roots of polynomials</li>
+                <li>Certain eigenvalue computations</li>
+            </ul>
+        </section>
+        
+        <section id="sec-linear-interp">
+            <h2>Linear interpolation</h2>
+            <p>Suppose we are given some tabulated data, for example temperatures at certain heights in the atmosphere, and we wish to estimate the temperature at an intermediate height that is not tabulated. In effect we need to construct a <em>mathematical model</em> for the dependence of temperature on height between the tabulated values.</p>
+            
+            <p><strong>Linear interpolation</strong> is the simplest type of interpolation, which fits a straight line between each neighbouring pair of data points.</p>
+            
+            <h3>Linear Interpolation Formula</h3>
+            <p>Given two neighbouring data points $(x_1, y_1)$ and $(x_2, y_2)$, the equation of the straight line passing through these points is:</p>
+            
+            <div class="math-display">$$y = \frac{(x - x_1)y_2 + (x_2 - x)y_1}{x_2 - x_1}$$</div>
+            
+            <p>Thus, an estimate $\hat{y}$ for the value of $y$ at $x = \hat{x}$ is given by:</p>
+            
+            <div class="math-display">$$\hat{y} = \frac{(\hat{x} - x_1)y_2 + (x_2 - \hat{x})y_1}{x_2 - x_1}$$</div>
+            
+            <p>The closer our given data points are to each other, the more accurate we might expect our interpolated value to be.</p>
+        </section>
+        
+        <section id="sec-numerical-analysis">
+            <h2>Numerical analysis and Taylor–Maclaurin series</h2>
+            
+            <h3>What is numerical analysis?</h3>
+            <p>We have met the numerical process of <em>linear interpolation</em> for estimating values of a function given some dataset. Although we can write down a variety of numerical methods, one key aspect is to understand what <em>errors</em> are made. Since none of these methods will generally give exact answers, if we have two numerical methods for solving the same problem, we need to understand the size of the errors to know which method is superior.</p>
+            
+            <p>The analysis of numerical methods, their errors and other properties, forms the subject of <em>numerical analysis</em>, which is an important and vigorous topic in mathematics and computation.</p>
+            
+            <h3>Taylor–Maclaurin series</h3>
+            <p>Suppose we have a function $f(x)$ with derivative $f'(x)$. Given a point $x = a$ and we wish to approximate $f(a + h)$ for nearby points $x = a + h$ (with $h$ small), then we can approximate:</p>
+            
+            <p><strong>Linear approximation:</strong> $f(a + h) \simeq f(a) + h f'(a)$</p>
+            
+            <p><strong>Quadratic approximation:</strong> $f(a + h) \simeq f(a) + h f'(a) + \frac{h^2}{2} f''(a)$</p>
+            
+            <p>For better approximations, we use the <strong>Taylor-Maclaurin series</strong>:</p>
+            
+            <div class="math-display">$$f(a + h) = f(a) + h f'(a) + \frac{h^2}{2!}f''(a) + \frac{h^3}{3!}f'''(a) + \ldots + \frac{h^n}{n!} f^{(n)}(a) + \ldots$$</div>
+            
+            <h3>Taylor's theorem</h3>
+            <p>If the function $f(x)$ is differentiable at least $n+1$ times at a point $x = a$, then values of $f$ near to $a$ are given by:</p>
+            
+            <div class="math-display">$$f(a + h) = f(a) + h f'(a) + \frac{h^2}{2}f''(a) + \ldots + \frac{h^n}{n!} f^{(n)}(a) + O(h^{n+1})$$</div>
+            
+            <p>The notation $O(h^{n+1})$ means a quantity that tends to zero like a constant times $h^{n+1}$ when $h$ tends to zero. It is a convenient way to give the key information needed about the 'error term'.</p>
+            
+            <p><strong>Rule of thumb:</strong> If the error term is $\varepsilon = O(h^2)$, then if we halve $h$ the error $\varepsilon$ is multiplied by a quarter. A scheme with $O(h^2)$ error is superior to one with $O(h)$ error, when halving $h$ only halves the error.</p>
+        </section>
+        
+        <section id="sec-convergence">
+            <h2>Convergence of linear interpolation</h2>
+            <p>Let us illustrate these ideas by looking at the error we make when we apply linear interpolation to a smooth function $f(x)$. If we have data points at $x = x_1$ and $x = x_2$ with $h = x_2 - x_1$, then clearly the error goes down as we reduce $h$, but we need some theory to establish the order of this numerical method.</p>
+            
+            <p>Suppose $f(x)$ is at least twice differentiable in the interval $[x_1, x_2]$. The interpolation error is the difference between the interpolated value $\hat{f}(\hat{x})$ and the true value $f(\hat{x})$. We wish to know how the interpolation error behaves as $h \rightarrow 0$. We say that the interpolation <em>converges</em> if $\hat{f}(\hat{x}) - f(\hat{x}) \rightarrow 0$ as $h \rightarrow 0$.</p>
+        </section>
+
+        <section id="sec-lists-tuples-arrays">
+            <h2>Python: lists, tuples and arrays</h2>
+
+            <p>It is often convenient to refer to several (or many) pieces of data via single variable name, e.g., a list of atmospheric temperatures <code>T</code> at corresponding heights <code>z</code>. We can do this in Python using <em>lists</em>, <em>tuples</em> or <em>arrays</em>. Lists and tuples are data structures available in Python whereas arrays are handled using the <code>numpy</code> module.</p>
+
+            <p>We can create a (small) list by enclosing the entries in square brackets and separating them by commas.</p>
+
+            <div class="example">
+                <span class="python-command">>> R = [3, 6, -2]</span>
+            </div>
+
+            <p>If we want to access an individual element of a list, either to compute with it or to assign to it, we can do so using <em>indices</em> (also called <em>subscripts</em>) in square brackets after the list name. In Python, indices start at 0 (in some languages they start at 1). We can use negative indices to access the list (or tuple, or array) from the end.</p>
+
+            <div class="example">
+                <span class="python-command">>> R[0] = 37</span>
+            </div>
+
+            <p>Note that square brackets are used here because round brackets are used for calling functions (you have seen this with built-in functions e.g. <code>sin(pi)</code> and will meet it again later when you write your own functions).</p>
+
+            <div class="example">
+                <strong>Example:</strong> What error message do you get if you try using round brackets to access the first entry in <code>R</code>? How about if you try to change the value of the first entry using round brackets?
+            </div>
+
+            <p>A list can be extended by adding a new value at the end using the <code>append</code> method. Here round brackets are used because we are calling a function (a method is a function defined on an object).</p>
+
+            <div class="example">
+                <span class="python-command">>> R.append(119)</span>
+            </div>
+
+            <p>A Python tuple is very similar to a Python list, but is created using round brackets.</p>
+
+            <div class="example">
+                <span class="python-command">>> R = (3, 6, -2)</span>
+            </div>
+
+            <p>Again we can access the individual elements using indices in square brackets.</p>
+
+            <div class="example">
+                <span class="python-command">>> print(R[0])</span>
+            </div>
+
+            <p>However, when we try to append to the tuple, or change one of the values, we find that we cannot. This is because tuples are <em>immutable</em>, meaning that once defined, they cannot be changed.</p>
+
+            <div class="example">
+                <strong>Example:</strong> Try appending to a tuple, or changing one of the values as we did with the list above. What error messages do you get?
+            </div>
+
+            <p>The tuples and lists we have just seen look like 1D vectors. However, if we try to treat them in this way, we will see that they do not behave as we require. For example, we expect that multiplying a vector by a scalar will result in a new vector with the same number of components where each component has been multiplied by the scalar:</p>
+
+            <div class="math-display">$$a\begin{pmatrix}
+            1 \\
+            4 \\
+            3
+            \end{pmatrix}
+            = \begin{pmatrix}
+            a \\
+            4a \\
+            3a
+            \end{pmatrix}$$</div>
+
+            <p>If we try to do this with a Python list (or tuple) the result is a new list (or tuple) that contains $a$ copies of the original list (or tuple). [Exercise: try it!] We need a different type of object for performing these mathematical operations... arrays!</p>
+
+            <p>The Python module for handling arrays is <code>numpy</code>. The most common way to import it is to give it the shortened name <code>np</code>.</p>
+
+            <div class="example">
+                <span class="python-command">>> import numpy as np</span>
+            </div>
+
+            <p>We can now convert a list to an array</p>
+
+            <div class="example">
+                <span class="python-command">>> C = np.array([3, 6, -2])</span>
+            </div>
+
+            <p>Multiplying this array by a scalar now works as we require for mathematical operations [Exercise: try it!].</p>
+
+            <p>We can create a (small) 2D array, or matrix, in a similar way, with a new list for each row.</p>
+
+            <div class="example">
+                <span class="python-command">>> M = np.array([[0, 1], [-1, 0]])</span>
+            </div>
+
+            <p>What's the difference between a list, a tuple, a vector, a matrix, and an array? We usually refer to objects as 'vectors' or 'matrices' when we envisage performing matrix-vector arithmetic operations on them (see below), and as 'arrays' when they are just tables of numbers. A row vector is a $1 \times n$ array with $n$ columns, a column vector is an $m \times 1$ array with $m$ rows. Python does not distinguish between the two - they are both represented as 1D arrays. A matrix is an $m \times n$ array. Higher dimensional arrays are also possible. But note all arrays must be 'rectangular', i.e. have the same number of columns in every row and vice versa. Note that for 2D arrays the first index is the row index and the second is the column index.</p>
+
+            <div class="example">
+                <span class="python-command">>> C[1] = 12</span>
+            </div>
+
+            <p><strong>Warning:</strong> Try setting <code>C[1] = sqrt(3)</code>. If you print out the value of <code>C[1]</code> you will see that it is <code>1</code>, rather than <code>1.73205081...</code>. This is because <code>C</code> was created with integer entries and Python has assumed that you would like the entries to remain integers. You can check the type of array entries by looking at the value of <code>C.dtype</code>, and you can set the type of entry when you create the array. Try setting <code>C = np.array([3, 6, 2], dtype=float)</code> and then setting <code>C[1] = sqrt(3)</code>.</p>
+
+            <p>We can create larger arrays in various ways. To create an array containing entries from 1 to 100 with an increment of 1 we can use <code>np.arange</code>.</p>
+
+            <div class="example">
+                <span class="python-command">>> z = np.arange(1, 100, 1)</span>
+            </div>
+
+            <p>The first two numbers passed to <code>np.arange</code> are the start and the end of the sequence. The final number is the increment, and this defaults to 1 if left unspecified.</p>
+
+            <div class="example">
+                <span class="python-command">>> z = np.arange(1, 100)</span>
+            </div>
+
+            <p>Negative and non-integer increments can also be used. If the increment means that the final value will be missed, then the array terminates before the number specified by the ending value. For example, <code>np.arange(1, 10, 2)</code> generates the array <code>[1, 3, 5, 7, 9]</code>.</p>
+
+            <p>A common requirement is for an array to contain a guaranteed start and end point with evenly spaced elements in between. For this we can use <code>np.linspace(start, end, n)</code>, where <code>n</code> is the number of entries.</p>
+
+            <div class="example">
+                <span class="python-command">>> z = np.linspace(1, 5, 10)</span>
+            </div>
+
+            <p>We can create arrays of zeros or ones using built-in <code>numpy</code> functions.</p>
+
+            <div class="example">
+                <span class="python-command">>> X0 = np.zeros((100,100))</span>
+            </div>
+
+            <p>We can perform standard arithmetic operations on arrays provided their shapes <strong>conform</strong>, including ...</p>
+
+            <div class="example">
+                <span class="python-command">>> A = np.array([[1, 2], [3, 4]])</span>
+            </div>
+
+            <div class="example">
+                <span class="python-command">>> B = np.array([[5, 6], [7, 8]])</span>
+            </div>
+
+            <p>addition and subtraction,</p>
+
+            <div class="example">
+                <span class="python-command">>> S = A + B</span>
+            </div>
+
+            <p>matrix multiplication,</p>
+
+            <div class="example">
+                <span class="python-command">>> P = A @ B</span>
+            </div>
+
+            <p>element-by-element multiplication,</p>
+
+            <div class="example">
+                <span class="python-command">>> Q = A * B</span>
+            </div>
+
+            <p>raising each element to a power,</p>
+
+            <div class="example">
+                <span class="python-command">>> Q = A**2</span>
+            </div>
+
+            <p>and transpose.</p>
+
+            <div class="example">
+                <span class="python-command">>> T = A.T</span>
+            </div>
+
+            <p>Note that by 'conform' we mean that the matrix dimensions must be compatible, so for example we can add two $2\times 3$ matrices, and we can multiply a $2\times 3$ matrix by a $3\times 4$ matrix, but not a $2\times 3$ by a $4\times 2$ matrix. Python will flag an error if the dimensions make the operation impossible. We can check the shape of a matrix by printing its <code>shape</code> attribute.</p>
+
+            <div class="example">
+                <span class="python-command">>> print(M.shape)</span>
+            </div>
+
+            <p><strong>Warning:</strong> Because <code>numpy</code> arrays are not strictly matrices, some operations are allowed that you might not expect. When operating on arrays, <code>numpy</code> compares their shapes to decide if they are <em>compatible</em>. The dimensions are compatible if they are equal or if one of them is 1. This is best illustrated with an example.</p>
+
+            <div class="example">
+                <span class="python-command">>> X = np.array([[4, 2, 3], [1, 1, 0]])</span>
+                <span class="python-command">>> Y = np.array([[2], [1]])</span>
+                <span class="python-command">>> X + Y</span>
+            </div>
+
+            <p><code>X</code> has shape <code>(2, 3)</code> and <code>Y</code> has shape <code>(2, 1)</code> so both dimensions are compatible. In this case, <code>Y</code> will act like a <code>(2, 3)</code> array and Python will <em>broadcast</em> <code>Y[:,0]</code> to the other columns. The operation <code>X+Y</code> will add <code>Y</code> to each column of <code>X</code>. You can read more about this <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">here</a>, although it is outside the scope of this module.</p>
+
+            <p>For complex matrices, that is matrices with complex entries, the transpose operation <code>A.T</code> becomes a 'transpose and take the complex conjugate of all the entries' operation, or a so-called <strong>Hermitian transpose</strong>. This is the 'natural' way to transpose a complex matrix, as you will find in later courses on algebra.</p>
+
+            <p>Many additional linear algebra functions are provided by the <code>numpy.linalg</code> library. For square matrices <code>A</code>, the <code>linalg.matrix_power(A, n)</code> function will raise the matrix <code>A</code> to the power of <code>n</code>.</p>
+
+            <div class="example">
+                <span class="python-command">>> Y = np.linalg.matrix_power(A, 2)</span>
+            </div>
+
+            <div class="example">
+                <strong>Example:</strong> Given the arrays <code>a</code>, <code>b</code>, and <code>c</code>:
+                <span class="python-command">>> a = np.array([[1, 0, 1], [0, 1, 0]])</span>
+                <span class="python-command">>> b = np.array([[6, 5, 4], [3, 2, 1]])</span>
+                <span class="python-command">>> c = np.array([-1, 1])</span>
+                
+                which of the following commands are allowed?
+                <table style="margin: 10px 0;">
+                    <tr>
+                        <td><code>a + b</code></td>
+                        <td><code>a + c</code></td>
+                        <td><code>a + b.T</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>a @ b</code></td>
+                        <td><code>b @ a</code></td>
+                        <td><code>b @ c</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>b @ a.T</code></td>
+                        <td><code>c @ b</code></td>
+                        <td><code>a * b</code></td>
+                    </tr>
+                </table>
+                Try to work it out before checking using Python.
+            </div>
+
+            <p>Many built-in functions such as <code>cos</code>, <code>exp</code>, etc., can be applied to arrays. They act element-by-element.</p>
+
+            <p>We can perform calculations on sub-arrays using the colon notation to refer to a range of subscripts. These are often referred to as <strong>slices</strong> of an array, with analogies to serving cake.</p>
+
+            <div class="example">
+                <span class="python-command">>> A = np.array([[1, 2, 3], [4, 5, 6]])</span>
+                <span class="python-command">>> A[0, :2] = 0</span>
+                <span class="python-command">>> A[:, 0] = -1</span>
+            </div>
+
+            <p>Note that the notation <code>[:2]</code> refers to all entries up to but <em>not including</em> the entry with index 2.</p>
+        </section>
+
+        <section id="sec-reading-saving">
+            <h2>Python: reading and saving data</h2>
+
+            <p>We can save <code>numpy</code> arrays to text files using the <code>np.savetxt</code> command</p>
+
+            <div class="example">
+                <span class="python-command">>> X = np.array([[4, 2, 3], [6, 7, 8]])</span>
+                <span class="python-command">>> np.savetxt('my_array.txt', X)</span>
+            </div>
+
+            <p>Python can read this data back in using the <code>np.loadtxt</code> command.</p>
+
+            <div class="example">
+                <span class="python-command">>> Y = np.loadtxt('my_array.txt')</span>
+            </div>
+
+            <p>The <code>savetxt</code> and <code>loadtxt</code> commands have many options; use <code>help</code> if you want to find out more.</p>
+        </section>
+
+        <section id="sec-plotting">
+            <h2>Python: plotting</h2>
+
+            <p>Python has extensive graphics capability via the module <code>matplotlib</code>. Here we will just use a couple of examples to introduce some of the basics.</p>
+
+            <p>First we need to import the functions we need from the module. The standard way to do this is with the command</p>
+
+            <div class="example">
+                <span class="python-command">import matplotlib.pyplot as plt</span>
+            </div>
+
+            <div class="example">
+                <strong>Example:</strong> A particle's position $x$ is given as a function of time $t$ as $x = 2.5 \cos(t)$. Plot its position vs time for $t \in [0,10]$.
+            </div>
+
+            <p>First create a uniformly spaced list of times between 0 and 10: this command line specifies 101 points from 0 to 10 going [0, 0.1, 0.2, …, 9.9, 10]:</p>
+
+            <div class="example">
+                <span class="python-command">>> t = np.linspace(0, 10, 101)</span>
+            </div>
+
+            <p>Compute the corresponding positions; note that we need to use the <code>cos</code> function defined in <code>numpy</code> to apply the <code>cos</code> function element-by-element to compute a whole array of $x$'s; the <code>cos</code> function defined in the <code>math</code> module does not know about arrays.</p>
+
+            <div class="example">
+                <span class="python-command">>> x = 2.5*np.cos(t)</span>
+            </div>
+
+            <p>Plot the data.</p>
+
+            <div class="example">
+                <span class="python-command">>> plt.plot(t, x)</span>
+            </div>
+
+            <p>The plot has been created but before we display it, let us add axis labels and a title.</p>
+
+            <div class="example">
+                <span class="python-command">>> plt.xlabel('t')</span>
+                <span class="python-command">>> plt.ylabel('x')</span>
+                <span class="python-command">>> plt.title('Position vs time')</span>
+            </div>
+
+            <p>Now display the plot.</p>
+
+            <div class="example">
+                <span class="python-command">>> plt.show()</span>
+            </div>
+
+            <div class="example">
+                <strong>Example:</strong> Download the file <code>USSA.txt</code> from the ELE page to the current folder. Let us read the data set
+                
+                <span class="python-command">>> data = np.loadtxt('USSA.txt')</span>
+
+                and unpack the data; first column of the array contains heights, second column contains temperatures. Convert the heights from m to km.
+
+                <span class="python-command">>> z = data[:, 0]/1000</span>
+                <span class="python-command">>> T = data[:, 1]</span>
+
+                Plot the data. Indicate data points by black circles; join with black dotted lines. Make the line a bit thicker for clarity.
+
+                <span class="python-command">>> plt.plot(T, z, 'ko:', linewidth=1.5)</span>
+
+                Add axis labels and a title.
+
+                <span class="python-command">>> plt.xlabel('T (K)')</span>
+                <span class="python-command">>> plt.ylabel('z (km)')</span>
+                <span class="python-command">>> plt.title('US Standard Atmosphere')</span>
+
+                Now display the plot.
+
+                <span class="python-command">>> plt.show()</span>
+
+                Now let us linearly interpolate to a uniformly spaced set of points between the fourth and fifth data points in the set. Note that here (contrast section 9) <code>zhat</code> and <code>That</code> are arrays.
+
+                <span class="python-command">>> zhat = np.linspace(z[4], z[5], 11)</span>
+                <span class="python-command">>> That = ((zhat - z[4])*T[5]</span>
+                <span class="python-command">...       + (z[5] - zhat)*T[4])</span>
+                <span class="python-command">...       /(z[5] - z[4])</span>
+            </div>
+        </section>
+        
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #888;">
+            <p>Lecture Notes for Mathematical Modelling Module - Chapter 1</p>
+            <p>Originally created as LaTeX, converted to HTML and hosted on GitHub Pages</p>
+        </footer>
+    </div>
+</body>
+</html>
