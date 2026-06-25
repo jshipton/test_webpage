@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Modelling Module - Lecture Notes</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #555;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+        }
+        
+        .example {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 4px solid #e74c3c;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        
+        .python-command {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        
+        .toc {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+        }
+        
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mathematical Modelling Module - Lecture Notes Chapter 1A</h1>
+        
+        <div class="toc">
+            <h3>Contents</h3>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#books">Books</a></li>
+                <li><a href="#python-books">Python Books</a></li>
+                <li><a href="#overview">Overview of Mathematical Modelling</a></li>
+                <li><a href="#python-intro">Python: Introduction</a></li>
+                <li><a href="#python-arithmetic">Python: Arithmetic on the Command Line</a></li>
+                <li><a href="#python-modules">Python: The math and cmath modules; variables</a></li>
+                <li><a href="#python-assignment">Python: Assignment, Sequences of Commands</a></li>
+                <li><a href="#python-precision">Python: Precision</a></li>
+                <li><a href="#linear-interp">Linear Interpolation</a></li>
+                <li><a href="#numerical-analysis">Numerical Analysis and Taylor-Maclaurin Series</a></li>
+                <li><a href="#convergence">Convergence of Linear Interpolation</a></li>
+            </ul>
+        </div>
+        
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>This module will show how to use the mathematics of calculus, vectors, and matrices to model and understand real physical systems. We will use Newtonian dynamics to look at projectiles, elastic strings and springs, energy equations, damped and forced oscillators, coupled oscillators, and Kepler's laws. We will also study general nonlinear dynamical systems in two dimensions, which have applications such as predator-prey systems in ecology. Often mathematical models cannot be solved by purely analytical means. In this module we will also look at how computational methods and analytical methods can complement each other to help us understand and predict real world phenomena.</p>
+        </section>
+        
+        <section id="books">
+            <h2>Books</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Author</th>
+                        <th>Title</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Collinson and Roper *</strong></td>
+                        <td><strong>Particle Mechanics</strong></td>
+                        <td>Course book; strongly recommended</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dyke and Whitworth</strong></td>
+                        <td><strong>Guide to Mechanics</strong></td>
+                        <td>Nice, easy discussion</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Smith and Smith</strong></td>
+                        <td><strong>Mechanics</strong></td>
+                        <td>More advanced</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lunn</strong></td>
+                        <td><strong>A First Course in Mechanics</strong></td>
+                        <td>Even more advanced</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Strogatz *</strong></td>
+                        <td><strong>Nonlinear Dynamics and Chaos</strong></td>
+                        <td>Very clearly written with nice examples</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="python-books">
+            <h2>Python Books</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>Kong, Siauw and Bayen</strong></td>
+                        <td><strong>Python programming and numerical methods: A guide for engineers and scientists</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Langtangen</strong></td>
+                        <td><strong>A primer on scientific programming with Python</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><em>Most of these are available online - follow the links under the Access your Reading List tile on ELE.</em></p>
+        </section>
+        
+        <section id="overview">
+            <h2>Overview of Mathematical Modelling</h2>
+            <p>This module will introduce you to some of the kinds of mathematical models that are used to understand and predict the behaviour of the real world, along with some of the analytical and computational techniques used to solve those mathematical models or understand their behaviour.</p>
+            
+            <p>Some types of mathematical models are based on physical principles that are so well established that they are considered to be 'Laws of Nature'; Newton's Laws of Motion and his Law of Universal Gravitation are examples that we will look at (though they are now considered to be approximations to deeper theories). Newtonian Dynamics is expressed in the language of mathematics, and makes heavy use of calculus, vectors, and matrices. Indeed, Newton's need to understand and apply his own theory helped to stimulate the development of calculus.</p>
+            
+            <p>Other types of mathematical model are rather more empirical, though they can still be extremely useful. Examples that we will look at include Lotka-Volterra models for population dynamics, and the SIR model for the spread of an epidemic.</p>
+            
+            <p>The term <strong>Dynamical System</strong> can refer to any system with time dependence. Examples include Newtonian dynamics, population dynamics, the spread of infectious diseases, semi-conductor lasers, biochemistry, and simplified models of more complex systems.</p>
+            
+            <div class="example">
+                <strong>Example:</strong> To make progress as applied mathematicians we must work with <strong>approximate models</strong>. For example, consider a car on a rollercoaster. What factors affect the motion? Which factors are the most important? Which are completely negligible in practice?
+            </div>
+            
+            <p>In some cases (actually rather rare in the messy real world) we can solve a mathematical model using analytical methods, for example based on calculus, vectors, or matrices, and obtain a complete description of the system's behaviour. Sometimes we cannot solve the mathematical model exactly by analytical methods, but we may be able to make useful statements about equilibria and their stability, or long term behaviour, or find approximate solutions in special limiting cases. Often we will be able to obtain approximate solutions using computational methods.</p>
+        </section>
+        
+        <section id="python-intro">
+            <h2>Python: Introduction</h2>
+            <p>To learn about computational methods in mathematical modelling we will use the language <strong>Python</strong>. The key concepts behind coding in Python are the same as those behind many other programming languages, so once you are proficient in Python you should find it fairly straightforward to pick up other languages.</p>
+            
+            <p>In the first few weeks of this module we will spend some time learning enough Python to be able to do something interesting.</p>
+            
+            <h3>Getting Started</h3>
+            <ul>
+                <li>You can use Python on any PC across the University, in particular during our computer practical laboratory sessions. You need to launch Anaconda Navigator and we will use Jupyter Lab for interactive python coding (using the iPython terminal) and also for writing python scripts (<code>.py</code> files).</li>
+                <li>If you have your own laptop or desktop you can install Anaconda following the <a href="https://www.anaconda.com/download">instructions here</a>.</li>
+            </ul>
+            
+            <p>There are many excellent resources for learning Python. See the books on the reading list and links under the Python tile on ELE.</p>
+        </section>
+        
+        <section id="python-arithmetic">
+            <h2>Python: Arithmetic on the Command Line</h2>
+            <p>You can use Python in 'interactive' mode by following these instructions:</p>
+            
+            <h3>Starting iPython</h3>
+            <ol>
+                <li>First start Anaconda Navigator - you can find this by typing in the search box.</li>
+                <li><strong>Wait patiently</strong> for it to finish setting up (observe the progress bar at the bottom of the window) otherwise you may have some unpleasant errors!</li>
+                <li>Scroll down to find 'Jupyter Lab' and click the 'Launch' button. Note, you do <em>not</em> want 'Jupyter Notebook'.</li>
+                <li>When asked what type of file to open, choose 'Terminal'. This will open a Powershell terminal where you can interact with the filesystem using commands.</li>
+                <li>Start an Interactive Python (iPython) session by typing <code>ipython</code> in the Terminal and hitting enter.</li>
+                <li>Note that to exit iPython you press <code>Ctrl+D</code> and hit enter.</li>
+            </ol>
+            
+            <h3>Basic Arithmetic Operations</h3>
+            <p>You can type instructions at the command line prompt to tell Python to carry out basic arithmetic operations: addition (<code>+</code>), subtraction (<code>-</code>), multiplication (<code>*</code>), division (<code>/</code>), and exponentiation (<code>**</code>).</p>
+            
+            <div class="example">
+                <strong>Example:</strong> Compute the volume of a pyramid of height 150 m and base area 50,000 m²<br>
+                <span class="python-command">>> 150*50000/3</span>
+            </div>
+            
+            <h3>Important Notes</h3>
+            <ul>
+                <li>All multiplications need to be written out explicitly: <code>2x</code> will give an error, whereas <code>2*x</code> is correct.</li>
+                <li>Parentheses (<code>()</code>) are used to group terms together. Every opening bracket must have a matching closing bracket.</li>
+                <li>Exponentiation has higher precedence than multiplication and division, which have higher precedence than addition and subtraction.</li>
+                <li>Python has a variable called <code>pi</code>, which can be imported from the <code>math</code> module.</li>
+            </ul>
+        </section>
+        
+        <section id="python-modules">
+            <h2>Python: The math and cmath modules; variables</h2>
+            <p>Python keeps things tidy by collecting objects such as functions together in modules. For example, the <code>math</code> module contains the definitions of a lot of mathematical functions and useful constants such as π. To access these definitions, we need to import them from the module:</p>
+            
+            <pre><code>>> from math import pi</code></pre>
+            
+            <p>The <a href="https://docs.python.org/3/library/math.html">math</a> and <a href="https://docs.python.org/3/library/cmath.html">cmath</a> modules contain functions to compute many standard mathematical functions. The <code>math</code> functions are only defined for real input and output, whereas the <code>cmath</code> functions will accept real and complex input and will <em>always</em> return a complex number.</p>
+            
+            <h3>Commonly Used Mathematical Functions</h3>
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>Description</th>
+                    <th>Function</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>sin(x)</code></td>
+                    <td>Sine</td>
+                    <td><code>sqrt(x)</code></td>
+                    <td>Square root</td>
+                </tr>
+                <tr>
+                    <td><code>cos(x)</code></td>
+                    <td>Cosine</td>
+                    <td><code>exp(x)</code></td>
+                    <td>e<sup>x</sup></td>
+                </tr>
+                <tr>
+                    <td><code>tan(x)</code></td>
+                    <td>Tangent</td>
+                    <td><code>log(x)</code></td>
+                    <td>Natural logarithm</td>
+                </tr>
+                <tr>
+                    <td><code>asin(x)</code></td>
+                    <td>Inverse sine</td>
+                    <td><code>log10(x)</code></td>
+                    <td>Base 10 logarithm</td>
+                </tr>
+                <tr>
+                    <td><code>abs(x)</code></td>
+                    <td>Absolute value</td>
+                    <td><code>factorial(x)</code></td>
+                    <td>x!</td>
+                </tr>
+                <tr>
+                    <td><code>round(x)</code></td>
+                    <td>Round to nearest integer</td>
+                    <td><code>floor(x)</code></td>
+                    <td>Round down</td>
+                </tr>
+            </table>
+            
+            <h3>Variables</h3>
+            <p>You can store numbers, including the results of calculations, in named locations in the computer memory, called <strong>variables</strong>, to use them later. Variable names must start with a letter, followed by any number of letters, digits, or underscore characters. Variable names are case sensitive: <code>Temp</code> is different from <code>temp</code>.</p>
+        </section>
+        
+        <section id="python-assignment">
+            <h2>Python: Assignment, Sequences of Commands</h2>
+            <p>There is a crucial conceptual difference between the use of '=' in pencil-and-paper mathematics and the use of '=' in a programming language such as Python. In pencil-and-paper mathematics, <code>y = x² + 4x + 5</code> is an <em>equation</em>. In Python, <code>y = x**2 + 4*x + 5</code> is an <em>instruction</em>; it means evaluate the expression on the right hand side and <em>assign</em> the result to the variable whose name appears on the left hand side.</p>
+            
+            <p>Python executes the commands we give one at a time, in the order we give them. The values of the variables change as each command is executed. While in pencil-and-paper mathematics it would be nonsensical to write <code>p = 6</code>, <code>p = 7</code>, <code>p = p + 1</code>, the following is perfectly valid in Python:</p>
+            
+            <pre><code>>> p = 6
+>>> p = 7
+>>> p = p + 1</code></pre>
+        </section>
+        
+        <section id="python-precision">
+            <h2>Python: Precision</h2>
+            <p>Computers have finite memory, and this means they cannot store real numbers such as π or √2 exactly; such numbers can only be stored to some finite <em>precision</em>. By default Python stores real numbers to a precision of about 15 decimal digits.</p>
+            
+            <p>This is more than enough for most practical purposes. However, there are certain calculations in which the effects of tiny precision errors (also called <em>roundoff errors</em>) are greatly amplified. Examples include:</p>
+            <ul>
+                <li>Accumulating the sum of many terms</li>
+                <li>Taking small differences of relatively large numbers</li>
+                <li>Finding roots of polynomials</li>
+                <li>Certain eigenvalue computations</li>
+            </ul>
+        </section>
+        
+        <section id="linear-interp">
+            <h2>Linear Interpolation</h2>
+            <p>Suppose we are given some tabulated data, for example temperatures at certain heights in the atmosphere, and we wish to estimate the temperature at an intermediate height that is not tabulated. In effect we need to construct a <em>mathematical model</em> for the dependence of temperature on height between the tabulated values.</p>
+            
+            <p><strong>Linear interpolation</strong> is the simplest type of interpolation, which fits a straight line between each neighbouring pair of data points.</p>
+            
+            <h3>Linear Interpolation Formula</h3>
+            <p>Given two neighbouring data points (x₁, y₁) and (x₂, y₂), the equation of the straight line passing through these points is:</p>
+            
+            <p>y = [(x - x₁)y₂ + (x₂ - x)y₁] / (x₂ - x₁)</p>
+            
+            <p>Thus, an estimate ŷ for the value of y at x = x̂ is given by:</p>
+            
+            <p>ŷ = [(x̂ - x₁)y₂ + (x₂ - x̂)y₁] / (x₂ - x₁)</p>
+            
+            <p>The closer our given data points are to each other, the more accurate we might expect our interpolated value to be.</p>
+        </section>
+        
+        <section id="numerical-analysis">
+            <h2>Numerical Analysis and Taylor-Maclaurin Series</h2>
+            
+            <h3>What is Numerical Analysis?</h3>
+            <p>We have met the numerical process of <em>linear interpolation</em> for estimating values of a function given some dataset. Although we can write down a variety of numerical methods, one key aspect is to understand what <em>errors</em> are made. Since none of these methods will generally give exact answers, if we have two numerical methods for solving the same problem, we need to understand the size of the errors to know which method is superior.</p>
+            
+            <p>The analysis of numerical methods, their errors and other properties, forms the subject of <em>numerical analysis</em>, which is an important and vigorous topic in mathematics and computation.</p>
+            
+            <h3>Taylor-Maclaurin Series</h3>
+            <p>Suppose we have a function f(x) with derivative f'(x). Given a point x = a and we wish to approximate f(a + h) for nearby points x = a + h (with h small), then we can approximate:</p>
+            
+            <p><strong>Linear approximation:</strong> f(a + h) ≈ f(a) + h f'(a)</p>
+            
+            <p><strong>Quadratic approximation:</strong> f(a + h) ≈ f(a) + h f'(a) + (h²/2) f''(a)</p>
+            
+            <p>For better approximations, we use the <strong>Taylor-Maclaurin series</strong>:</p>
+            
+            <pre><code>f(a + h) = f(a) + h f'(a) + (h²/2!)f''(a) + (h³/3!)f'''(a) + ... + (hⁿ/n!) f⁽ⁿ⁾(a) + ...</code></pre>
+        </section>
+        
+        <section id="convergence">
+            <h2>Convergence of Linear Interpolation</h2>
+            <p>Let us illustrate these ideas by looking at the error we make when we apply linear interpolation to a smooth function f(x). If we have data points at x = x₁ and x = x₂ with h = x₂ - x₁, then clearly the error goes down as we reduce h, but we need some theory to establish the order of this numerical method.</p>
+            
+            <h3>Taylor's Theorem</h3>
+            <p>If the function f(x) is differentiable at least n+1 times at a point x = a, then values of f near to a are given by:</p>
+            
+            <pre><code>f(a + h) = f(a) + h f'(a) + (h²/2)f''(a) + ... + (hⁿ/n!) f⁽ⁿ⁾(a) + O(h^(n+1))</code></pre>
+            
+            <p>The notation O(h^(n+1)) means a quantity that tends to zero like a constant times h^(n+1) when h tends to zero. It is a convenient way to give the key information needed about the 'error term'.</p>
+            
+            <p><strong>Rule of thumb:</strong> If the error term is ε = O(h²), then if we halve h the error ε is multiplied by a quarter. A scheme with O(h²) error is superior to one with O(h) error, when halving h only halves the error.</p>
+        </section>
+        
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #888;">
+            <p>Lecture Notes for Mathematical Modelling Module - Chapter 1A</p>
+            <p>Originally created as LaTeX, converted to HTML and hosted on GitHub Pages</p>
+        </footer>
+    </div>
+</body>
+</html>
