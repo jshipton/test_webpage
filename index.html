@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathematical Modelling Module - Lecture Notes</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: 'Georgia', serif;
@@ -26,10 +28,21 @@
             margin-top: 30px;
             border-left: 4px solid #3498db;
             padding-left: 15px;
+            counter-increment: section;
+            counter-reset: subsection;
+        }
+        
+        h2::before {
+            content: counter(section) ". ";
         }
         
         h3 {
             color: #555;
+            counter-increment: subsection;
+        }
+        
+        h3::before {
+            content: counter(section) "." counter(subsection) " ";
         }
         
         .container {
@@ -37,6 +50,7 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            counter-reset: section;
         }
         
         table {
@@ -76,6 +90,13 @@
             border-radius: 5px;
             overflow-x: auto;
             border-left: 4px solid #3498db;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
         }
         
         .example {
@@ -120,6 +141,15 @@
         .toc a:hover {
             text-decoration: underline;
         }
+        
+        /* MathJax styling */
+        .MathJax_Display {
+            margin: 20px 0;
+        }
+        
+        section {
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -129,27 +159,26 @@
         <div class="toc">
             <h3>Contents</h3>
             <ul>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#books">Books</a></li>
-                <li><a href="#python-books">Python Books</a></li>
-                <li><a href="#overview">Overview of Mathematical Modelling</a></li>
-                <li><a href="#python-intro">Python: Introduction</a></li>
-                <li><a href="#python-arithmetic">Python: Arithmetic on the Command Line</a></li>
-                <li><a href="#python-modules">Python: The math and cmath modules; variables</a></li>
-                <li><a href="#python-assignment">Python: Assignment, Sequences of Commands</a></li>
-                <li><a href="#python-precision">Python: Precision</a></li>
-                <li><a href="#linear-interp">Linear Interpolation</a></li>
-                <li><a href="#numerical-analysis">Numerical Analysis and Taylor-Maclaurin Series</a></li>
-                <li><a href="#convergence">Convergence of Linear Interpolation</a></li>
+                <li><a href="#sec-introduction">Introduction</a></li>
+                <li><a href="#sec-books">Books</a></li>
+                <li><a href="#sec-overview">Overview of Mathematical Modelling</a></li>
+                <li><a href="#sec-python-intro">Python: Introduction</a></li>
+                <li><a href="#sec-python-arithmetic">Python: Arithmetic on the Command Line</a></li>
+                <li><a href="#sec-python-modules">Python: The math and cmath modules; variables</a></li>
+                <li><a href="#sec-python-assignment">Python: Assignment, Sequences of Commands</a></li>
+                <li><a href="#sec-python-precision">Python: Precision</a></li>
+                <li><a href="#sec-linear-interp">Linear Interpolation</a></li>
+                <li><a href="#sec-numerical-analysis">Numerical Analysis and Taylor-Maclaurin Series</a></li>
+                <li><a href="#sec-convergence">Convergence of Linear Interpolation</a></li>
             </ul>
         </div>
         
-        <section id="introduction">
+        <section id="sec-introduction">
             <h2>Introduction</h2>
             <p>This module will show how to use the mathematics of calculus, vectors, and matrices to model and understand real physical systems. We will use Newtonian dynamics to look at projectiles, elastic strings and springs, energy equations, damped and forced oscillators, coupled oscillators, and Kepler's laws. We will also study general nonlinear dynamical systems in two dimensions, which have applications such as predator-prey systems in ecology. Often mathematical models cannot be solved by purely analytical means. In this module we will also look at how computational methods and analytical methods can complement each other to help us understand and predict real world phenomena.</p>
         </section>
         
-        <section id="books">
+        <section id="sec-books">
             <h2>Books</h2>
             <table>
                 <thead>
@@ -187,10 +216,8 @@
                     </tr>
                 </tbody>
             </table>
-        </section>
-        
-        <section id="python-books">
-            <h2>Python Books</h2>
+            
+            <h3>Python Books</h3>
             <table>
                 <tbody>
                     <tr>
@@ -206,7 +233,7 @@
             <p><em>Most of these are available online - follow the links under the Access your Reading List tile on ELE.</em></p>
         </section>
         
-        <section id="overview">
+        <section id="sec-overview">
             <h2>Overview of Mathematical Modelling</h2>
             <p>This module will introduce you to some of the kinds of mathematical models that are used to understand and predict the behaviour of the real world, along with some of the analytical and computational techniques used to solve those mathematical models or understand their behaviour.</p>
             
@@ -223,8 +250,8 @@
             <p>In some cases (actually rather rare in the messy real world) we can solve a mathematical model using analytical methods, for example based on calculus, vectors, or matrices, and obtain a complete description of the system's behaviour. Sometimes we cannot solve the mathematical model exactly by analytical methods, but we may be able to make useful statements about equilibria and their stability, or long term behaviour, or find approximate solutions in special limiting cases. Often we will be able to obtain approximate solutions using computational methods.</p>
         </section>
         
-        <section id="python-intro">
-            <h2>Python: Introduction</h2>
+        <section id="sec-python-intro">
+            <h2>Python: introduction</h2>
             <p>To learn about computational methods in mathematical modelling we will use the language <strong>Python</strong>. The key concepts behind coding in Python are the same as those behind many other programming languages, so once you are proficient in Python you should find it fairly straightforward to pick up other languages.</p>
             
             <p>In the first few weeks of this module we will spend some time learning enough Python to be able to do something interesting.</p>
@@ -238,8 +265,8 @@
             <p>There are many excellent resources for learning Python. See the books on the reading list and links under the Python tile on ELE.</p>
         </section>
         
-        <section id="python-arithmetic">
-            <h2>Python: Arithmetic on the Command Line</h2>
+        <section id="sec-python-arithmetic">
+            <h2>Python: Arithmetic on the command line</h2>
             <p>You can use Python in 'interactive' mode by following these instructions:</p>
             
             <h3>Starting iPython</h3>
@@ -269,11 +296,11 @@
             </ul>
         </section>
         
-        <section id="python-modules">
+        <section id="sec-python-modules">
             <h2>Python: The math and cmath modules; variables</h2>
-            <p>Python keeps things tidy by collecting objects such as functions together in modules. For example, the <code>math</code> module contains the definitions of a lot of mathematical functions and useful constants such as π. To access these definitions, we need to import them from the module:</p>
+            <p>Python keeps things tidy by collecting objects such as functions together in modules. For example, the <code>math</code> module contains the definitions of a lot of mathematical functions and useful constants such as $$\pi$$. To access these definitions, we need to import them from the module:</p>
             
-            <pre><code>>> from math import pi</code></pre>
+            <pre><code>>>> from math import pi</code></pre>
             
             <p>The <a href="https://docs.python.org/3/library/math.html">math</a> and <a href="https://docs.python.org/3/library/cmath.html">cmath</a> modules contain functions to compute many standard mathematical functions. The <code>math</code> functions are only defined for real input and output, whereas the <code>cmath</code> functions will accept real and complex input and will <em>always</em> return a complex number.</p>
             
@@ -295,7 +322,7 @@
                     <td><code>cos(x)</code></td>
                     <td>Cosine</td>
                     <td><code>exp(x)</code></td>
-                    <td>e<sup>x</sup></td>
+                    <td>$$e^x$$</td>
                 </tr>
                 <tr>
                     <td><code>tan(x)</code></td>
@@ -313,7 +340,7 @@
                     <td><code>abs(x)</code></td>
                     <td>Absolute value</td>
                     <td><code>factorial(x)</code></td>
-                    <td>x!</td>
+                    <td>$$x!$$</td>
                 </tr>
                 <tr>
                     <td><code>round(x)</code></td>
@@ -327,20 +354,20 @@
             <p>You can store numbers, including the results of calculations, in named locations in the computer memory, called <strong>variables</strong>, to use them later. Variable names must start with a letter, followed by any number of letters, digits, or underscore characters. Variable names are case sensitive: <code>Temp</code> is different from <code>temp</code>.</p>
         </section>
         
-        <section id="python-assignment">
-            <h2>Python: Assignment, Sequences of Commands</h2>
-            <p>There is a crucial conceptual difference between the use of '=' in pencil-and-paper mathematics and the use of '=' in a programming language such as Python. In pencil-and-paper mathematics, <code>y = x² + 4x + 5</code> is an <em>equation</em>. In Python, <code>y = x**2 + 4*x + 5</code> is an <em>instruction</em>; it means evaluate the expression on the right hand side and <em>assign</em> the result to the variable whose name appears on the left hand side.</p>
+        <section id="sec-python-assignment">
+            <h2>Python: assignment, sequences of commands</h2>
+            <p>There is a crucial conceptual difference between the use of '=' in pencil-and-paper mathematics and the use of '=' in a programming language such as Python. In pencil-and-paper mathematics, $$y = x^2 + 4x + 5$$ is an <em>equation</em>. In Python, <code>y = x**2 + 4*x + 5</code> is an <em>instruction</em>; it means evaluate the expression on the right hand side and <em>assign</em> the result to the variable whose name appears on the left hand side.</p>
             
-            <p>Python executes the commands we give one at a time, in the order we give them. The values of the variables change as each command is executed. While in pencil-and-paper mathematics it would be nonsensical to write <code>p = 6</code>, <code>p = 7</code>, <code>p = p + 1</code>, the following is perfectly valid in Python:</p>
+            <p>Python executes the commands we give one at a time, in the order we give them. The values of the variables change as each command is executed. While in pencil-and-paper mathematics it would be nonsensical to write $$p = 6$$, $$p = 7$$, $$p = p + 1$$, the following is perfectly valid in Python:</p>
             
-            <pre><code>>> p = 6
+            <pre><code>>>> p = 6
 >>> p = 7
 >>> p = p + 1</code></pre>
         </section>
         
-        <section id="python-precision">
+        <section id="sec-python-precision">
             <h2>Python: Precision</h2>
-            <p>Computers have finite memory, and this means they cannot store real numbers such as π or √2 exactly; such numbers can only be stored to some finite <em>precision</em>. By default Python stores real numbers to a precision of about 15 decimal digits.</p>
+            <p>Computers have finite memory, and this means they cannot store real numbers such as $$\pi$$ or $$\sqrt{2}$$ exactly; such numbers can only be stored to some finite <em>precision</em>. By default Python stores real numbers to a precision of about 15 decimal digits.</p>
             
             <p>This is more than enough for most practical purposes. However, there are certain calculations in which the effects of tiny precision errors (also called <em>roundoff errors</em>) are greatly amplified. Examples include:</p>
             <ul>
@@ -351,56 +378,58 @@
             </ul>
         </section>
         
-        <section id="linear-interp">
-            <h2>Linear Interpolation</h2>
+        <section id="sec-linear-interp">
+            <h2>Linear interpolation</h2>
             <p>Suppose we are given some tabulated data, for example temperatures at certain heights in the atmosphere, and we wish to estimate the temperature at an intermediate height that is not tabulated. In effect we need to construct a <em>mathematical model</em> for the dependence of temperature on height between the tabulated values.</p>
             
             <p><strong>Linear interpolation</strong> is the simplest type of interpolation, which fits a straight line between each neighbouring pair of data points.</p>
             
             <h3>Linear Interpolation Formula</h3>
-            <p>Given two neighbouring data points (x₁, y₁) and (x₂, y₂), the equation of the straight line passing through these points is:</p>
+            <p>Given two neighbouring data points $$(x_1, y_1)$$ and $$(x_2, y_2)$$, the equation of the straight line passing through these points is:</p>
             
-            <p>y = [(x - x₁)y₂ + (x₂ - x)y₁] / (x₂ - x₁)</p>
+            $$y = \frac{(x - x_1)y_2 + (x_2 - x)y_1}{x_2 - x_1}$$
             
-            <p>Thus, an estimate ŷ for the value of y at x = x̂ is given by:</p>
+            <p>Thus, an estimate $$\hat{y}$$ for the value of $$y$$ at $$x = \hat{x}$$ is given by:</p>
             
-            <p>ŷ = [(x̂ - x₁)y₂ + (x₂ - x̂)y₁] / (x₂ - x₁)</p>
+            $$\hat{y} = \frac{(\hat{x} - x_1)y_2 + (x_2 - \hat{x})y_1}{x_2 - x_1}$$
             
             <p>The closer our given data points are to each other, the more accurate we might expect our interpolated value to be.</p>
         </section>
         
-        <section id="numerical-analysis">
-            <h2>Numerical Analysis and Taylor-Maclaurin Series</h2>
+        <section id="sec-numerical-analysis">
+            <h2>Numerical analysis and Taylor–Maclaurin series</h2>
             
-            <h3>What is Numerical Analysis?</h3>
+            <h3>What is numerical analysis?</h3>
             <p>We have met the numerical process of <em>linear interpolation</em> for estimating values of a function given some dataset. Although we can write down a variety of numerical methods, one key aspect is to understand what <em>errors</em> are made. Since none of these methods will generally give exact answers, if we have two numerical methods for solving the same problem, we need to understand the size of the errors to know which method is superior.</p>
             
             <p>The analysis of numerical methods, their errors and other properties, forms the subject of <em>numerical analysis</em>, which is an important and vigorous topic in mathematics and computation.</p>
             
-            <h3>Taylor-Maclaurin Series</h3>
-            <p>Suppose we have a function f(x) with derivative f'(x). Given a point x = a and we wish to approximate f(a + h) for nearby points x = a + h (with h small), then we can approximate:</p>
+            <h3>Taylor–Maclaurin series</h3>
+            <p>Suppose we have a function $$f(x)$$ with derivative $$f'(x)$$. Given a point $$x = a$$ and we wish to approximate $$f(a + h)$$ for nearby points $$x = a + h$$ (with $$h$$ small), then we can approximate:</p>
             
-            <p><strong>Linear approximation:</strong> f(a + h) ≈ f(a) + h f'(a)</p>
+            <p><strong>Linear approximation:</strong> $$f(a + h) \simeq f(a) + h f'(a)$$</p>
             
-            <p><strong>Quadratic approximation:</strong> f(a + h) ≈ f(a) + h f'(a) + (h²/2) f''(a)</p>
+            <p><strong>Quadratic approximation:</strong> $$f(a + h) \simeq f(a) + h f'(a) + \frac{h^2}{2} f''(a)$$</p>
             
             <p>For better approximations, we use the <strong>Taylor-Maclaurin series</strong>:</p>
             
-            <pre><code>f(a + h) = f(a) + h f'(a) + (h²/2!)f''(a) + (h³/3!)f'''(a) + ... + (hⁿ/n!) f⁽ⁿ⁾(a) + ...</code></pre>
+            $$f(a + h) = f(a) + h f'(a) + \frac{h^2}{2!}f''(a) + \frac{h^3}{3!}f'''(a) + \ldots + \frac{h^n}{n!} f^{(n)}(a) + \ldots$$
+            
+            <h3>Taylor's theorem</h3>
+            <p>If the function $$f(x)$$ is differentiable at least $$n+1$$ times at a point $$x = a$$, then values of $$f$$ near to $$a$$ are given by:</p>
+            
+            $$f(a + h) = f(a) + h f'(a) + \frac{h^2}{2}f''(a) + \ldots + \frac{h^n}{n!} f^{(n)}(a) + O(h^{n+1})$$
+            
+            <p>The notation $$O(h^{n+1})$$ means a quantity that tends to zero like a constant times $$h^{n+1}$$ when $$h$$ tends to zero. It is a convenient way to give the key information needed about the 'error term'.</p>
+            
+            <p><strong>Rule of thumb:</strong> If the error term is $$\varepsilon = O(h^2)$$, then if we halve $$h$$ the error $$\varepsilon$$ is multiplied by a quarter. A scheme with $$O(h^2)$$ error is superior to one with $$O(h)$$ error, when halving $$h$$ only halves the error.</p>
         </section>
         
-        <section id="convergence">
-            <h2>Convergence of Linear Interpolation</h2>
-            <p>Let us illustrate these ideas by looking at the error we make when we apply linear interpolation to a smooth function f(x). If we have data points at x = x₁ and x = x₂ with h = x₂ - x₁, then clearly the error goes down as we reduce h, but we need some theory to establish the order of this numerical method.</p>
+        <section id="sec-convergence">
+            <h2>Convergence of linear interpolation</h2>
+            <p>Let us illustrate these ideas by looking at the error we make when we apply linear interpolation to a smooth function $$f(x)$$. If we have data points at $$x = x_1$$ and $$x = x_2$$ with $$h = x_2 - x_1$$, then clearly the error goes down as we reduce $$h$$, but we need some theory to establish the order of this numerical method.</p>
             
-            <h3>Taylor's Theorem</h3>
-            <p>If the function f(x) is differentiable at least n+1 times at a point x = a, then values of f near to a are given by:</p>
-            
-            <pre><code>f(a + h) = f(a) + h f'(a) + (h²/2)f''(a) + ... + (hⁿ/n!) f⁽ⁿ⁾(a) + O(h^(n+1))</code></pre>
-            
-            <p>The notation O(h^(n+1)) means a quantity that tends to zero like a constant times h^(n+1) when h tends to zero. It is a convenient way to give the key information needed about the 'error term'.</p>
-            
-            <p><strong>Rule of thumb:</strong> If the error term is ε = O(h²), then if we halve h the error ε is multiplied by a quarter. A scheme with O(h²) error is superior to one with O(h) error, when halving h only halves the error.</p>
+            <p>Suppose $$f(x)$$ is at least twice differentiable in the interval $$[x_1, x_2]$$. The interpolation error is the difference between the interpolated value $$\hat{f}(\hat{x})$$ and the true value $$f(\hat{x})$$. We wish to know how the interpolation error behaves as $$h \rightarrow 0$$. We say that the interpolation <em>converges</em> if $$\hat{f}(\hat{x}) - f(\hat{x}) \rightarrow 0$$ as $$h \rightarrow 0$$.</p>
         </section>
         
         <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #888;">
