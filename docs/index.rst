@@ -43,6 +43,12 @@ Overview of Mathematical Modelling
       dependence. Examples include Newtonian dynamics, population
       dynamics, the spread of infectious diseases, and much more.
 
+      .. figure:: img/rollercoaster.png
+         :width: 80%
+         :align: center
+
+         Schematic of a simple rollercoaster.
+
       .. container:: example
 
          **Example:** To make progress as applied mathematicians we must
