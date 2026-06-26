@@ -1,4 +1,4 @@
-project = "Mathematical Modelling Module"
+project = "Mathematical Modelling"
 author = "Dr Jemma Shipton"
 extensions = []
 templates_path = ["_templates"]

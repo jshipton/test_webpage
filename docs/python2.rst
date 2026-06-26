@@ -1,5 +1,8 @@
-Python: lists, tuples and arrays
-===============================
+Python
+======
+
+Lists, tuples and arrays
+------------------------
 
 It is often convenient to refer to several (or many) pieces of data via single
 variable name, e.g., a list of atmospheric temperatures ``T`` at corresponding
@@ -231,13 +234,13 @@ will raise the matrix ``A`` to the power of ``n``.
 
 which of the following commands are allowed?
 
-+-----------+-----------+-----------+
-| ``a + b`` | ``a + c`` | ``a + b.T`` |
-+-----------+-----------+-----------+
-| ``a @ b`` | ``b @ a`` | ``b @ c`` |
-+-----------+-----------+-----------+
-| ``b @ a.T`` | ``c @ b`` | ``a * b`` |
-+-----------+-----------+-----------+
++-------------+-------------+-------------+
+| ``a + b``   | ``a + c``   | ``a + b.T`` |
++-------------+-------------+-------------+
+| ``a @ b``   | ``b @ a``   | ``b @ c``   |
++-------------+-------------+-------------+
+| ``b @ a.T`` | ``c @ b``   | ``a * b``   |
++-------------+-------------+-------------+
 
 Try to work it out before checking using Python.
 
@@ -258,8 +261,8 @@ Note that the notation ``[:2]`` refers to all entries up to but *not including*
 the entry with index 2.
 
 
-Python: reading and saving data
-===============================
+Reading and saving data
+-----------------------
 
 We can save ``numpy`` arrays to text files using the ``np.savetxt`` command
 
@@ -278,8 +281,8 @@ The ``savetxt`` and ``loadtxt`` commands have many options; use ``help`` if you
 want to find out more.
 
 
-Python: plotting
-================
+Plotting
+--------
 
 Python has extensive graphics capability via the module ``matplotlib``. Here we
 will just use a couple of examples to introduce some of the basics.

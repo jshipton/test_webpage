@@ -1,12 +1,14 @@
-Mathematical Modelling MTH1003
-#####################################
+Mathematical Modelling
+######################
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-   python_intro
+   self
+   python1
    numerical_analysis
-   more_python
+   interpolation
+   python2
 
 .. _intro:
 
@@ -120,4 +122,4 @@ Python Books
       *Most of these are available online - follow the links under the
       Access your Reading List tile on ELE.*
 
-Next: :doc:`python_intro`
+Next: :doc:`python1`

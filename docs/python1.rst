@@ -33,7 +33,7 @@ carry out basic arithmetic operations: addition (``+``), subtraction
 
       **Example:** Compute the volume of a pyramid of height 150 m
       and base area 50,000 `m^2`
-         >>> 150*50000/3
+      >>> 150*50000/3
 
       **Important notes:**
 
@@ -134,3 +134,4 @@ include:
       - Finding roots of polynomials
       - Certain eigenvalue computations
 
+Next: :doc:`numerical_analysis`
