@@ -10,6 +10,7 @@ Mathematical Modelling
    numerical_analysis
    interpolation
    python2
+   lec-notes-ch-2
    glossary
 
 .. _intro:

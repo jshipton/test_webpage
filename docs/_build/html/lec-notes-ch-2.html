@@ -1,0 +1,1696 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mathematical description of motion &#8212; Mathematical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec-notes-ch-2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Python" href="python2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mathematical Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Mathematical Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python1.html">Python: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numerical_analysis.html">Numerical analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python2.html">Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Mathematical description of motion</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lec-notes-ch-2.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mathematical description of motion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Mathematical description of motion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#particles">Particles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#position">Position</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity">Velocity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceleration">Acceleration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validity-of-common-sense-notions-of-space-and-time">Validity of common sense notions of space and time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems">Practice problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#newtons-laws">Newton’s Laws</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-1">Practice problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-estimates-for-derivatives">Numerical estimates for derivatives</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-euler-finite-difference-scheme">First order Euler finite difference scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-centred-difference-scheme">Second order centred difference scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourth-order-centred-difference-scheme">Fourth order centred difference scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centred-difference-formula-for-second-derivative">Centred difference formula for second derivative</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">Convergence</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gravity-and-projectiles">Gravity and projectiles</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newtons-law-of-universal-gravitation">Newton’s law of universal gravitation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projectiles">Projectiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-2">Practice problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-envelope-equation">The envelope equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-3">Practice problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projectiles-with-air-resistance-part-i">Projectiles with air resistance: part I</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-initial-value-problems">Numerical methods for Initial Value Problems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-step-finite-difference-methods">Single-step finite difference methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-euler">Forward Euler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#midpoint-method">Midpoint method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-step-methods">Multi-step methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orders-of-accuracy-and-convergence">Orders of accuracy and convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-stepping-systems-of-equations">Time stepping systems of equations</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projectiles-with-air-resistance-part-ii">Projectiles with air resistance: part II</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-stepping-higher-order-odes">Time stepping higher order ODEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projectiles-with-air-resistance">Projectiles with air resistance</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="mathematical-description-of-motion">
+<h1>Mathematical description of motion<a class="headerlink" href="#mathematical-description-of-motion" title="Link to this heading">#</a></h1>
+<section id="particles">
+<h2>Particles<a class="headerlink" href="#particles" title="Link to this heading">#</a></h2>
+<div class="line-block">
+<div class="line">In this module we stick to the simplest models of Newtonian mechanics.
+In particular, we approximate all bodies as point particles, that is,
+particles of zero size. In doing so we are ignoring</div>
+<div class="line">   <span class="math notranslate nohighlight">\(\bullet\)</span> that bodies can rotate</div>
+<div class="line">   <span class="math notranslate nohighlight">\(\bullet\)</span> that bodies can have internal motions</div>
+</div>
+<div class="margin docutils container">
+<p><strong>Reading:</strong> Collinson and Roper §1.2. Note ideas of particle, speed,
+uniform motion, mass, force.</p>
+</div>
+<div class="line-block">
+<div class="line">Often this is an excellent approximation (e.g. planets,
+rollercoaster). It is also an important starting point for Newtonian
+mechanics because</div>
+<div class="line"><span class="math notranslate nohighlight">\(\bullet\)</span> one can build up an <em>extended</em> body (one of non-zero
+size) by adding up many point masses;</div>
+<div class="line"><span class="math notranslate nohighlight">\(\bullet\)</span> given an extended body, there is a special point
+called the <em>centre of mass</em>, which moves as though all the mass were
+concentrated at that point.</div>
+</div>
+</section>
+<section id="position">
+<h2>Position<a class="headerlink" href="#position" title="Link to this heading">#</a></h2>
+<p>Given that we model a body as a point particle, we can define its
+<strong>position</strong> at a given time <span class="math notranslate nohighlight">\(t\)</span>. Introduce a set of fixed
+right-handed axes based at an origin O.</p>
+<figure class="margin align-default">
+<a class="reference internal image-reference" href="_static/images/rhaxes.png"><img alt="" src="_static/images/rhaxes.png" style="width: 5cm;" />
+</a>
+</figure>
+<p>At a given time the particle has position given by its coordinates
+<span class="math notranslate nohighlight">\((x,y,z)\)</span>. Since, in general, the particle moves, <span class="math notranslate nohighlight">\(x\)</span>,
+<span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> vary with time, so we represent position by
+three functions of time <span class="math notranslate nohighlight">\((x(t),y(t),z(t))\)</span>.</p>
+<p>We can equivalently represent the position of the particle at time
+<span class="math notranslate nohighlight">\(t\)</span> using a vector function of time <span class="math notranslate nohighlight">\(\boldsymbol{r}(t)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{r}(t) = x(t) \boldsymbol{i} + y(t) \boldsymbol{j} + z(t) \boldsymbol{k} .\]</div>
+</section>
+<section id="velocity">
+<h2>Velocity<a class="headerlink" href="#velocity" title="Link to this heading">#</a></h2>
+<p>The <strong>velocity</strong> of a particle is the rate of change of its position:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{v}(t) = \frac{\mathrm{d} \boldsymbol{r}}{\mathrm{d} t} .\]</div>
+<p>At each time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> is a vector whose
+magnitude gives the <strong>speed</strong> <span class="math notranslate nohighlight">\(|\boldsymbol{v} (t)|\)</span> of the
+particle and whose direction gives the direction of motion. For brevity
+we will write <span class="math notranslate nohighlight">\(\boldsymbol{v} = \dot{\boldsymbol{r}}\)</span>; the dot
+indicates a time derivative.</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{v} = \dot{\boldsymbol{r}} = \dot{x} \boldsymbol{i} + \dot{y} \boldsymbol{j} + \dot{z} \boldsymbol{k} .\]</div>
+<p><strong>Example:</strong></p>
+<p>A particle has position</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{r} = (\cos t^2 ) \boldsymbol{i} + (\sin t^2) \boldsymbol{j} .\]</div>
+<p>Find its velocity and speed as functions of time.</p>
+</section>
+<section id="acceleration">
+<h2>Acceleration<a class="headerlink" href="#acceleration" title="Link to this heading">#</a></h2>
+<p>The <strong>acceleration</strong> <span class="math notranslate nohighlight">\(\boldsymbol{a}(t)\)</span> of a particle is the rate
+of change of its velocity:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{a}(t) = \frac{\mathrm{d} \boldsymbol{v}}{\mathrm{d} t}  = \frac{\mathrm{d}^2 \boldsymbol{r}}{\mathrm{d} t^2},\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{a} = \dot{\boldsymbol{v}} = \ddot{\boldsymbol{r}} ,\]</div>
+<p>where two dots indicate two time derivatives.</p>
+<p id="example-1"><strong>Example:</strong></p>
+<p>Find the acceleration of the particle in the previous example.</p>
+</section>
+<section id="units">
+<h2>Units<a class="headerlink" href="#units" title="Link to this heading">#</a></h2>
+<div class="line-block">
+<div class="line">In SI units, <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{r}\)</span>
+are measured in metres <span class="math notranslate nohighlight">\(\mathrm{m}\)</span>,</div>
+<div class="line">velocity and speed are measured in metres per
+second <span class="math notranslate nohighlight">\(\mathrm{ms}^{-1}\)</span>,</div>
+<div class="line">and acceleration is measured in metres per second
+squared <span class="math notranslate nohighlight">\(\mathrm{ms}^{-2}\)</span>.</div>
+</div>
+<div class="margin docutils container">
+<p>Mathematics questions don’t always use units, but if a question uses
+units then the answer should use units. Checking that the answer has the
+correct units can be a quick way to identify that a mistake has been
+made.</p>
+</div>
+<p id="example-2"><strong>Example:</strong></p>
+<p>Particles <span class="math notranslate nohighlight">\(P_1\)</span> and <span class="math notranslate nohighlight">\(P_2\)</span> have position vectors
+<span class="math notranslate nohighlight">\(\boldsymbol{r}_1 = u_0 t \boldsymbol{j} - g t^2 \boldsymbol{k} / 2\)</span>
+and
+<span class="math notranslate nohighlight">\(\boldsymbol{r}_2 = v_0 t \boldsymbol{i} - g t^2 \boldsymbol{k} / 2\)</span>,
+respectively, where <span class="math notranslate nohighlight">\(u_0\)</span>, <span class="math notranslate nohighlight">\(v_0\)</span>, g are constants. Show that
+at <span class="math notranslate nohighlight">\(t=0\)</span> the paths of the particles are at right angles, while as
+<span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span> they become parallel.</p>
+<p>Note: in many problems we are free to choose where to place and how to
+orient our axes and when to fix our origin in time. Good choices can
+often assist calculations.</p>
+</section>
+<section id="validity-of-common-sense-notions-of-space-and-time">
+<h2>Validity of common sense notions of space and time<a class="headerlink" href="#validity-of-common-sense-notions-of-space-and-time" title="Link to this heading">#</a></h2>
+<p>We have appealed to ‘common sense’ notions of time and space. The
+physical world can be more subtle.</p>
+<p>1. In relativity different observers disagree about measurements of
+space and time (important when speeds approach the speed of light, or
+when very large masses are involved).</p>
+<p>2. In quantum mechanics particles do not have definite positions and
+velocities — these are replaced by probability distributions (important
+for very small systems such as atoms, electrons,…).</p>
+<p>However, Newtonian mechanics and ‘common sense’ notions are applicable
+to many objects provided they are not moving too quickly (speed much
+less than that of light) and not too small.</p>
+<div class="margin docutils container">
+<p><strong>Reading:</strong> Collinson and Roper §1.4 space and time, §4.1 motion in
+space.</p>
+</div>
+</section>
+<section id="initial-conditions">
+<h2>Initial conditions<a class="headerlink" href="#initial-conditions" title="Link to this heading">#</a></h2>
+<p>Given <span class="math notranslate nohighlight">\(\boldsymbol{r}(t)\)</span>, plainly we can find
+<span class="math notranslate nohighlight">\(\boldsymbol{v}(t)\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{a}(t)\)</span> by
+differentiating. Conversely, given <span class="math notranslate nohighlight">\(\boldsymbol{a}\)</span>, say, we can
+integrate to find <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{r}\)</span>.
+This introduces (vector) constants of integration. Often we can use
+<strong>initial conditions</strong> or other information to fix these constants.</p>
+<p id="example-3"><strong>Example:</strong></p>
+<p>A particle has acceleration</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{a} = t \boldsymbol{i} + t^2 \boldsymbol{j} + \alpha \boldsymbol{k}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is a constant. Given that at <span class="math notranslate nohighlight">\(t=0\)</span> the
+particle is at the origin and has velocity
+<span class="math notranslate nohighlight">\(\boldsymbol{v} = \boldsymbol{i}\)</span>, obtain the position and
+velocity at a general time.</p>
+<p><strong>Answer:</strong></p>
+<p>First integrate <span class="math notranslate nohighlight">\(\boldsymbol{a}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\boldsymbol{v} = \int \boldsymbol{a} \, \mathrm{d} t
+&amp; = &amp;
+\int (t \boldsymbol{i} + t^2 \boldsymbol{j} + \alpha \boldsymbol{k}) \, \mathrm{d} t
+\nonumber \\
+&amp; = &amp;
+\frac{t^2}{2} \boldsymbol{i} + \frac{t^3}{3} \boldsymbol{j} + \alpha t \boldsymbol{k} + \boldsymbol{C} .
+\nonumber
+\end{aligned}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\boldsymbol{C}\)</span> is the constant of integration. Note that it is a
+<em>vector</em> constant, so written bold in print, underlined when
+hand-written.</p>
+<div class="margin docutils container">
+<p><em>Always</em> underline vectors in your own working. Many unnecessary errors
+arise from not taking enough care with notation, e.g. failing to
+distinguish <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> and <span class="math notranslate nohighlight">\(V\)</span>, or
+<span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(w\)</span>.</p>
+</div>
+<p>At the moment it is unknown. But we do know
+<span class="math notranslate nohighlight">\(\boldsymbol{v} = \boldsymbol{i}\)</span> at <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{i} = 0 \boldsymbol{i} + 0 \boldsymbol{j} + 0 \boldsymbol{k} + \boldsymbol{C} .\]</div>
+<p>So <span class="math notranslate nohighlight">\(\boldsymbol{C} = \boldsymbol{i}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{v} =
+\left( 1 + \frac{t^2}{2} \right) \boldsymbol{i} + \frac{t^3}{3} \boldsymbol{j} + \alpha t \boldsymbol{k} .\]</div>
+<p>Integrate again</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\boldsymbol{r} = \int \boldsymbol{v} \, \mathrm{d} t
+&amp; = &amp;
+\int \left\{
+\left( 1 + \frac{t^2}{2} \right) \boldsymbol{i} + \frac{t^3}{3} \boldsymbol{j} + \alpha t \boldsymbol{k}
+\right\} \, \mathrm{d} t
+\nonumber \\
+&amp; = &amp;
+\left( t + \frac{t^3}{6} \right) \boldsymbol{i} + \frac{t^4}{12} \boldsymbol{j} + \frac{\alpha t^2}{2} \boldsymbol{k}
++ \boldsymbol{D} \nonumber
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{D}\)</span> is another (vector) constant of
+integration. But <span class="math notranslate nohighlight">\(\boldsymbol{r} = 0\)</span> at <span class="math notranslate nohighlight">\(t = 0\)</span>
+<span class="math notranslate nohighlight">\(\Rightarrow\)</span> <span class="math notranslate nohighlight">\(\boldsymbol{D} = \boldsymbol{0}\)</span>. Hence</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{r} =
+\left( t + \frac{t^3}{6} \right) \boldsymbol{i} + \frac{t^4}{12} \boldsymbol{j} + \frac{\alpha t^2}{2} \boldsymbol{k} .\]</div>
+</section>
+<section id="practice-problems">
+<h2>Practice problems<a class="headerlink" href="#practice-problems" title="Link to this heading">#</a></h2>
+<p>A body has position vector
+<span class="math notranslate nohighlight">\(\boldsymbol{r}=\boldsymbol{i} \cosh t  + \boldsymbol{j} \cos (3t) + \boldsymbol{k} (t^2 +1)\)</span>.
+Obtain its velocity, speed, and acceleration.</p>
+<p>Two particles have position vectors
+<span class="math notranslate nohighlight">\(\boldsymbol{r}_1 (t) = \boldsymbol{i} \cos (2t) + \boldsymbol{j} \sin (2t) + \boldsymbol{k} ct\)</span>;
+<span class="math notranslate nohighlight">\(\boldsymbol{r}_2 (t) = \boldsymbol{i} \cos (2t) - \boldsymbol{j} \sin (2t) + \boldsymbol{k} ct\)</span>.
+At what time or times are the particle paths parallel? What is the
+maximum value that <span class="math notranslate nohighlight">\(c\)</span> may take while permitting the paths to
+become perpendicular at some time?</p>
+</section>
+</section>
+<section id="newtons-laws">
+<h1>Newton’s Laws<a class="headerlink" href="#newtons-laws" title="Link to this heading">#</a></h1>
+<p>So far we have not discussed what <em>causes</em> a body to move, accelerate,
+etc. We now begin a study of <strong>Dynamics</strong> (in its strictest sense—we
+will broaden the topic later), which is concerned with forces acting on
+a body and how these determine the motion.</p>
+<p>In classical mechanics we begin with <strong>Newton’s laws</strong>:</p>
+<p><strong>First law.</strong> A body will remain at rest or continue to move in a
+straight line with constant velocity unless a force acts on it.</p>
+<p><strong>Second law.</strong> When an external force is applied to a body, the force
+produces an acceleration proportional to the force. The constant of
+proportionality is the mass of the body.</p>
+<p><strong>Third law.</strong> When a body <span class="math notranslate nohighlight">\(A\)</span> exerts a force on a body <span class="math notranslate nohighlight">\(B\)</span>
+the body <span class="math notranslate nohighlight">\(B\)</span> exerts an equal and opposite force on <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>(Note there are various alternative statements of Newton’s laws. In
+particular in deeper treatments the first law becomes a statement about
+the existence of <strong>inertial frames</strong> in which particles move in straight
+lines when no forces act.) Force is a vector, having magnitude and
+direction. It has units of newtons, symbol <span class="math notranslate nohighlight">\(\mathrm{N}\)</span>.
+<span class="math notranslate nohighlight">\(1 \, \mathrm{N} = 1 \, \mathrm{kg}\,\mathrm{ms}^{-2}\)</span>.</p>
+<div class="figure docutils container">
+<p>Gravity Electromagnetic forces</p>
+<p><a class="reference internal" href="_static/images/schematic_gravity.png"><img alt="image" src="_static/images/schematic_gravity.png" style="width: 60mm;" /></a>          <a class="reference internal" href="_static/images/schematic_electromagnetic.png"><img alt="image1" src="_static/images/schematic_electromagnetic.png" style="width: 60mm;" /></a></p>
+<p>Tension Drag or air resistance</p>
+<p><a class="reference internal" href="_static/images/schematic_spring.png"><img alt="image2" src="_static/images/schematic_spring.png" style="width: 60mm;" /></a>            <a class="reference internal" href="_static/images/schematic_drag.png"><img alt="image3" src="_static/images/schematic_drag.png" style="width: 60mm;" /></a></p>
+<p>Friction forces, normal reaction forces</p>
+<p>                           <a class="reference internal" href="_static/images/schematic_friction.png"><img alt="image4" src="_static/images/schematic_friction.png" style="width: 80mm;" /></a></p>
+</div>
+<p>If there are several forces <span class="math notranslate nohighlight">\(\boldsymbol{F}_1\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{F}_2\)</span>, … acting on a body then the total force is</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{F} = \sum_i \boldsymbol{F}_i .\]</div>
+<p>Newton’s second law relates the total force to the acceleration:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{force}
+\ = \
+\mathrm{mass}
+\ \times \
+\mathrm{acceleration}\]</div>
+<p>i.e.</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{F} =  m \boldsymbol{a} .\]</div>
+<p>Consequently, if <span class="math notranslate nohighlight">\(\boldsymbol{F} = \boldsymbol{0}\)</span> (no external
+force acting) then <span class="math notranslate nohighlight">\(\boldsymbol{a} = \boldsymbol{0}\)</span>, so,
+integrating,</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{v} = \int \boldsymbol{a} \, \mathrm{d} t = \boldsymbol{c} = \ \mathrm{constant} .\]</div>
+<p>Thus Newton’s first law follows from his second. Mass is measured in
+kilograms (<span class="math notranslate nohighlight">\(\mathrm{kg}\)</span>). In Newtonian theory the mass of a body
+is constant.</p>
+<p id="example-4"><strong>Example:</strong></p>
+<p>A body of mass <span class="math notranslate nohighlight">\(3\)</span> is subjected to a force
+<span class="math notranslate nohighlight">\(\boldsymbol{F} = \sin t \, \boldsymbol{i} + \mathrm{e}^{-t} \, \boldsymbol{j}\)</span>. Initially it
+is at rest at the origin. Find its subsequent motion.</p>
+<p id="answer-1"><strong>Answer:</strong></p>
+<p>By <span class="math notranslate nohighlight">\(\boldsymbol{F} = m \boldsymbol{a}\)</span>, the acceleration is</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{a} = \frac{1}{3} \sin t \, \boldsymbol{i} + \frac{1}{3} \mathrm{e}^{-t} \, \boldsymbol{j} .\]</div>
+<p>Integrate:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{v} = - \frac{1}{3} \cos t \, \boldsymbol{i} - \frac{1}{3} \mathrm{e}^{-t} \, \boldsymbol{j} + \boldsymbol{C}.\]</div>
+<p>At <span class="math notranslate nohighlight">\(t = 0\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{v} = \boldsymbol{0}\)</span>, so</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{0} = - \frac{1}{3} \boldsymbol{i} - \frac{1}{3} \boldsymbol{j} + \boldsymbol{C} ,\]</div>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{C} = \frac{1}{3} \boldsymbol{i} + \frac{1}{3} \boldsymbol{j} ,\]</div>
+<p>so</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{v} = \frac{1}{3} ( 1 - \cos t ) \boldsymbol{i} + \frac{1}{3} (1 - \mathrm{e}^{-t} ) \boldsymbol{j} .\]</div>
+<p>Integrate again:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{r} =
+\frac{1}{3} ( t - \sin t ) \boldsymbol{i} + \frac{1}{3} (t + \mathrm{e}^{-t} ) \boldsymbol{j} + \boldsymbol{D}.\]</div>
+<p>At <span class="math notranslate nohighlight">\(t = 0\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{r} = \boldsymbol{0}\)</span>, so</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{0} =
+0 \boldsymbol{i} + \frac{1}{3} \boldsymbol{j} + \boldsymbol{D}
+\ \ \ \ \Rightarrow \ \ \ \
+\boldsymbol{D} = - \frac{1}{3} \boldsymbol{j} ;\]</div>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{r} =
+\frac{1}{3} ( t - \sin t ) \boldsymbol{i} + \frac{1}{3} (t - 1 + \mathrm{e}^{-t} ) \boldsymbol{j} .\]</div>
+<div class="margin docutils container">
+<p><strong>Reading:</strong> Collinson and Roper §§4.2, 4.3.</p>
+</div>
+<section id="practice-problems-1">
+<span id="id1"></span><h2>Practice problems<a class="headerlink" href="#practice-problems-1" title="Link to this heading">#</a></h2>
+<p>A body of mass <span class="math notranslate nohighlight">\(m\)</span> is acted on by a force
+<span class="math notranslate nohighlight">\(\boldsymbol{F}(t)=\mu (1 - t) \boldsymbol{i}
++ \lambda t^2 \boldsymbol{j}\)</span>, where <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are
+constants; obtain its motion if at <span class="math notranslate nohighlight">\(t=0\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{r}= X_0 \boldsymbol{i}\)</span> and
+<span class="math notranslate nohighlight">\(\boldsymbol{v}=V_0 \boldsymbol{k}\)</span>.</p>
+<p>A small block of mass <span class="math notranslate nohighlight">\(m\)</span> starts from rest on a slope of a hill at
+an angle <span class="math notranslate nohighlight">\(\pi/6\)</span> to the horizontal and at height <span class="math notranslate nohighlight">\(h\)</span> above
+the horizontal. Find the acceleration of the block along the slope, and
+its speed along the slope when it reaches the foot of the hill. Assume
+there is a friction force of magnitude <span class="math notranslate nohighlight">\(mg/4\)</span> pointing along the
+slope (<span class="math notranslate nohighlight">\(g\)</span> is the acceleration due to gravity).</p>
+<p>A particle of mass <span class="math notranslate nohighlight">\(m\)</span> falls vertically under gravity
+(gravitational acceleration <span class="math notranslate nohighlight">\(g\)</span>) and experiences a drag force due
+to air resistance of magnitude <span class="math notranslate nohighlight">\(C |v|^2\)</span> opposing the motion,
+where <span class="math notranslate nohighlight">\(v\)</span> is the particle’s speed and <span class="math notranslate nohighlight">\(C\)</span> is a constant.
+Find the terminal fall speed of the particle, i.e. the speed at which
+the drag force balances the weight.</p>
+</section>
+</section>
+<section id="numerical-estimates-for-derivatives">
+<h1>Numerical estimates for derivatives<a class="headerlink" href="#numerical-estimates-for-derivatives" title="Link to this heading">#</a></h1>
+<p>We have seen how computers can help us to do calculations involving
+(possibly lots of) arithmetic. But how can they help us with problems
+involving calculus? Certain problems can be addressed by symbolic
+manipulation packages such as Maple. Here we will learn about another
+approach, in which a calculus problem is replaced by a problem involving
+only arithmetic; specifically, derivatives are replaced by arithmetic
+expressions that approximate the derivatives. Variations on this idea
+underpin a great deal of scientific computing.</p>
+<section id="first-order-euler-finite-difference-scheme">
+<h2>First order Euler finite difference scheme<a class="headerlink" href="#first-order-euler-finite-difference-scheme" title="Link to this heading">#</a></h2>
+<p>By rearranging the Taylor series for <span class="math notranslate nohighlight">\(f(x+h)\)</span>, namely</p>
+<div class="math notranslate nohighlight">
+\[f(x+h) = f(x) + h f'(x) + \tfrac{1}{2} h^2 f''(x) + \tfrac{1}{3!} h^3 f'''(x) + \cdots, \notag\]</div>
+<p>we obtain the Forward Euler formula</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:fwdeuler}
+f'(x) = \frac{f(x+h) - f(x)}{h} + O(h).\]</div>
+<div class="margin docutils container">
+<p>The error is actually <span class="math notranslate nohighlight">\(\tfrac{1}{2} h f''(x)+ \cdots\)</span> but the
+<span class="math notranslate nohighlight">\(O(h)\)</span> notation for the error is convenient as it isolates the
+important information that the error goes down proportional to <span class="math notranslate nohighlight">\(h\)</span>
+when we reduce <span class="math notranslate nohighlight">\(h\)</span>.</p>
+</div>
+<p>Similarly, by rearranging the Taylor series for <span class="math notranslate nohighlight">\(f(x-h)\)</span>, namely</p>
+<div class="math notranslate nohighlight">
+\[f(x-h) = f(x) - h f'(x) + \tfrac{1}{2} h^2 f''(x) - \tfrac{1}{3!} h^3 f'''(x) + \cdots, \notag\]</div>
+<p>we obtain the Backward Euler formula</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:bwdeuler}
+f'(x) = \frac{f(x) - f(x-h)}{h} + O(h).\]</div>
+<p>Both are first order accurate—i.e. the leading truncation error scales
+like <span class="math notranslate nohighlight">\(h\)</span> to the power 1 as <span class="math notranslate nohighlight">\(h \rightarrow 0\)</span>.</p>
+</section>
+<section id="second-order-centred-difference-scheme">
+<h2>Second order centred difference scheme<a class="headerlink" href="#second-order-centred-difference-scheme" title="Link to this heading">#</a></h2>
+<p>By combining the Taylor series for <span class="math notranslate nohighlight">\(f(x+h)\)</span> and <span class="math notranslate nohighlight">\(f(x-h)\)</span> we
+obtain the centred difference formula</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:cd2}
+f'(x) = \frac{f(x+h) - f(x-h)}{2h} + O(h^2).\]</div>
+<p>This scheme is second order accurate.</p>
+</section>
+<section id="fourth-order-centred-difference-scheme">
+<h2>Fourth order centred difference scheme<a class="headerlink" href="#fourth-order-centred-difference-scheme" title="Link to this heading">#</a></h2>
+<p>By combining the Taylor series for <span class="math notranslate nohighlight">\(f(x+2h)\)</span>, <span class="math notranslate nohighlight">\(f(x+h)\)</span>,
+<span class="math notranslate nohighlight">\(f(x-h)\)</span>, and <span class="math notranslate nohighlight">\(f(x-2h)\)</span>, we obtain the fourth order centred
+difference formula</p>
+<div class="margin docutils container">
+<p>It is a good exercise to check this works and see how the given
+coefficients ensure the cancellation of a key term.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[f'(x) = \frac{-f(x+2h) + 8 f(x+h) -  8 f(x-h) + f(x-2h)}{12h} + O(h^4).\]</div>
+</section>
+<section id="centred-difference-formula-for-second-derivative">
+<h2>Centred difference formula for second derivative<a class="headerlink" href="#centred-difference-formula-for-second-derivative" title="Link to this heading">#</a></h2>
+<p>By combining Taylor series for <span class="math notranslate nohighlight">\(f(x+h)\)</span> and <span class="math notranslate nohighlight">\(f(x-h)\)</span> we can
+obtain a formula for the second derivative</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:d2dx}
+f''(x) = \frac{f(x+h) - 2 f(x) + f(x-h)}{h^2} + O(h^2).\]</div>
+<p>This is second order accurate.</p>
+</section>
+<section id="convergence">
+<h2>Convergence<a class="headerlink" href="#convergence" title="Link to this heading">#</a></h2>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">Examine</span> <span class="pre">convergence</span> <span class="pre">of</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">Forward</span> <span class="pre">Euler</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">interval</span> <span class="pre">=</span> <span class="pre">[]</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">err</span> <span class="pre">=</span> <span class="pre">[]</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">for</span> <span class="pre">p</span> <span class="pre">in</span> <span class="pre">range(8):</span></code></p>
+</div>
+<div class="margin docutils container">
+<p>:code:`    h = 0.5**(p+1)`</p>
+</div>
+<div class="margin docutils container">
+<p>:code:`    d = (sin(1 + h) - sin(1))/h`</p>
+</div>
+<div class="margin docutils container">
+<p>:code:`    interval.append(h)`</p>
+</div>
+<div class="margin docutils container">
+<p>:code:`    err.append(abs(d - cos(1)))`</p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">loglog(interval,</span> <span class="pre">err,</span> <span class="pre">’b*’)</span></code></p>
+</div>
+<p>The order of accuracy of a finite difference scheme predicts its
+convergence rate, as always, with the proviso that the function is
+sufficiently smooth so that enough terms in the Taylor series exist. For
+example, we can check the convergence of the Forward Euler scheme on a
+function for which we know the true derivative.</p>
+<p id="example-5"><strong>Example:</strong></p>
+<p>Adapt this code to compare the convergence of Forward Euler and centred
+differences. Do their convergence rates agree with their orders of
+accuracy?</p>
+<p id="example-6"><strong>Example:</strong></p>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">First</span> <span class="pre">load</span> <span class="pre">the</span> <span class="pre">data</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">shtl</span> <span class="pre">=</span> <span class="pre">np.loadtxt(’STS121ascent.txt’)</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">Pick</span> <span class="pre">out</span> <span class="pre">first</span> <span class="pre">column</span> <span class="pre">(time)</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">time</span> <span class="pre">=</span> <span class="pre">shtl[:,</span> <span class="pre">0]</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">and</span> <span class="pre">second</span> <span class="pre">column</span> <span class="pre">(altitude)</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">shtl[:,</span> <span class="pre">1]</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">How</span> <span class="pre">many</span> <span class="pre">data</span> <span class="pre">points?</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">len(time)</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">Estimate</span> <span class="pre">vertical</span> <span class="pre">velocity</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">w</span> <span class="pre">=</span> <span class="pre">...</span></code></p>
+</div>
+<p>Download the shuttle data file from the ELE page and load it into
+Python. Extract the first column (time) and second column (altitude) of
+data. Use forward Euler to estimate the vertical velocity and the
+vertical acceleration. Plot altitude, vertical velocity, and vertical
+acceleration versus time.</p>
+<div class="float docutils container" id="fig-katherinejohnson">
+<div class="center docutils container">
+<p><a class="reference internal" href="_static/images/KatherineJohnson.jpg"><img alt="image5" src="_static/images/KatherineJohnson.jpg" style="width: 2.5cm;" /></a></p>
+</div>
+</div>
+</section>
+</section>
+<section id="gravity-and-projectiles">
+<h1>Gravity and projectiles<a class="headerlink" href="#gravity-and-projectiles" title="Link to this heading">#</a></h1>
+<section id="newtons-law-of-universal-gravitation">
+<h2>Newton’s law of universal gravitation<a class="headerlink" href="#newtons-law-of-universal-gravitation" title="Link to this heading">#</a></h2>
+<p>Given two masses <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(m'\)</span>, there is a force of
+attraction between them proportional to <span class="math notranslate nohighlight">\(m m'\)</span> and inversely
+proportional to the square of the distance between them.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(m'\)</span> have position vectors
+<span class="math notranslate nohighlight">\(\boldsymbol{r}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{r}'\)</span>, respectively. Then
+the force on <span class="math notranslate nohighlight">\(m\)</span> due to <span class="math notranslate nohighlight">\(m'\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{F} = - G m m' \frac{(\boldsymbol{r} - \boldsymbol{r}')}{|\boldsymbol{r} - \boldsymbol{r}'|^3} ,\]</div>
+<p>and the force on <span class="math notranslate nohighlight">\(m'\)</span> due to <span class="math notranslate nohighlight">\(m\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{F}' = - G m m' \frac{(\boldsymbol{r}' - \boldsymbol{r})}{|\boldsymbol{r} - \boldsymbol{r}'|^3} ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(G\)</span> is the gravitational; constant:
+<span class="math notranslate nohighlight">\(G = 6.67 \times 10^{-11} \mathrm{m}^3\mathrm{s}^{-2}\mathrm{kg}^{-1}\)</span>.</p>
+<figure class="margin align-default">
+<a class="reference internal image-reference" href="_static/images/gravitymm.png"><img alt="" src="_static/images/gravitymm.png" style="width: 75mm;" />
+</a>
+</figure>
+<p>Notes.</p>
+<p>. <span class="math notranslate nohighlight">\(|\boldsymbol{F}| = |\boldsymbol{F}'|
+= \displaystyle{\frac{G m m'}{|\boldsymbol{r}' - \boldsymbol{r}|^2}}
+= \displaystyle{\frac{G m m'}{( \mathrm{distance\ from}\ m\ \mathrm{to}\ m' )^2}}\)</span></p>
+<p>. Since <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(m' &gt; 0\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{F}\)</span> and
+<span class="math notranslate nohighlight">\(\boldsymbol{F}'\)</span> are in the directions shown; the force is
+attractive.</p>
+<p>. <span class="math notranslate nohighlight">\(\boldsymbol{F} = - \boldsymbol{F}'\)</span>, in agreement with Newton’s
+third law.</p>
+<p>When considering objects moving over moderate scales over Earth’s
+surface, e.g., apples, balls, aeroplanes, shells, it is an excellent
+approximation to model the gravitational force from the Earth on an
+object of mass <span class="math notranslate nohighlight">\(m\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{F} = m \boldsymbol{g}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{g}\)</span> is a constant vector pointing vertically
+downwards towards the centre of the Earth.
+<span class="math notranslate nohighlight">\(|\boldsymbol{g}| = g \approx 9.81 \, \mathrm{ms}^{-2}\)</span> is the
+acceleration due to gravity.</p>
+<p>We shall revisit the full inverse square law when we consider planetary
+motion; however, for now we will take the gravitational force as
+<span class="math notranslate nohighlight">\(\boldsymbol{F} = m \boldsymbol{g}\)</span>. This force is called the
+<strong>weight</strong> of the body.</p>
+</section>
+<section id="projectiles">
+<span id="sec-projectiles"></span><h2>Projectiles<a class="headerlink" href="#projectiles" title="Link to this heading">#</a></h2>
+<p>Consider a point particle (e.g. a ball or a shell), mass <span class="math notranslate nohighlight">\(m\)</span>, in
+motion, and suppose the only force acting on it is gravity. We neglect
+air resistance for now.</p>
+<div class="line-block">
+<div class="line">Suppose the particle is launched (e.g. from a gun) from horizontal
+ground and that its initial velocity is <span class="math notranslate nohighlight">\(\boldsymbol{V}\)</span>. To
+describe the motion we need to choose some axes; a good choice
+simplifies matters.</div>
+<div class="line">(1) Take the time of launch to be <span class="math notranslate nohighlight">\(t=0\)</span>.</div>
+<div class="line">(2) Take the origin <span class="math notranslate nohighlight">\(O\)</span> at the point of launch.</div>
+<div class="line">(3) Take <span class="math notranslate nohighlight">\(z\)</span> to be vertically upwards with <span class="math notranslate nohighlight">\(z=0\)</span> the
+ground, so that <span class="math notranslate nohighlight">\(\boldsymbol{g} = - g \boldsymbol{k}\)</span>.</div>
+<div class="line">(4) Take the <span class="math notranslate nohighlight">\(x\)</span>-axis such that <span class="math notranslate nohighlight">\(\boldsymbol{V}\)</span> lies in
+the <span class="math notranslate nohighlight">\((x,z)\)</span>-plane:</div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\boldsymbol{V} = V \cos \alpha \, \boldsymbol{i} + V \sin \alpha \, \boldsymbol{k} ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(V = |\boldsymbol{V}|\)</span> is the initial speed, and
+<span class="math notranslate nohighlight">\(\alpha\)</span> is the angle of <span class="math notranslate nohighlight">\(\boldsymbol{V}\)</span> to the
+horizontal.</p>
+</div></blockquote>
+<p>Now, by Newton’s second law <span class="math notranslate nohighlight">\(\boldsymbol{F} = m \boldsymbol{a}\)</span></p>
+<div class="math notranslate nohighlight">
+\[m \boldsymbol{a} = m \ddot{\boldsymbol{r}} = m \boldsymbol{g}
+\ \ \ \Rightarrow \ \ \
+\ddot{\boldsymbol{r}} = \boldsymbol{g} = \mathrm{constant}\]</div>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{v} = \dot{\boldsymbol{r}} = \int \boldsymbol{g} \, dt = \boldsymbol{g} t + \boldsymbol{C}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{C}\)</span> is the constant of integration. At
+<span class="math notranslate nohighlight">\(t = 0\)</span>, <span class="math notranslate nohighlight">\(\dot{\boldsymbol{r}} = \boldsymbol{V}\)</span>
+<span class="math notranslate nohighlight">\(\Rightarrow \ \ \boldsymbol{C} = \boldsymbol{V}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\dot{\boldsymbol{r}} = \boldsymbol{V} + \boldsymbol{g} t .\]</div>
+<p>Integrating again,</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{r} = \int ( \boldsymbol{V} + \boldsymbol{g} t ) \, dt
+=
+\boldsymbol{V} t + \frac{1}{2} \boldsymbol{g} t^2 + \boldsymbol{D} .\]</div>
+<p>At <span class="math notranslate nohighlight">\(t = 0\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{r} = \boldsymbol{0} \ \ \Rightarrow \ \ \boldsymbol{D} = \boldsymbol{0}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{r} = \boldsymbol{V} t + \frac{1}{2} \boldsymbol{g} t^2 .\]</div>
+<p>This is the complete vector solution for the motion.</p>
+<p>Now let us examine the solution in component form.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llll}
+\boldsymbol{V} &amp; = V \cos \alpha \boldsymbol{i} &amp;                &amp; + V \sin \alpha \boldsymbol{k} \\
+\boldsymbol{g} &amp; =                          &amp;                &amp; - g \boldsymbol{k}             \\
+\boldsymbol{r} &amp; = x \boldsymbol{i}             &amp; + y \boldsymbol{j} &amp; + z \boldsymbol{k}             \\
+\end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{a} = \boldsymbol{g} \ \
+\Rightarrow \ \
+\left.
+\begin{array}{lll}
+\ddot{x} &amp; = &amp; 0 \\
+\ddot{y} &amp; = &amp; 0 \\
+\ddot{z} &amp; = &amp; -g \\
+\end{array}
+\right\}
+\label{eq:accelxyz}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{v} = \dot{\boldsymbol{r}} = \boldsymbol{V} + \boldsymbol{g} t \ \
+\Rightarrow \ \
+\begin{array}{lll}
+\dot{x} &amp; = &amp; V \cos \alpha \\
+\dot{y} &amp; = &amp; 0             \\
+\dot{z} &amp; = &amp; V \sin \alpha - g t \\
+\end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{r} = \boldsymbol{V} t + \frac{1}{2} \boldsymbol{g} t^2 \ \
+\Rightarrow \ \
+\begin{array}{lll}
+x &amp; = &amp; V t \cos \alpha \\
+y &amp; = &amp; 0               \\
+z &amp; = &amp; V t \sin \alpha - \frac{1}{2} g t^2
+\end{array}\end{split}\]</div>
+<p>Note we could, instead, have started with
+eq:accelxyz and integrated, without using vectors.
+Note also that <span class="math notranslate nohighlight">\(y=0\)</span> for all times <span class="math notranslate nohighlight">\(t\)</span>. This is a result of
+choosing the initial velocity to be in the <span class="math notranslate nohighlight">\((x,z)\)</span>-plane; once the
+motion starts in that plane it remains there. Now that we have checked
+this, we can drop <span class="math notranslate nohighlight">\(y\)</span> and just use <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(z\)</span> for
+this type of problem.</p>
+<div class="margin docutils container">
+<p><strong>Reading:</strong> Collinson and Roper §5.1 gravity, §4.4 projectiles.</p>
+</div>
+<p>The above solution</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+x &amp; = &amp; V t \cos \alpha   \nonumber \\
+z &amp; = &amp; V t \sin \alpha - \frac{1}{2} g t^2  \nonumber
+\end{aligned}\end{split}\]</div>
+<p>gives the <strong>trajectory</strong> of the particle as the curve
+<span class="math notranslate nohighlight">\((x(t),z(t))\)</span> parameterized by <span class="math notranslate nohighlight">\(t\)</span>. To find <span class="math notranslate nohighlight">\(z = z(x)\)</span>
+as a function of <span class="math notranslate nohighlight">\(x\)</span>, eliminate</p>
+<div class="math notranslate nohighlight">
+\[t = \frac{x}{V \cos \alpha}
+\label{eq:ttraj}\]</div>
+<p>to obtain</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+z &amp; = &amp; x \tan \alpha - \frac{g x^2}{2 V^2 \cos^2 \alpha}  \nonumber \\
+  &amp; = &amp; x \left( \tan \alpha - \frac{g x}{2 V^2 \cos^2 \alpha} \right) . \nonumber
+\end{aligned}\end{split}\]</div>
+<p>This is the <strong>trajectory equation</strong>. <span class="math notranslate nohighlight">\(z\)</span> is a quadratic function
+of <span class="math notranslate nohighlight">\(x\)</span>, so the curve is a <strong>parabola</strong>. It passes through the
+<span class="math notranslate nohighlight">\(x\)</span>-axis (<span class="math notranslate nohighlight">\(z=0\)</span>) at</p>
+<div class="math notranslate nohighlight">
+\[x = 0 , \qquad \qquad x = \frac{2V^2}{g} \sin \alpha \cos \alpha = \frac{V^2}{g} \sin 2 \alpha .\]</div>
+<p>If the ground is horizontal then the <strong>range</strong> of the projectile,
+i.e. the distance before hitting the ground, is</p>
+<div class="math notranslate nohighlight">
+\[R = \frac{V^2}{g} \sin 2 \alpha .\]</div>
+<p>The maximum value of <span class="math notranslate nohighlight">\(z\)</span> along the trajectory, i.e. the
+<strong>height</strong> <span class="math notranslate nohighlight">\(h\)</span>, is achieved when <span class="math notranslate nohighlight">\(\dot{z} = 0\)</span>, which occurs
+at <span class="math notranslate nohighlight">\(t = (V/g) \sin \alpha\)</span>, and is given by</p>
+<div class="math notranslate nohighlight">
+\[h = V t \sin \alpha - \frac{1}{2} g t^2 = \frac{V^2 \sin^2 \alpha }{2 g} .\]</div>
+<p>Also, from eq:ttraj, we know <span class="math notranslate nohighlight">\(t\)</span> as a function
+of <span class="math notranslate nohighlight">\(x\)</span>, so when the projectile lands at <span class="math notranslate nohighlight">\(x = R\)</span> the <strong>time
+spent in flight</strong> is</p>
+<div class="math notranslate nohighlight">
+\[T = \frac{R}{V \cos \alpha} = \frac{2 V}{g} \sin \alpha .\]</div>
+<p>Now suppose we can vary <span class="math notranslate nohighlight">\(\alpha\)</span>, with <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(g\)</span>
+constant. Then the range <span class="math notranslate nohighlight">\(R\)</span> is a maximum when
+<span class="math notranslate nohighlight">\(\sin 2 \alpha = 1\)</span>, which happens at <span class="math notranslate nohighlight">\(\alpha = \pi / 4\)</span>. In
+this case <span class="math notranslate nohighlight">\(R = R_\mathrm{max} = V^2 / g\)</span>.</p>
+<p>The height is a maximum when
+<span class="math notranslate nohighlight">\(\sin \alpha = 1 \ \ \Rightarrow \ \ \alpha = \pi/2\)</span> and the
+particle is projected vertically upwards. Then
+<span class="math notranslate nohighlight">\(h = h_\mathrm{max} = V^2/(2g)\)</span>.</p>
+<p id="example-7"><strong>Example:</strong></p>
+<p>A particle is projected with velocity <span class="math notranslate nohighlight">\(V\)</span> at an angle
+(a) <span class="math notranslate nohighlight">\(\pi/6\)</span>, (b) <span class="math notranslate nohighlight">\(\pi/3\)</span> to the horizontal. Calculate its
+range, height, and time of flight in each case.</p>
+<p id="answer-2"><strong>Answer:</strong></p>
+<p>Note <span class="math notranslate nohighlight">\(\sin (\pi/3) = \sin (2\pi/3) = \sqrt{3}/2\)</span>,
+<span class="math notranslate nohighlight">\(\sin (\pi / 6) = 1/2\)</span>, so for (a)</p>
+<div class="math notranslate nohighlight">
+\[R = \frac{\sqrt{3}}{2} \frac{V^2}{g} , \qquad
+h = \frac{V^2}{8 g} , \qquad
+T = \frac{V}{g};\]</div>
+<p>and for (b)</p>
+<div class="math notranslate nohighlight">
+\[R = \frac{\sqrt{3}}{2} \frac{V^2}{g} , \qquad
+h = \frac{3 V^2}{8 g} , \qquad
+T = \frac{\sqrt{3} V}{g} .\]</div>
+<figure class="margin align-default">
+<a class="reference internal image-reference" href="_static/images/twotrajectories.png"><img alt="" src="_static/images/twotrajectories.png" style="width: 65mm;" />
+</a>
+</figure>
+<p id="example-8"><strong>Example:</strong></p>
+<p>A ball is projected with speed <span class="math notranslate nohighlight">\(\sqrt{3gH}\)</span> in a plane
+perpendicular to a vertical wall of height <span class="math notranslate nohighlight">\(H\)</span> a distance
+<span class="math notranslate nohighlight">\(H\)</span> away. Find the range of angles of projection that allow the
+ball to pass over the wall.</p>
+<p id="answer-3"><strong>Answer:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(\alpha\)</span> be the angle of projection, and we know the launch
+speed is <span class="math notranslate nohighlight">\(V = \sqrt{3 g H}\)</span>. The equation of the trajectory is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+z &amp; = &amp; x \tan \alpha - \frac{g x^2}{2 V^2 \cos^2 \alpha} \nonumber \\
+  &amp; = &amp; x \tan \alpha - \frac{x^2}{6 H} (1 + \tan^2 \alpha ) \nonumber
+\end{aligned}\end{split}\]</div>
+<p>When <span class="math notranslate nohighlight">\(x = H\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[z = H \left( \tan \alpha - \frac{1}{6} - \frac{1}{6} \tan^2 \alpha \right)\]</div>
+<p>and for the ball to go over the wall this <span class="math notranslate nohighlight">\(z\)</span> must be
+<span class="math notranslate nohighlight">\(\ge H\)</span>, i.e. we need</p>
+<div class="math notranslate nohighlight">
+\[\tan \alpha - \frac{1}{6} - \frac{1}{6} \tan^2 \alpha \ge 1 .
+\label{eq:trajwall}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(Q = \tan \alpha\)</span>. Then we need <span class="math notranslate nohighlight">\(Q^2 - 6 Q + 7 \le 0\)</span>.
+The roots of the quadratic are given by</p>
+<div class="math notranslate nohighlight">
+\[Q = \frac{6 \pm \sqrt{36 - 28}}{2} = 3 \pm \sqrt{2} .\]</div>
+<p>Thus, eq:trajwall is satisfied when
+<span class="math notranslate nohighlight">\(3 - \sqrt{2} \le \tan \alpha \le 3 + \sqrt{2}\)</span>. The ball passes
+over the wall when</p>
+<div class="math notranslate nohighlight">
+\[3 - \sqrt{2} \le \tan \alpha \le 3 + \sqrt{2}\]</div>
+<div class="math notranslate nohighlight">
+\[1.01 \le \alpha \le 1.35 .\]</div>
+</section>
+<section id="practice-problems-2">
+<span id="id2"></span><h2>Practice problems<a class="headerlink" href="#practice-problems-2" title="Link to this heading">#</a></h2>
+<p>A long jumper attains a horizontal component of her velocity of
+<span class="math notranslate nohighlight">\(8 \, \mathrm{ms^{-1}}\)</span> at take-off. What is the minimum vertical
+component of velocity she needs at take-off in order to jump a distance
+of <span class="math notranslate nohighlight">\(6 \, \mathrm{m}\)</span> ? In this case, what would her maximum height
+be? [Take <span class="math notranslate nohighlight">\(g\simeq 10 \, \mathrm{ms}^{-2}\)</span>.]</p>
+<p>A particle is projected with speed <span class="math notranslate nohighlight">\(3 (gh / 2)^{1/2}\)</span> from a
+point <span class="math notranslate nohighlight">\(O\)</span> on a horizontal floor. The particle reaches a point a
+horizontal distance <span class="math notranslate nohighlight">\(3h\)</span> from <span class="math notranslate nohighlight">\(O\)</span> on the edge of a table of
+height <span class="math notranslate nohighlight">\(h\)</span>. Find the two possible angles of projection.</p>
+<p>If a particle is projected from the horizontal floor of a large room
+whose ceiling is at a height of <span class="math notranslate nohighlight">\(3 \, \mathrm{m}\)</span>, what will its
+greatest possible range be if its speed of projection is
+(a) <span class="math notranslate nohighlight">\(8 \,\mathrm{ms^{-1}}\)</span>, (b) <span class="math notranslate nohighlight">\(12 \, \mathrm{ms^{-1}}\)</span> ?
+[Take <span class="math notranslate nohighlight">\(g\simeq 10 \, \mathrm{ms}^{-2}\)</span>.]</p>
+</section>
+<section id="the-envelope-equation">
+<span id="sec-envelope"></span><h2>The envelope equation<a class="headerlink" href="#the-envelope-equation" title="Link to this heading">#</a></h2>
+<p>Suppose we have a gun that fires shells at a given speed <span class="math notranslate nohighlight">\(V\)</span> and
+at any angle <span class="math notranslate nohighlight">\(\alpha\)</span> to the horizontal. Which points of the
+<span class="math notranslate nohighlight">\((x,z)\)</span>-plane can we hit?</p>
+<p>We know that the trajectory is given by</p>
+<div class="math notranslate nohighlight">
+\[z = x \tan \alpha - \frac{g x^2}{2 V^2 \cos^2 \alpha} .\]</div>
+<p>Thus it goes through a point <span class="math notranslate nohighlight">\((X,Z)\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[Z = X \tan \alpha - \frac{g X^2}{2 V^2 \cos^2 \alpha} ,\]</div>
+<p>i.e. if</p>
+<div class="math notranslate nohighlight">
+\[Z = X \tan \alpha - \frac{g X^2}{2 V^2} (1 + \tan^2 \alpha),\]</div>
+<p>i.e. if</p>
+<div class="math notranslate nohighlight">
+\[g X^2 \tan^2 \alpha - 2 V^2 X \tan \alpha + (2 V^2 Z + g X^2) = 0 .\]</div>
+<p>Given <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(V\)</span>, we can hit <span class="math notranslate nohighlight">\((X,Z)\)</span> if this equation
+has a real solution for <span class="math notranslate nohighlight">\(\alpha\)</span>. The equation is a quadratic in
+<span class="math notranslate nohighlight">\(\tan \alpha\)</span> and has solutions.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\tan \alpha &amp; = &amp; \frac{-B \pm (B^2 - 4 A C)^{1/2}}{2 A}  \nonumber \\
+            &amp; = &amp; \frac{V^2 X \pm (V^4 X^2 - g X^2 (2 Z V^2 + g X^2))^{1/2}}{g X^2} .
+\end{aligned}\end{split}\]</div>
+<p>There are three possibilities</p>
+<ol class="arabic simple">
+<li><p>The quadratic has two real roots: there are two possible angles for
+which the trajectory passes through <span class="math notranslate nohighlight">\((X,Z)\)</span>.</p></li>
+<li><p>The quadratic has one repeated root: just one value of <span class="math notranslate nohighlight">\(\alpha\)</span>
+allows us to hit <span class="math notranslate nohighlight">\((X,Z)\)</span>.</p></li>
+<li><p>The quadratic as no real roots: it is impossible to hit <span class="math notranslate nohighlight">\((X,Z)\)</span>
+for any <span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+</ol>
+<p>Which case occurs depends on the discriminant
+<span class="math notranslate nohighlight">\(\Delta = B^2 - 4 A C\)</span> of the quadratic. If
+<span class="math notranslate nohighlight">\(\Delta / 4 = V^4 X^2 - g X^2 (2 Z V^2 + g X^2)\)</span>
+- … is positive then we have two real roots, case 1.
+- … is zero then we have one real root, case 2.
+- … is negative then we have no real roots, case 3.</p>
+<p>The key case is case 2, which occurs when</p>
+<div class="math notranslate nohighlight">
+\[V^4 X^2 = g X^2 (2 Z V^2 + g X^2) ,\]</div>
+<p>i.e.,</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:envelope}
+Z = \frac{V^2}{2 g} - \frac{g X^2}{2 V^2} .\]</div>
+<p>All points that can be hit with just one angle <span class="math notranslate nohighlight">\(\alpha\)</span> lie on
+this curve <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>. If we sketch the curve we have</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X = 0 \ \ \Rightarrow \ \ Z = V^2 / 2 g\)</span> (maximum height for
+gun);</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z = 0 \ \ \Rightarrow \ \ X = \pm V^2 / g\)</span> (maximum range for
+gun).</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_static/images/envelope.png"><img alt="" src="_static/images/envelope.png" style="width: 170mm;" />
+</a>
+</figure>
+<p>The curve <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> is called the <strong>envelope</strong> of the
+trajectories. It divides the <span class="math notranslate nohighlight">\((x,z)\)</span>-plane into the region within
+range and the region out of range.
+Equation eq:envelope is the <strong>envelope equation</strong>.</p>
+<p id="example-9"><strong>Example:</strong></p>
+<p>A ball is projected with speed <span class="math notranslate nohighlight">\(V\)</span> in a plane perpendicular to a
+wall of height <span class="math notranslate nohighlight">\(H\)</span> a distance <span class="math notranslate nohighlight">\(H\)</span> away. What is the
+<em>minimum</em> speed required for the ball to pass over the wall?</p>
+<p id="answer-4"><strong>Answer:</strong></p>
+<p>Given <span class="math notranslate nohighlight">\(V\)</span>, we can obtain the envelope <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> of the
+trajectories launched from <span class="math notranslate nohighlight">\(O\)</span> with this speed <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<div class="float docutils container" id="fig-evelope-over-under">
+<p><a class="reference internal" href="_static/images/envelope_over.png"><img alt="image6" src="_static/images/envelope_over.png" style="width: 70mm;" /></a>
+<a class="reference internal" href="_static/images/envelope_under.png"><img alt="image7" src="_static/images/envelope_under.png" style="width: 73mm;" /></a></p>
+</div>
+<p>For the ball to go over the wall, the top of the wall
+<span class="math notranslate nohighlight">\((X,Z) = (H,H)\)</span> must lie inside or on <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>. At the
+minimum possible speed <span class="math notranslate nohighlight">\(V\)</span>, the top of the wall
+<span class="math notranslate nohighlight">\((X,Z) = (H,H)\)</span> must lie <em>on</em> <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>. Hence</p>
+<div class="math notranslate nohighlight">
+\[H = \frac{V^2}{2 g} - \frac{g H^2}{2 V^2} ,\]</div>
+<div class="math notranslate nohighlight">
+\[2 = \frac{V^2}{gH} - \frac{g H}{V^2} .\]</div>
+<p>Substitute <span class="math notranslate nohighlight">\(\mu = V^2 / (g H)\)</span>, and solve the resulting quadratic
+equation in <span class="math notranslate nohighlight">\(\mu\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[\mu = 1 \pm \sqrt{2} .\]</div>
+<p>Since <span class="math notranslate nohighlight">\(V^2\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(H\)</span> are all positive, only the
+positive root makes physical sense, i.e., <span class="math notranslate nohighlight">\(\mu = 1 + \sqrt{2}\)</span>.
+Therefore the minimum speed is</p>
+<div class="math notranslate nohighlight">
+\[V = \sqrt{\mu g H} = \left( (1 + \sqrt{2}) g H \right)^{1/2} .\]</div>
+</section>
+<section id="practice-problems-3">
+<span id="id3"></span><h2>Practice problems<a class="headerlink" href="#practice-problems-3" title="Link to this heading">#</a></h2>
+<p>A particle is launched with speed <span class="math notranslate nohighlight">\(V = \sqrt{4gh}\)</span> in a plane
+perpendicular to a wall located a horizontal distance <span class="math notranslate nohighlight">\(h\)</span> from the
+point of launch. What is the maximum height of the wall over which the
+particle can pass?</p>
+<p>A gun is located at <span class="math notranslate nohighlight">\(x = 0\)</span> on top of a hill whose height
+<span class="math notranslate nohighlight">\(z(x)\)</span> is described by <span class="math notranslate nohighlight">\(z = 4h - x^2 / h\)</span>, where <span class="math notranslate nohighlight">\(h\)</span>
+is a constant. The gun fires shells at speed <span class="math notranslate nohighlight">\(V = \sqrt{g h} / 2\)</span>.
+(i) Determine the value of <span class="math notranslate nohighlight">\(x\)</span> for the most distant point on the
+hillside that the gun can hit. (ii) A target is located on the hillside
+at <span class="math notranslate nohighlight">\(x = 2h\)</span>. Determine the smallest value of <span class="math notranslate nohighlight">\(x\)</span> to which
+the gun must be moved so that the target is just within range.</p>
+</section>
+</section>
+<section id="projectiles-with-air-resistance-part-i">
+<span id="sec-air-res-i"></span><h1>Projectiles with air resistance: part I<a class="headerlink" href="#projectiles-with-air-resistance-part-i" title="Link to this heading">#</a></h1>
+<p>Real projectiles are subject to air resistance. A reasonable
+mathematical model for the aerodynamic drag force on a particle is</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{F}_\mathrm{D} = - C |\boldsymbol{v}| \boldsymbol{v} ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> is the velocity of the particle and
+<span class="math notranslate nohighlight">\(C = \rho_\mathrm{a} C_\mathrm{D} A\)</span>, with <span class="math notranslate nohighlight">\(\rho_\mathrm{a}\)</span>
+the air density, <span class="math notranslate nohighlight">\(C_\mathrm{D}\)</span> a drag coefficient, and <span class="math notranslate nohighlight">\(A\)</span>
+the cross-sectional area of the particle <a class="footnote-reference brackets" href="#id6" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. For our purposes we can
+take <span class="math notranslate nohighlight">\(\rho_\mathrm{a}\)</span>, <span class="math notranslate nohighlight">\(C_\mathrm{D}\)</span>, and <span class="math notranslate nohighlight">\(A\)</span>, and
+hence <span class="math notranslate nohighlight">\(C\)</span>, as constants. Newton’s second law then becomes</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:proj_air_res}
+m \ddot{\boldsymbol{r}} = - m \boldsymbol{g} - C |\boldsymbol{v}| \boldsymbol{v} .\]</div>
+<p>Although strictly the <em>drag coefficient</em> is <span class="math notranslate nohighlight">\(C_{\mathrm{D}}\)</span> as
+defined above, it is convenient in the informal discussion below to
+refer to <span class="math notranslate nohighlight">\(C\)</span> as the drag coefficient. Note that</p>
+<div class="math notranslate nohighlight">
+\[|\boldsymbol{F}_\mathrm{D} |= - C |\boldsymbol{v}|^2\]</div>
+<p>and so the magnitude of the drag is quadratic in the speed of the body.</p>
+<div class="margin docutils container">
+<p>Calculation of the drag on a body is a topic in <em>fluid dynamics</em>.
+Quadratic drag is appropriate for bodies such as cricket balls moving
+through the air (and we are assuming no wind), but Magnus effects can
+also arise from rotation. For a body moving in a viscous fluid, for
+example a bead sinking in liquid honey, the force is linear
+<span class="math notranslate nohighlight">\(|\boldsymbol{F}_\mathrm{D} | \propto |\boldsymbol{v}|\)</span>.</p>
+</div>
+<p>We can find closed form solutions to this equation only in three special
+cases:</p>
+<ol class="arabic simple">
+<li><p>when <span class="math notranslate nohighlight">\(C = 0\)</span>, as we have seen above;</p></li>
+<li><p>when <span class="math notranslate nohighlight">\(\boldsymbol{g} = \boldsymbol{0}\)</span>;</p></li>
+<li><p>when the motion is purely vertical.</p></li>
+</ol>
+<p>When <span class="math notranslate nohighlight">\(\boldsymbol{g} = \boldsymbol{0}\)</span> the direction of the
+particle’s velocity never changes and the motion is effectively
+one-dimensional. If we choose axes so that the motion is in the positive
+<span class="math notranslate nohighlight">\(x\)</span>-direction then the equation of motion becomes</p>
+<div class="math notranslate nohighlight">
+\[m \ddot{x} = - C \dot{x}^2 ,\]</div>
+<p>which can be integrated twice to obtain</p>
+<div class="math notranslate nohighlight">
+\[x = \frac{m}{C} \log \left( 1 + \frac{t}{t_0} \right) ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(t_0\)</span> is a constant of integration related to the initial
+speed, and we have assumed <span class="math notranslate nohighlight">\(x=0\)</span> at <span class="math notranslate nohighlight">\(t=0\)</span>. [Exercise: check
+that this solution satisfies the equation of motion.]</p>
+<p>When the motion is purely vertical then again we have a one-dimensional
+problem:</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:vertical_with_drag}
+m \ddot{z} = - m g \pm C \dot{z}^2 ,\]</div>
+<p>with a minus sign when the motion is upward and a plus sign when the
+motion is downward. It turns out that this, too, can be integrated to
+give</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}z = \left\{
+\begin{array}{ll}
+\ \ \ \frac{m}{C} \log \left\{ \cos \left( \sqrt{gC/m} \, t \right) \right\}  &amp;
+- \pi / 2 \sqrt{gC/m} &lt; t \le 0 ,\\
+- \frac{m}{C} \log \left\{ \cosh \left( \sqrt{gC/m} \, t \right) \right\}  &amp;
+t &gt; 0 ,
+\end{array}
+\right.\end{split}\]</div>
+<p>where the constants of integration have been chosen so that the particle
+comes to rest at <span class="math notranslate nohighlight">\(z=0\)</span> at <span class="math notranslate nohighlight">\(t=0\)</span>. For the first part the
+particle is moving upwards and <span class="math notranslate nohighlight">\(t&lt;0\)</span>, then for <span class="math notranslate nohighlight">\(t&gt;0\)</span> it is
+moving downwards, while at <span class="math notranslate nohighlight">\(t=0\)</span> it is at maximum height.
+[Exercise: check that this solution satisfies the equation of
+motion—take care to choose the appropriate sign in
+eq:vertical_with_drag.]</p>
+<p>For more general cases our only option is to find a numerical solution.
+So we now need to look at numerical methods for initial value problems.</p>
+</section>
+<section id="numerical-methods-for-initial-value-problems">
+<span id="sec-time-stepping"></span><h1>Numerical methods for Initial Value Problems<a class="headerlink" href="#numerical-methods-for-initial-value-problems" title="Link to this heading">#</a></h1>
+<p>The methods we look at in this section are often referred to as <em>time
+stepping</em> or <em>time integration</em> methods. To begin with we consider a
+first order (i.e. a single derivative) ordinary differential equation
+(ODE) for a single scalar variable</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:ODE1}
+\frac{d y}{d t} = f(y,t) .\]</div>
+<p>We will see below that the ideas extend straightforwardly to systems of
+equations (section <a class="reference external" href="#sec:step_systems">6.4</a>) and to higher order
+equations (section <a class="reference external" href="#sec:step_higher_systems">7.1</a>).</p>
+<p>Let us try to find a numerical solution at a set of uniformly spaced
+times <span class="math notranslate nohighlight">\(\{ t_0,\ t_1,\ \ldots,\ t_n,\ \ldots \}\)</span>, where
+<span class="math notranslate nohighlight">\(t_n = nh\)</span> and <span class="math notranslate nohighlight">\(h\)</span> is the time step. Let <span class="math notranslate nohighlight">\(y_n\)</span> be our
+approximate numerical solution at time <span class="math notranslate nohighlight">\(t_n\)</span>. We assume that we
+are given the initial condition <span class="math notranslate nohighlight">\(y_0\)</span>.</p>
+<section id="single-step-finite-difference-methods">
+<h2>Single-step finite difference methods<a class="headerlink" href="#single-step-finite-difference-methods" title="Link to this heading">#</a></h2>
+<p>Now we need some way to calculate <span class="math notranslate nohighlight">\(y_{n+1}\)</span> from <span class="math notranslate nohighlight">\(y_n\)</span>; this
+will allow us to step forward from <span class="math notranslate nohighlight">\(y_0\)</span> to <span class="math notranslate nohighlight">\(y_1\)</span>, from
+<span class="math notranslate nohighlight">\(y_1\)</span> to <span class="math notranslate nohighlight">\(y_2\)</span>, and so on until we have built up a solution
+over the desired time range.</p>
+<section id="forward-euler">
+<h3>Forward Euler<a class="headerlink" href="#forward-euler" title="Link to this heading">#</a></h3>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">Solve</span> <span class="pre">dy/dt</span> <span class="pre">=</span> <span class="pre">y(1</span> <span class="pre">-</span> <span class="pre">y)</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">using</span> <span class="pre">Forward</span> <span class="pre">Euler</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">Final</span> <span class="pre">time</span> <span class="pre">and</span> <span class="pre">time</span> <span class="pre">step</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">Tstop</span> <span class="pre">=</span> <span class="pre">5</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">nstop</span> <span class="pre">=</span> <span class="pre">50</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">h</span> <span class="pre">=</span> <span class="pre">Tstop/nstop</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">Initial</span> <span class="pre">value</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">0.1</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">#</span> <span class="pre">Time</span> <span class="pre">step</span> <span class="pre">loop</span></code></p>
+</div>
+<div class="margin docutils container">
+<p><code class="code docutils literal notranslate"><span class="pre">for</span> <span class="pre">n</span> <span class="pre">in</span> <span class="pre">range(nstop):</span></code></p>
+</div>
+<div class="margin docutils container">
+<p>:code:`    y = y + h*y*(1 - y)`</p>
+</div>
+<p>The simplest time stepping method is the forward Euler method. It is
+obtained by using the forward Euler approximation
+eq:fwdeuler for the time derivative</p>
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm{d} y}{\mathrm{d} t} (t_n) \approx \frac{y_{n+1} - y_n}{h}.\]</div>
+<p>The ODE eq:ODE1 then becomes</p>
+<div class="math notranslate nohighlight">
+\[y_{n+1} = y_n + h f(y_n, t_n) .
+\label{eq:fwdeulerstep}\]</div>
+<p>Thus, if we know <span class="math notranslate nohighlight">\(y_n\)</span> then we can evaluate the right hand side
+and hence obtain <span class="math notranslate nohighlight">\(y_{n+1}\)</span>. Starting with the initial condition
+<span class="math notranslate nohighlight">\(y_0\)</span>, we can successively find <span class="math notranslate nohighlight">\(y_1\)</span>, <span class="math notranslate nohighlight">\(y_2\)</span>, etc.
+This idea is at the heart of all single-step finite difference methods.</p>
+<p id="example-10"><strong>Example:</strong></p>
+<p>Use the Forward Euler method to obtain a numerical solution of
+<span class="math notranslate nohighlight">\(dy/dt = y(1-y)\)</span> at <span class="math notranslate nohighlight">\(t = 5\)</span> given <span class="math notranslate nohighlight">\(y = 0.1\)</span> at
+<span class="math notranslate nohighlight">\(t = 0\)</span>. Take <span class="math notranslate nohighlight">\(h = 0.1\)</span>.</p>
+</section>
+<section id="midpoint-method">
+<h3>Midpoint method<a class="headerlink" href="#midpoint-method" title="Link to this heading">#</a></h3>
+<p>There are many other single-step methods.</p>
+<div class="margin docutils container">
+<p>For example, look up Runge-Kutta methods.</p>
+</div>
+<p>Here we mention just one other: the midpoint method.</p>
+<p>Here we attempt to calculate <span class="math notranslate nohighlight">\(dy/dt\)</span> in the middle of the
+timestep, at <span class="math notranslate nohighlight">\(t=t_n+h/2\)</span>. If the present moment is <span class="math notranslate nohighlight">\(t_n\)</span>,
+then <span class="math notranslate nohighlight">\(t=t_n+h/2\)</span> is in the future. So first we need an estimate of
+<span class="math notranslate nohighlight">\(y\)</span> at the future time <span class="math notranslate nohighlight">\(t=t_n+h/2\)</span>, <span class="math notranslate nohighlight">\(y = y_*\)</span>, say. We
+can use Forward Euler to obtain this estimate. Thus, the formula is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    y_* &amp; = &amp; y_n + \frac{h}{2} f(y_n, t_n),\\
+    y_{n+1} &amp; = &amp; y_n + h f\left(y_*, t_n+ h/2 \right).
+\end{aligned}\end{split}\]</div>
+</section>
+</section>
+<section id="multi-step-methods">
+<h2>Multi-step methods<a class="headerlink" href="#multi-step-methods" title="Link to this heading">#</a></h2>
+<p>If we use the second order centred difference method
+eq:cd2 to approximate the time derivative then the ODE
+eq:ODE1 becomes</p>
+<div class="math notranslate nohighlight">
+\[y_{n+1} = y_{n-1} + 2hf(y_n,t_n) .\]</div>
+<p>This method is known as the leapfrog method. It requires us to know both
+<span class="math notranslate nohighlight">\(y_{n-1}\)</span> and <span class="math notranslate nohighlight">\(y_n\)</span> in order to step forward to
+<span class="math notranslate nohighlight">\(y_{n+1}\)</span>, so it is an example of a <em>multi-step method</em>.</p>
+<div class="margin docutils container">
+<p>Other multi-step schemes include the Adams-Bashforth methods.</p>
+</div>
+<p>Note that in order to apply the leapfrog scheme we must do something
+else, such as Forward Euler, for the first time step, since we don’t
+have <span class="math notranslate nohighlight">\(y_{-1}\)</span>.</p>
+</section>
+<section id="orders-of-accuracy-and-convergence">
+<h2>Orders of accuracy and convergence<a class="headerlink" href="#orders-of-accuracy-and-convergence" title="Link to this heading">#</a></h2>
+<p>Using the Taylor series eq:taylor_series shows
+that the error made in one Forward Euler time step
+eq:fwdeulerstep is <span class="math notranslate nohighlight">\(O(h^2)\)</span>. However, the
+number of steps needed to reach a given time <span class="math notranslate nohighlight">\(T\)</span> is
+<span class="math notranslate nohighlight">\(\propto 1/h\)</span>, and the errors will accumulate step by step.
+Therefore the error in the solution at time <span class="math notranslate nohighlight">\(T\)</span> is expected to be
+<span class="math notranslate nohighlight">\(O(h)\)</span>. Thus, the Forward Euler method is said to be first-order
+accurate. This analysis predicts that, if we repeat the calculation
+using different values of <span class="math notranslate nohighlight">\(h\)</span>, the error at time <span class="math notranslate nohighlight">\(T\)</span> should
+get smaller, i.e. the numerical solution should <em>converge</em> to the true
+solution, at a certain rate as <span class="math notranslate nohighlight">\(h \rightarrow 0\)</span>.</p>
+<p>For both the midpoint method and the leapfrog method, Taylor series
+analysis shows that the methods are second-order accurate. Thus, the
+error at time <span class="math notranslate nohighlight">\(T\)</span> is expected to be <span class="math notranslate nohighlight">\(O(h^2)\)</span>, etc.</p>
+<p>Note that these predictions depend on the validity of the Taylor series
+expansion from which the schemes are derived. Worse convergence may be
+achieved in practice if the solution is not sufficiently smooth. The
+predictions can also fail if the scheme is unstable—see
+section sec:stability.</p>
+</section>
+<section id="time-stepping-systems-of-equations">
+<span id="sec-step-systems"></span><h2>Time stepping systems of equations<a class="headerlink" href="#time-stepping-systems-of-equations" title="Link to this heading">#</a></h2>
+<p>To apply the above time stepping methods to systems of equations we
+simply replace the scalar variable <span class="math notranslate nohighlight">\(y\)</span> and function <span class="math notranslate nohighlight">\(f\)</span> by
+arrays or vectors <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{f}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:ODE12}
+\frac{d \boldsymbol{y}}{d t} = \boldsymbol{f}(\boldsymbol{y},t) .\]</div>
+<p>For example, the forward Euler method becomes</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{y}_{n+1} = \boldsymbol{y}_n + h \boldsymbol{f}(\boldsymbol{y}_n, t_n) .
+\label{eq:fwdeulerstepsys}\]</div>
+<p>For coding it may be convenient to split the equations into their
+components.</p>
+<p id="example-11"><strong>Example:</strong></p>
+<p>Find and plot a numerical solution of the SIR model over 200 days. Use
+the values of <span class="math notranslate nohighlight">\(S_0\)</span>, <span class="math notranslate nohighlight">\(I_0\)</span>, <span class="math notranslate nohighlight">\(r\)</span>, and <span class="math notranslate nohighlight">\(a\)</span> given
+in section sec:built-in.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve SIR using Forward Euler</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Final time and time step</span>
+<span class="n">Tstop</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">nstop</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">Tstop</span><span class="o">/</span><span class="n">nstop</span>
+
+<span class="c1"># Constants</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">3e-9</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">14</span>
+
+<span class="c1"># Initial values</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6e7</span><span class="p">]</span>
+<span class="n">I</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">]</span>
+<span class="n">R</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time step loop</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstop</span><span class="p">):</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">S</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">h</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">I</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">S</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">I</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">I</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">*</span><span class="n">S</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="o">*</span><span class="n">I</span><span class="p">[</span><span class="n">n</span><span class="p">]))</span>
+    <span class="n">R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">I</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;R&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (days)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Does the maximum number of infected people agree with the value
+predicted by eq:Imax?</p>
+<p>In section sec:fpi we found the value of <span class="math notranslate nohighlight">\(q\)</span>
+needed to obtain <span class="math notranslate nohighlight">\(I_\mathrm{max} = 10^5\)</span>. Set <span class="math notranslate nohighlight">\(r = aq\)</span> for
+this value of <span class="math notranslate nohighlight">\(q\)</span> and re-run the code; do we get
+<span class="math notranslate nohighlight">\(I_\mathrm{max} \approx 10^5\)</span>? (You might need to run for more
+days.)</p>
+</section>
+</section>
+<section id="projectiles-with-air-resistance-part-ii">
+<h1>Projectiles with air resistance: part II<a class="headerlink" href="#projectiles-with-air-resistance-part-ii" title="Link to this heading">#</a></h1>
+<p>We now have almost all the numerical methods we need to investigate
+projectiles with air resistance. However, the time stepping methods we
+have seen apply to first order ODEs whereas Newton’s second law gives us
+second order ODEs. What can we do?</p>
+<section id="time-stepping-higher-order-odes">
+<span id="sec-step-higher-systems"></span><h2>Time stepping higher order ODEs<a class="headerlink" href="#time-stepping-higher-order-odes" title="Link to this heading">#</a></h2>
+<p>Suppose we are given a second order ODE</p>
+<div class="math notranslate nohighlight">
+\[\frac{d^2 y}{d t^2} = f(y, \dot{y}, t) .\]</div>
+<p>This can always be re-written as a pair of first order ODEs by
+introducing a new variable <span class="math notranslate nohighlight">\(z = \dot{y}\)</span>, say:</p>
+<div class="margin docutils container">
+<p>This pair of ODEs will need two initial conditions, one on <span class="math notranslate nohighlight">\(y\)</span> and
+one on <span class="math notranslate nohighlight">\(z\)</span>. This makes it clear why the original second order ODE
+also needs two initial conditions.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\frac{d y}{d t} &amp; = &amp; z ; \nonumber \\
+\frac{d z}{d t} &amp; = &amp; f(y, z, t) . \nonumber
+\end{aligned}\end{split}\]</div>
+<p>We can apply any of the time stepping schemes we have met to this pair
+of equations.</p>
+<p>Clearly a similar trick can be used with higher order ODEs and with
+systems of second order and higher order ODEs.</p>
+</section>
+<section id="projectiles-with-air-resistance">
+<span id="sec-air-resistance-examples"></span><h2>Projectiles with air resistance<a class="headerlink" href="#projectiles-with-air-resistance" title="Link to this heading">#</a></h2>
+<p>To solve eq:proj_air_res numerically we can
+first split it into horizontal and vertical components</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+m \ddot{x} &amp; = &amp; \ \ \ \ \ \ \ \ \ - C |\boldsymbol{v}| \dot{x} , \nonumber \\
+m \ddot{z} &amp; = &amp; -m g              - C |\boldsymbol{v}| \dot{z} , \nonumber
+\end{aligned}\end{split}\]</div>
+<p>and then introduce new variables <span class="math notranslate nohighlight">\(u = \dot{x}\)</span>,
+<span class="math notranslate nohighlight">\(w = \dot{z}\)</span> to obtain a system of first order equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+  \dot{x}  &amp; = &amp; u , \nonumber \\
+  \dot{z}  &amp; = &amp; w , \nonumber \\
+m \dot{u} &amp; = &amp; \ \ \ \ \ \ \ \ \ - C |\boldsymbol{v}| u , \nonumber \\
+m \dot{w} &amp; = &amp; - m g             - C |\boldsymbol{v}| w , \nonumber
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{v} = (u,w)\)</span> and
+<span class="math notranslate nohighlight">\(|\boldsymbol{v}| = (u^2 + w^2)^{1/2}\)</span>.</p>
+<div class="margin docutils container">
+<p>Note how the air resistance term couples the horizontal and vertical
+component equations; we can’t solve them separately as we did in
+section <a class="reference external" href="#sec:projectiles">4.2</a></p>
+</div>
+<p>Now we can use, for example, a Forward Euler method, as we did in
+section <a class="reference external" href="#sec:step_systems">6.4</a> to obtain a numerical solution.
+Since we have four equations we will need four initial conditions, for
+example the <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-components of the initial position
+and velocity.</p>
+<p id="example-12"><strong>Example:</strong></p>
+<p>Write a Python code to solve these equations. You might want to take the
+code of section <a class="reference external" href="#sec:step_systems">6.4</a> as a template.</p>
+<p>It is very important to test any code to make sure it does what it is
+supposed to. For this problem we have closed form solutions in three
+cases (section <a class="reference external" href="#sec:air_res_I">5</a>) that we can compare our numerical
+solution against.</p>
+<p id="example-13"><strong>Example:</strong></p>
+<p>Let us reconsider the problem from section <a class="reference external" href="#sec:projectiles">4.2</a>,
+but now including air resistance. A ball is projected with speed
+<span class="math notranslate nohighlight">\(\sqrt{3gH}\)</span> in a plane perpendicular to a vertical wall of height
+<span class="math notranslate nohighlight">\(H\)</span> a distance <span class="math notranslate nohighlight">\(H\)</span> away. Let us fix the magnitude of the
+drag coefficient <span class="math notranslate nohighlight">\(C\)</span> by taking <span class="math notranslate nohighlight">\(C/m = 0.1/H\)</span>. Find the range
+of angles of projection that allow the ball to pass over the wall. We
+can no longer solve this problem analytically, but we can still answer
+the question by computing numerical solutions for different launch
+angles <span class="math notranslate nohighlight">\(\alpha\)</span>. It turns out that the solution is independent of
+the values given for <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(g\)</span>, so we can choose to work
+in units <a class="footnote-reference brackets" href="#id7" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> for which <span class="math notranslate nohighlight">\(H=1\)</span>, <span class="math notranslate nohighlight">\(g=1\)</span>. It is a very good idea
+to check that your code gives the correct solution for the case of zero
+drag <span class="math notranslate nohighlight">\(C/m = 0\)</span> first! Do you find that the range of angles to
+clear the wall increases or decreases when air resistance is included?</p>
+<p id="example-14"><strong>Example:</strong></p>
+<p>We can also revisit the example from section <a class="reference external" href="#sec:envelope">4.3</a>. A
+ball is projected with speed <span class="math notranslate nohighlight">\(V\)</span> in a plane perpendicular to a
+wall of height <span class="math notranslate nohighlight">\(H\)</span> a distance <span class="math notranslate nohighlight">\(H\)</span> away, with
+<span class="math notranslate nohighlight">\(C/m = 0.1/H\)</span>. What is the <em>minimum</em> speed required for the ball
+to pass over the wall? Once again we can no longer solve the problem
+analytically, but we can obtain an answer using a trial-and-error
+approach with the code for the above example. (We will see another way
+to tackle this example in section sec:adhoc.)</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">1</a><span class="fn-bracket">]</span></span>
+<p>You may notice an apparent inconsistency between treating a body as a
+point particle and allowing it to have a finite cross-sectional area.
+In this case it does not lead to any problems. But, more generally,
+we do need to be on the lookout for possible inconsistent assumptions
+and approximations in our modelling.</p>
+</aside>
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">2</a><span class="fn-bracket">]</span></span>
+<p>A very useful technique in applied mathematics is
+<em>non-dimensionalization</em>. We won’t say more about this here, but that
+is effectively what we have done.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="glossary.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Glossary</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Mathematical description of motion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#particles">Particles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#position">Position</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity">Velocity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceleration">Acceleration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validity-of-common-sense-notions-of-space-and-time">Validity of common sense notions of space and time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems">Practice problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#newtons-laws">Newton’s Laws</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-1">Practice problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-estimates-for-derivatives">Numerical estimates for derivatives</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-euler-finite-difference-scheme">First order Euler finite difference scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-centred-difference-scheme">Second order centred difference scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourth-order-centred-difference-scheme">Fourth order centred difference scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centred-difference-formula-for-second-derivative">Centred difference formula for second derivative</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">Convergence</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gravity-and-projectiles">Gravity and projectiles</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newtons-law-of-universal-gravitation">Newton’s law of universal gravitation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projectiles">Projectiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-2">Practice problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-envelope-equation">The envelope equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problems-3">Practice problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projectiles-with-air-resistance-part-i">Projectiles with air resistance: part I</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-initial-value-problems">Numerical methods for Initial Value Problems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-step-finite-difference-methods">Single-step finite difference methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-euler">Forward Euler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#midpoint-method">Midpoint method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-step-methods">Multi-step methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orders-of-accuracy-and-convergence">Orders of accuracy and convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-stepping-systems-of-equations">Time stepping systems of equations</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projectiles-with-air-resistance-part-ii">Projectiles with air resistance: part II</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-stepping-higher-order-odes">Time stepping higher order ODEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projectiles-with-air-resistance">Projectiles with air resistance</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Jemma Shipton
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
