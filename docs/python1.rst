@@ -1,3 +1,5 @@
+.. include:: custom.rst
+
 Python: Introduction
 ====================
 
@@ -25,59 +27,62 @@ Basic Arithmetic Operations
 ---------------------------
 
 You can type instructions at the command line prompt to tell Python to
-carry out basic arithmetic operations: addition (``+``), subtraction
-(``-``), multiplication (``*``), division (``/``), and exponentiation
-(``**``).
+carry out basic arithmetic operations: addition :python:`+`,
+subtraction :python:`-`, multiplication :python:`*`, division
+:python:`/`, and exponentiation :python:`**`.
 
-      **Example:** Compute the volume of a pyramid of height :math:`150m`
-      and base area :math:`50,000m^2`
-      >>> 150*50000/3
+**Example:** Compute the volume of a pyramid of height :math:`150m`
+and base area :math:`50,000m^2`
 
-      **Important notes:**
+.. code-block:: python
 
-      - All multiplications need to be written out explicitly: ``2x``
-        will give an error, whereas ``2*x`` is correct.
-      - Parentheses (``()``) are used to group terms together. Every
-        opening bracket must have a matching closing bracket.
-      - Exponentiation has higher precedence than multiplication and
-        division, which have higher precedence than addition and
-        subtraction.
-      - Python has a variable called ``pi``, which can be imported from
-        the ``math`` module.
+    >>> 150*50000/3
+
+**Important notes:**
+
+   - All multiplications need to be written out explicitly: :python:`2x`
+     will give an error, whereas :python:`2*x` is correct.
+   - Parentheses :python:`()` are used to group terms together. Every
+     opening bracket must have a matching closing bracket.
+   - Exponentiation has higher precedence than multiplication and
+     division, which have higher precedence than addition and
+     subtraction.
+   - Python has a variable called :python:`pi`, which can be imported from
+     the :python:`math` module.
 
 The math and cmath modules
 --------------------------
 
 Python keeps things tidy by collecting objects such as functions
-together in modules. For example, the ``math`` module contains the
+together in modules. For example, the :python:`math` module contains the
 definitions of a lot of mathematical functions and useful constants
 such as :math:`\pi`. To access these definitions, we need to import them
 from the module:
 
-      ::
+.. code-block:: python
 
-         >>> from math import pi
+     >>> from math import pi
 
 The `math <https://docs.python.org/3/library/math.html>`__ and `cmath
 <https://docs.python.org/3/library/cmath.html>`__ modules contain
 functions to compute many standard mathematical functions.  The
-``math`` functions are only defined for real input and output, whereas
-the ``cmath`` functions will accept real and complex input and will
+:python:`math` functions are only defined for real input and output, whereas
+the :python:`cmath` functions will accept real and complex input and will
 *always* return a complex number.
 
 Commonly Used Mathematical Functions
 ------------------------------------
 
-      ============ ======================== ================ =================
-      Function     Description              Function         Description
-      ============ ======================== ================ =================
-      ``sin(x)``   Sine                     ``sqrt(x)``      Square root
-      ``cos(x)``   Cosine                   ``exp(x)``       $e^x$
-      ``tan(x)``   Tangent                  ``log(x)``       Natural logarithm
-      ``asin(x)``  Inverse sine             ``log10(x)``     Base 10 logarithm
-      ``abs(x)``   Absolute value           ``factorial(x)`` $x!$
-      ``round(x)`` Round to nearest integer ``floor(x)``     Round down
-      ============ ======================== ================ =================
+      ================== ======================== ====================== =================
+      Function           Description              Function               Description
+      ================== ======================== ====================== =================
+      :python:`sin(x)`   Sine                     :python:`sqrt(x)`      Square root
+      :python:`cos(x)`   Cosine                   :python:`exp(x)`       :math:`e^x`
+      :python:`tan(x)`   Tangent                  :python:`log(x)`       Natural logarithm
+      :python:`asin(x)`  Inverse sine             :python:`log10(x)`     Base 10 logarithm
+      :python:`abs(x)`   Absolute value           :python:`factorial(x)` :math:`x!`
+      :python:`round(x)` Round to nearest integer :python:`floor(x)`     Round down
+      ================== ======================== ====================== =================
 
 Variables
 ---------
@@ -86,7 +91,7 @@ You can store numbers, including the results of calculations, in named
 locations in the computer memory, called **variables**, to use them
 later. Variable names must start with a letter, followed by any number
 of letters, digits, or underscore characters.  Variable names are case
-sensitive: ``Temp`` is different from ``temp``.
+sensitive: :python:`Temp` is different from :python:`temp`.
 
 Assignment
 ----------
@@ -94,7 +99,7 @@ Assignment
 There is a crucial conceptual difference between the use of '=' in
 pencil-and-paper mathematics and the use of '=' in a programming
 language such as Python. In pencil-and-paper mathematics, :math:`y = x^2
-+ 4x + 5` is an *equation*. In Python, ``y = x**2 + 4*x + 5`` is an
++ 4x + 5` is an *equation*. In Python, :python:`y = x**2 + 4*x + 5` is an
 *instruction*; it means evaluate the expression on the right hand side
 and *assign* the result to the variable whose name appears on the left
 hand side.
@@ -108,11 +113,11 @@ executed. While in pencil-and-paper mathematics it would be
 nonsensical to write :math:`p = 6`, :math:`p = 7`, :math:`p = p + 1`,
 the following is perfectly valid in Python:
 
-      ::
+.. code-block:: python
 
-         >>> p = 6
-         >>> p = 7
-         >>> p = p + 1
+    >>> p = 6
+    >>> p = 7
+    >>> p = p + 1
 
 Precision
 ---------
