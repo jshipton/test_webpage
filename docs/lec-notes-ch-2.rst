@@ -12,7 +12,7 @@ Particles
 |    :math:`\bullet` that bodies can rotate
 |    :math:`\bullet` that bodies can have internal motions
 
-.. container:: margin
+.. margin::
 
    **Reading:** Collinson and Roper §1.2. Note ideas of particle, speed,
    uniform motion, mass, force.
@@ -101,7 +101,7 @@ Units
 | and acceleration is measured in metres per second
   squared :math:`\mathrm{ms}^{-2}`.
 
-.. container:: margin
+.. margin::
 
    Mathematics questions don’t always use units, but if a question uses
    units then the answer should use units. Checking that the answer has the
@@ -146,7 +146,7 @@ However, Newtonian mechanics and ‘common sense’ notions are applicable
 to many objects provided they are not moving too quickly (speed much
 less than that of light) and not too small.
 
-.. container:: margin
+.. margin::
 
    **Reading:** Collinson and Roper §1.4 space and time, §4.1 motion in
    space.
@@ -194,7 +194,7 @@ First integrate :math:`\boldsymbol{a}`:
 *vector* constant, so written bold in print, underlined when
 hand-written.
 
-.. container:: margin
+.. margin::
 
    *Always* underline vectors in your own working. Many unnecessary errors
    arise from not taking enough care with notation, e.g. failing to
@@ -373,7 +373,7 @@ At :math:`t = 0`, :math:`\boldsymbol{r} = \boldsymbol{0}`, so
    \boldsymbol{r} =
    \frac{1}{3} ( t - \sin t ) \boldsymbol{i} + \frac{1}{3} (t - 1 + \mathrm{e}^{-t} ) \boldsymbol{j} .
 
-.. container:: margin
+.. margin::
 
    **Reading:** Collinson and Roper §§4.2, 4.3.
 
@@ -429,7 +429,7 @@ we obtain the Forward Euler formula
    \label{eq:fwdeuler}
    f'(x) = \frac{f(x+h) - f(x)}{h} + O(h).
 
-.. container:: margin
+.. margin::
 
    The error is actually :math:`\tfrac{1}{2} h f''(x)+ \cdots` but the
    :math:`O(h)` notation for the error is convenient as it isolates the
@@ -470,7 +470,7 @@ By combining the Taylor series for :math:`f(x+2h)`, :math:`f(x+h)`,
 :math:`f(x-h)`, and :math:`f(x-2h)`, we obtain the fourth order centred
 difference formula
 
-.. container:: margin
+.. margin::
 
    It is a good exercise to check this works and see how the given
    coefficients ensure the cancellation of a key term.
@@ -493,43 +493,43 @@ This is second order accurate.
 Convergence
 -----------
 
-.. container:: margin
+.. margin::
 
    :code:`# Examine convergence of`
 
-.. container:: margin
+.. margin::
 
    :code:`# Forward Euler`
 
-.. container:: margin
+.. margin::
 
    :code:`interval = []`
 
-.. container:: margin
+.. margin::
 
    :code:`err = []`
 
-.. container:: margin
+.. margin::
 
    :code:`for p in range(8):`
 
-.. container:: margin
+.. margin::
 
    :code:`    h = 0.5**(p+1)`
 
-.. container:: margin
+.. margin::
 
    :code:`    d = (sin(1 + h) - sin(1))/h`
 
-.. container:: margin
+.. margin::
 
    :code:`    interval.append(h)`
 
-.. container:: margin
+.. margin::
 
    :code:`    err.append(abs(d - cos(1)))`
 
-.. container:: margin
+.. margin::
 
    :code:`loglog(interval, err, ’b*’)`
 
@@ -551,43 +551,43 @@ accuracy?
 
 **Example:**
 
-.. container:: margin
+.. margin::
 
    :code:`# First load the data`
 
-.. container:: margin
+.. margin::
 
    :code:`shtl = np.loadtxt(’STS121ascent.txt’)`
 
-.. container:: margin
+.. margin::
 
    :code:`# Pick out first column (time)`
 
-.. container:: margin
+.. margin::
 
    :code:`time = shtl[:, 0]`
 
-.. container:: margin
+.. margin::
 
    :code:`# and second column (altitude)`
 
-.. container:: margin
+.. margin::
 
    :code:`z = shtl[:, 1]`
 
-.. container:: margin
+.. margin::
 
    :code:`# How many data points?`
 
-.. container:: margin
+.. margin::
 
    :code:`n = len(time)`
 
-.. container:: margin
+.. margin::
 
    :code:`# Estimate vertical velocity`
 
-.. container:: margin
+.. margin::
 
    :code:`w = ...`
 
@@ -770,7 +770,7 @@ motion starts in that plane it remains there. Now that we have checked
 this, we can drop :math:`y` and just use :math:`x` and :math:`z` for
 this type of problem.
 
-.. container:: margin
+.. margin::
 
    **Reading:** Collinson and Roper §5.1 gravity, §4.4 projectiles.
 
@@ -1109,7 +1109,7 @@ refer to :math:`C` as the drag coefficient. Note that
 
 and so the magnitude of the drag is quadratic in the speed of the body.
 
-.. container:: margin
+.. margin::
 
    Calculation of the drag on a body is a topic in *fluid dynamics*.
    Quadratic drag is appropriate for bodies such as cricket balls moving
@@ -1212,47 +1212,47 @@ over the desired time range.
 Forward Euler
 ^^^^^^^^^^^^^
 
-.. container:: margin
+.. margin::
 
    :code:`# Solve dy/dt = y(1 - y)`
 
-.. container:: margin
+.. margin::
 
    :code:`# using Forward Euler`
 
-.. container:: margin
+.. margin::
 
    :code:`# Final time and time step`
 
-.. container:: margin
+.. margin::
 
    :code:`Tstop = 5`
 
-.. container:: margin
+.. margin::
 
    :code:`nstop = 50`
 
-.. container:: margin
+.. margin::
 
    :code:`h = Tstop/nstop`
 
-.. container:: margin
+.. margin::
 
    :code:`# Initial value`
 
-.. container:: margin
+.. margin::
 
    :code:`y = 0.1`
 
-.. container:: margin
+.. margin::
 
    :code:`# Time step loop`
 
-.. container:: margin
+.. margin::
 
    :code:`for n in range(nstop):`
 
-.. container:: margin
+.. margin::
 
    :code:`    y = y + h*y*(1 - y)`
 
@@ -1287,7 +1287,7 @@ Midpoint method
 
 There are many other single-step methods.
 
-.. container:: margin
+.. margin::
 
    For example, look up Runge-Kutta methods.
 
@@ -1319,7 +1319,7 @@ This method is known as the leapfrog method. It requires us to know both
 :math:`y_{n-1}` and :math:`y_n` in order to step forward to
 :math:`y_{n+1}`, so it is an example of a *multi-step method*.
 
-.. container:: margin
+.. margin::
 
    Other multi-step schemes include the Adams-Bashforth methods.
 
@@ -1452,7 +1452,7 @@ Suppose we are given a second order ODE
 This can always be re-written as a pair of first order ODEs by
 introducing a new variable :math:`z = \dot{y}`, say:
 
-.. container:: margin
+.. margin::
 
    This pair of ODEs will need two initial conditions, one on :math:`y` and
    one on :math:`z`. This makes it clear why the original second order ODE
@@ -1501,7 +1501,7 @@ and then introduce new variables :math:`u = \dot{x}`,
 where :math:`\boldsymbol{v} = (u,w)` and
 :math:`|\boldsymbol{v}| = (u^2 + w^2)^{1/2}`.
 
-.. container:: margin
+.. margin::
 
    Note how the air resistance term couples the horizontal and vertical
    component equations; we can’t solve them separately as we did in
