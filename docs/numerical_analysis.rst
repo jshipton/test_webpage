@@ -1,5 +1,3 @@
-Back :doc:`python1`
-
 .. _numerical_analysis:
 
 Numerical analysis
@@ -11,10 +9,10 @@ What is numerical analysis?
 We will see throughout this module that we can solve the same problem
 using different numerical methods. Given that we can write down a
 variety of numerical methods, it is important to understand what
-*errors* are made.  Since none of these methods will generally give
-exact answers, if we have two numerical methods for solving the same
-problem, we need to understand the size of the errors to know which
-method is superior.
+*errors* are made when applying each one.  Since none of these methods
+will generally give exact answers, if we have two numerical methods
+for solving the same problem, we need to understand the size of the
+errors to know which method is superior.
 
 The analysis of numerical methods, their errors and other properties, forms the
 subject of *numerical analysis*, which is an important and vigorous topic in
@@ -58,5 +56,3 @@ way to give the key information needed about the 'error term'.
 we halve :math:`h` the error :math:`\varepsilon` is multiplied by a quarter. A
 scheme with :math:`O(h^2)` error is superior to one with :math:`O(h)` error,
 when halving :math:`h` only halves the error.
-
-Next :doc:`interpolation`

@@ -1,5 +1,3 @@
-Back :doc:`numerical_analysis`
-
 Interpolation
 =============
 
@@ -49,5 +47,3 @@ interpolated value :math:`\hat{f}(\hat{x})` and the true value
 :math:`h \rightarrow 0`. We say that the interpolation *converges* if
 :math:`\hat{f}(\hat{x}) - f(\hat{x}) \rightarrow 0` as
 :math:`h \rightarrow 0`.
-
-Next: :doc:`python2`

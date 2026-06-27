@@ -1,5 +1,3 @@
-Back :doc:`index`
-
 Python: Introduction
 ====================
 
@@ -31,8 +29,8 @@ carry out basic arithmetic operations: addition (``+``), subtraction
 (``-``), multiplication (``*``), division (``/``), and exponentiation
 (``**``).
 
-      **Example:** Compute the volume of a pyramid of height 150 m
-      and base area 50,000 `m^2`
+      **Example:** Compute the volume of a pyramid of height :math:`150m`
+      and base area :math:`50,000m^2`
       >>> 150*50000/3
 
       **Important notes:**
@@ -53,7 +51,7 @@ The math and cmath modules
 Python keeps things tidy by collecting objects such as functions
 together in modules. For example, the ``math`` module contains the
 definitions of a lot of mathematical functions and useful constants
-such as $\\pi$. To access these definitions, we need to import them
+such as :math:`\pi`. To access these definitions, we need to import them
 from the module:
 
       ::
@@ -95,8 +93,8 @@ Assignment
 
 There is a crucial conceptual difference between the use of '=' in
 pencil-and-paper mathematics and the use of '=' in a programming
-language such as Python. In pencil-and-paper mathematics, $y = x^2
-+ 4x + 5$ is an *equation*. In Python, ``y = x**2 + 4*x + 5`` is an
+language such as Python. In pencil-and-paper mathematics, :math:`y = x^2
++ 4x + 5` is an *equation*. In Python, ``y = x**2 + 4*x + 5`` is an
 *instruction*; it means evaluate the expression on the right hand side
 and *assign* the result to the variable whose name appears on the left
 hand side.
@@ -107,8 +105,8 @@ Sequences of commands
 Python executes the commands we give one at a time, in the order we
 give them. The values of the variables change as each command is
 executed. While in pencil-and-paper mathematics it would be
-nonsensical to write $p = 6$, $p = 7$, $p = p + 1$, the following is
-perfectly valid in Python:
+nonsensical to write :math:`p = 6`, :math:`p = 7`, :math:`p = p + 1`,
+the following is perfectly valid in Python:
 
       ::
 
@@ -120,9 +118,9 @@ Precision
 ---------
 
 Computers have finite memory, and this means they cannot store real
-numbers such as $\\pi$ or $\\sqrt{2}$ exactly; such numbers can only
-be stored to some finite *precision*. By default Python stores real
-numbers to a precision of about 15 decimal digits.
+numbers such as :math:`\pi` or :math:`\sqrt{2}` exactly; such numbers
+can only be stored to some finite *precision*. By default Python
+stores real numbers to a precision of about 15 decimal digits.
 
 This is more than enough for most practical purposes. However, there
 are certain calculations in which the effects of tiny precision errors
@@ -133,5 +131,3 @@ include:
       - Taking small differences of relatively large numbers
       - Finding roots of polynomials
       - Certain eigenvalue computations
-
-Next: :doc:`numerical_analysis`

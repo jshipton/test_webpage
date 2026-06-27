@@ -376,6 +376,4 @@ fourth and fifth data points in the set. Note that here (contrast section 9)
 .. code-block:: pycon
 
    >>> zhat = np.linspace(z[4], z[5], 11)
-   >>> That = ((zhat - z[4])*T[5]
-   ...       + (z[5] - zhat)*T[4])
-   ...       /(z[5] - z[4])
+   >>> That = ((zhat - z[4])*T[5] + (z[5] - zhat)*T[4])/(z[5] - z[4])

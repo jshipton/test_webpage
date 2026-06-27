@@ -3,12 +3,14 @@ Mathematical Modelling
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
 
    self
    python1
    numerical_analysis
    interpolation
    python2
+   glossary
 
 .. _intro:
 
@@ -25,15 +27,28 @@ Introduction
 Overview of Mathematical Modelling
 ----------------------------------
 
+      .. figure:: _static/images/IsaacNewton.png
+         :figclass: margin
+
       This module will introduce you to some of the kinds of
       mathematical models that are used to understand and predict the
       behaviour of the real world, along with some of the analytical and
       computational methods used to work with those models.
 
+      .. figure:: _static/images/lotkavolterra.png
+         :figclass: margin
+
+         A model of competing populations.
+
       Some types of mathematical models are based on physical principles
       that are so well established that they are considered to be 'Laws
       of Nature'; Newton's Laws of Motion and his Law of Gravitation are
       prime examples.
+
+      .. figure:: _static/images/butterfly.png
+         :figclass: margin
+
+         A solution trajectory for the Lorenz equations.
 
       Other types of mathematical model are rather more empirical,
       though they can still be extremely useful. Examples that we will
@@ -43,17 +58,19 @@ Overview of Mathematical Modelling
       dependence. Examples include Newtonian dynamics, population
       dynamics, the spread of infectious diseases, and much more.
 
-      .. container:: example
+      **Example:** To make progress as applied mathematicians we must
+      work with **approximate models**. For example, consider a car
+      on a rollercoaster. What factors can we ignore, and which are
+      essential?
 
-         **Example:** To make progress as applied mathematicians we must
-         work with **approximate models**. For example, consider a car
-         on a rollercoaster. What factors can we ignore, and which are
-         essential?
+      .. figure:: _static/images/rollercoaster.png
+
+         A sketch of a rollercoaster.
 
       In some cases (actually rather rare in the messy real world) we
-      can solve a mathematical model using analytical methods, for
-      example based on calculus, vectors, or matrices, and obtain exact
-      formulae.
+      can solve a mathematical model using :term:`analytical`
+      methods, for example based on calculus, vectors, or matrices,
+      and obtain exact formulae.
 
 .. _python:
 
@@ -91,7 +108,7 @@ Books
       | Author               | Title                | Notes                |
       +======================+======================+======================+
       | **Collinson and      | **Particle           | Course book;         |
-      | Roper \***           | Mechanics**          | strongly recommended |
+      | Roper**              | Mechanics**          | strongly recommended |
       +----------------------+----------------------+----------------------+
       | **Dyke and           | **Guide to           | Nice                 |
       | Whitworth**          | Mechanics**          | discussion           |
@@ -101,7 +118,7 @@ Books
       | **Lunn**             | **A First Course in  | Even more advanced   |
       |                      | Mechanics**          |                      |
       +----------------------+----------------------+----------------------+
-      | **Strogatz \***      | **Nonlinear Dynamics | Very clearly written |
+      | **Strogatz**         | **Nonlinear Dynamics | Very clearly written |
       |                      | and Chaos**          | with nice examples   |
       +----------------------+----------------------+----------------------+
 
@@ -121,5 +138,3 @@ Python Books
 
       *Most of these are available online - follow the links under the
       Access your Reading List tile on ELE.*
-
-Next: :doc:`python1`
